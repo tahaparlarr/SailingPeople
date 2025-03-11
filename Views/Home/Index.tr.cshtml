@@ -1,0 +1,131 @@
+﻿@{
+	ViewData["Title"] = "Home Page";
+}
+
+<section data-bs-version="5.1" class="header09 startm5 cid-uEmxuAJycy" id="header09-6">
+	<div class="container">
+		<div class="content-wrap ">
+			<h1 class="mbr-section-title mbr-fonts-style mbr-white mb-4 display-1"><strong>@SharedResources.HeaderText</strong></h1>
+
+			<p class="mbr-fonts-style mbr-text mbr-white mb-4 display-7">
+				@SharedResources.HeaderSubText<br>
+			</p>
+
+			<section class="p-0 bg-transparent">
+				<div class="m-0">
+					<div class="card bg-white p-4 shadow">
+						<form>
+							<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+								<div class="col">
+									<label for="boatType" class="form-label">Tekne Tipi</label>
+									<div class="input-group">
+										<span class="input-group-text">
+											<i class="fas fa-ship"></i>
+										</span>
+										<select asp-items="@(ViewBag.CategoriesSelectList)" class="form-select" id="boatType">											
+										</select>
+									</div>
+								</div>
+
+								<div class="col">
+									<label for="kamara" class="form-label">@SharedResources.Cabin</label>
+									<div class="input-group">
+										<span class="input-group-text">
+											<i class="fas fa-bed"></i>
+										</span>
+										<select class="form-select" id="kamara">
+											<option selected>@($"{@SharedResources.Select}...")</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4+</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="col">
+									<label for="misafir" class="form-label">@SharedResources.Guest</label>
+									<div class="input-group">
+										<span class="input-group-text">
+											<i class="fas fa-users"></i>
+										</span>
+										<select class="form-select" id="misafir">
+											<option selected>@($"{SharedResources.Select}...")</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4+</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="col d-flex align-items-end">
+									<button type="submit" class="btn btn-primary w-100">
+										<i class="fas fa-search"></i> @SharedResources.Search
+									</button>
+								</div>
+
+							</div>
+						</form>
+					</div>
+				</div>
+			</section>
+
+
+		</div>
+	</div>
+</section>
+
+
+<section data-bs-version="5.1" class="features03 cid-uEmpZY81c2" id="features03-1">
+	<div class="container">
+		<div class="row justify-content-center mb-5">
+			<div class="col-12 content-head">
+				<div class="mbr-section-head">
+					<h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2"><strong>@SharedResources.BoatType</strong></h4>
+
+				</div>
+			</div>
+		</div>
+		<div class="row">
+
+			@foreach (var category in ViewBag.Categories as IEnumerable<CategoryDto>)
+			{
+				<div class="item features-image col-12 col-md-6 col-lg-3 active">
+					<div class="item-wrapper">
+						<div class="item-img mb-3">
+							<img class="object-fit-cover" src="~/images/categories/@(category.Id).jpg" alt="@category.NameTr">
+						</div>
+						<div class="item-content align-left">
+							<h5 class="item-title mbr-fonts-style mt-0 mb-2 display-5">
+								<strong>@category.NameTr</strong>
+							</h5>
+
+							<div class="mbr-section-btn item-footer"><a href="" class="btn item-btn btn-primary display-7">@SharedResources.Inspect</a></div>
+						</div>
+					</div>
+				</div>
+
+			}
+
+		</div>
+	</div>
+</section>
+
+<section data-bs-version="5.1" class="image01 cid-uEmru6qbKe" id="image01-3">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-12 col-lg-9">
+				<div class="image-wrapper mb-4">
+					<img class="w-100" src="/images/wp-yatch.jpg" alt="Contact">
+				</div>
+				<h4 class="mbr-description mbr-fonts-style mb-3 align-center display-5"><strong>@SharedResources.WpFooterText</strong></h4>
+				<p class="mbr-description mbr-fonts-style mb-0 align-center display-7">
+					@($"Sailing&People{SharedResources.WpFooterSubText}")
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+

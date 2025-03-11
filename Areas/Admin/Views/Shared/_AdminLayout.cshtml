@@ -1,0 +1,45 @@
+﻿<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - SealingPeople</title>
+
+	<script type="importmap"></script>
+	<link rel="shortcut icon" href="~/images/logo.svg">
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<div class="container-fluid">
+		<div class="navbar-brand">
+			<span class="navbar-logo mx-auto">
+				<a asp-area="" asp-controller="Home" asp-action="Index">
+					<img src="~/images/logo.svg" alt="Sailing&amp;People Logo" style="height: 3.5rem;">
+				</a>
+			</span>
+		</div>
+
+		<button class="navbar-toggler"
+				type="button"
+				aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<li class="nav-item">
+					<a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">Anasayfa</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<main role="main">
+		@RenderBody()
+</main>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
