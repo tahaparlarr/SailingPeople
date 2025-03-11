@@ -15,61 +15,21 @@ $primary: #2d4e94;
 }
 
 // NAVBAR 
-header {
-    position: relative;
-}
-
 .navbar {
-    position: fixed;
-    width: 100%;
-    backdrop-filter: blur(10px);
-    padding: 0.8rem 1rem;
-    transition: background 0.3s ease, padding 0.3s ease;
+    backdrop-filter: blur(50px);
+    padding: 1rem;
+    transition: background 0.3s ease, padding 0.3s ease, color 0.3s ease;
     z-index: 1000;
 }
 
-.navbar-brand {
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-    font-size: 1.2rem;
-    color: #222;
-    transition: color 0.3s ease, transform 0.3s ease;
-    text-decoration: none;
+.navbar .nav-link,
+.navbar .navbar-brand {
+    color: black;
+    transition: color 0.3s ease;
 }
 
-.navbar-brand img {
-    height: 40px;
-    transition: transform 0.3s ease;
+.navbar.bg-dark .nav-link,
+.navbar.bg-dark .navbar-brand {
+    color: white;
 }
 
-.navbar-brand img:hover {
-    transform: scale(1.1);
-}
-
-.navbar-nav {
-    display: flex;
-    gap: 1.5rem;
-    align-items: center;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.nav-item {
-    list-style: none;
-}
-
-.nav-link {
-    color: #222;
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-    text-decoration: none;
-}
-
-.nav-link:hover {
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.8);
-}
