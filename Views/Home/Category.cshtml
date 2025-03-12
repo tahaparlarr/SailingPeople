@@ -3,35 +3,28 @@
 @{
 	ViewData["Title"] = "Category Detail";
 }
+
 <div class="container mt-5">
 	<div class="row justify-content-center">
-		<div class="splide" aria-label="Boats">
-			<div class="splide__track">
-				<ul class="splide__list">
-						<li class="splide__slide">
-					@foreach (var boat in Model)
-					{
-							<div class="col-md-4">
-								<div class="card">
-									<a>
-										<img src="@boat.Image" class="card-img-top" alt="@boat.Name">
-									</a>
-									<div class="card-body">
-										<h5 class="card-title">@boat.Name</h5>
-										<p class="card-text">@boat.Width ft @boat.Length</p>
-									</div>
-									<div class="card-footer">
-										<div class="footer-icons">
-											<div><i class="bi bi-people"></i> @boat.Cabin</div>
-											<div><i class="bi bi-door-closed"></i> @boat.Guest</div>
-										</div>
-									</div>
-								</div>
-							</div>
-					}
-						</li>
-				</ul>
+		@foreach (var boat in Model)
+		{
+			<div class="col-md-4 mb-4">
+				<div class="card custom-card">
+					<a href="#">
+						<img src="@boat.Image" class="card-img-top" alt="@boat.Name">
+					</a>
+					<div class="card-body">
+						<h5 class="card-title">@boat.Name</h5>
+						<p class="card-text">@boat.Width ft @boat.Length</p>
+					</div>
+					<div class="card-footer">
+						<div class="footer-icons">
+							<div><i class="bi bi-people"></i> @boat.Cabin</div>
+							<div><i class="bi bi-door-closed"></i> @boat.Guest</div>
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
+		}
 	</div>
 </div>

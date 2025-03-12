@@ -2,66 +2,71 @@
 	ViewData["Title"] = "Home Page";
 }
 
-<section data-bs-version="5.1" class="header09 startm5 cid-uEmxuAJycy" id="header09-6">
-	<div class="container">
-		<div class="content-wrap ">
-			<h1 class="mbr-section-title mbr-fonts-style mbr-white mb-4 display-1"><strong>Discover Freedom in the Blue</strong></h1>
+@* header *@
+<section class="custom-header">
+	<div class="container-fluid">
+		<div class="content-wrap text-center py-5">
+			<h1 class="mb-4 display-1">
+				<strong>Discover Freedom in the Blue</strong>
+			</h1>
 
-			<p class="mbr-fonts-style mbr-text mbr-white mb-4 display-7">
+			<p class="mb-4 display-7">
 				Embark on an unforgettable sea voyage with comfortable boats and unique routes.<br>
 			</p>
 
-			<section class="p-0 bg-transparent">
-				<div class="m-0">
-					<div class="card bg-white p-4 shadow">
-						<partial name="_FilterFormPartial" model="new FilterViewModel()" />
+			<section class="p-0 m-3 bg-transparent">
+				<div class="row justify-content-center">
+					<div class="col-md-10 col-lg-8 bg-white rounded-5">
+						<div class="p-2">
+							<partial name="_FilterFormPartial" />
+						</div>
 					</div>
 				</div>
 			</section>
-
 		</div>
 	</div>
 </section>
 
-
-<section >
-	<div class="container">
-		<div class="row justify-content-center mb-5">
+@* category card *@
+<section>
+	<div class="container-fluid">
+		<div class="row text-center justify-content-center m-3">
 			<div class="col-12 content-head">
 				<div>
-					<h1 class="align-center mb-0"><strong>@SharedResources.BoatType</strong></h1>
-
+					<h1 class="align-center mb-0">@SharedResources.BoatType</h1>
 				</div>
 			</div>
 		</div>
-		<div class="row">
-
+		<div class="row d-flex flex-wrap">
 			@foreach (var category in ViewBag.Categories as IEnumerable<CategoryDto>)
 			{
-				<div class="item features-image col-12 col-md-6 col-lg-3 active">
-					<div class="item-wrapper">
-						<div class="item-img mb-3">
-							<img class="object-fit-cover" src="~/images/categories/@(category.Id).jpg" alt="@category.LocalizedName">
-						</div>
-						<div class="item-content align-left">
-							<h5 class="item-title mbr-fonts-style mt-0 mb-2 display-5">
-								<strong>@category.LocalizedName</strong>
-							</h5>
+				<div class="col-12 col-md-6 m-0 p-0">
+					<div class="category-box">
+						<div class="category-img position-relative">
+							<img class="object-fit-cover" src="~/images/categories/@(category.Id).jpg"
+								alt="@category.LocalizedName">
 
-							<div class="mbr-section-btn item-footer">
-								<a asp-controller="Home" asp-action="Category" asp-route-id="@category.Id" class="btn item-btn btn-primary display-7">
+							<div class="position-absolute start-50 translate-middle-x bottom-0 mb-3">
+								<a asp-controller="Home" asp-action="Category" asp-route-id="@category.Id"
+									class="btn item-btn btn-outline-primary display-7">
 									Inspect
 								</a>
+							</div>
+
+							<div class="category-info">
+								<h5 class="mt-0 mb-2">
+									<strong>@category.LocalizedName</strong>
+								</h5>
 							</div>
 						</div>
 					</div>
 				</div>
 			}
-
 		</div>
 	</div>
 </section>
 
+@* 
 <section data-bs-version="5.1" class="image01 cid-uEmru6qbKe" id="image01-3">
 	<div class="container">
 		<div class="row justify-content-center">
@@ -69,13 +74,13 @@
 				<div class="image-wrapper mb-4">
 					<img class="w-100" src="/images/wp-yatch.jpg" alt="Contact">
 				</div>
-				<h4 class="mbr-description mbr-fonts-style mb-3 align-center display-5"><strong>@SharedResources.WpFooterText</strong></h4>
+				<h4 class="mbr-description mbr-fonts-style mb-3 align-center display-5">
+					<strong>@SharedResources.WpFooterText</strong>
+				</h4>
 				<p class="mbr-description mbr-fonts-style mb-0 align-center display-7">
 					@($"Sailing&People{SharedResources.WpFooterSubText}")
 				</p>
 			</div>
 		</div>
 	</div>
-</section>
-
-
+</section> *@

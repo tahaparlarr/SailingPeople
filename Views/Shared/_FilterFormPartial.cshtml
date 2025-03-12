@@ -1,10 +1,10 @@
 ﻿@model FilterViewModel
 
 <form method="POST" asp-action="Search" asp-controller="Home">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
-        <div class="col">
+    <div class="row row-cols-1 text-dark text-start row-cols-sm-2 row-cols-md-4 g-3 p-1">
+        <div class="col d-flex flex-column">
             <label asp-for="CategoryId" class="form-label">
-                @Html.DisplayNameFor(model => model.CategoryId)
+                Category
             </label>
             <div class="input-group">
                 <span class="input-group-text">
@@ -16,9 +16,9 @@
             </div>
         </div>
 
-        <div class="col">
+        <div class="col d-flex flex-column">
             <label asp-for="Cabin" class="form-label">
-                @Html.DisplayNameFor(model => model.Cabin)
+                Cabin
             </label>
             <div class="input-group">
                 <span class="input-group-text">
@@ -34,9 +34,9 @@
             </div>
         </div>
 
-        <div class="col">
+        <div class="col d-flex flex-column">
             <label asp-for="Guests" class="form-label">
-                @Html.DisplayNameFor(model => model.Guests)
+                Guests
             </label>
             <div class="input-group">
                 <span class="input-group-text">
@@ -54,7 +54,7 @@
 
         <div class="col d-flex align-items-end justify-content-center">
             <button type="submit" class="btn btn-primary w-100">
-                <i class="me-2 bi bi-search"> </i> Search
+                <i class="me-2 bi bi-search"></i> Search
             </button>
         </div>
     </div>
