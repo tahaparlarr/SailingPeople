@@ -5,16 +5,16 @@ $primary: #2d4e94;
 @import url("https://fonts.googleapis.com/css2?family=Inconsolata:wdth,wght@50..200,200..900&display=swap");
 
 .f-calvino {
-  font-family: "Calvino Grande Trial", sans-serif;
-  font-weight: 300;
+    font-family: "Calvino Grande Trial", sans-serif;
+    font-weight: 300;
 }
 
 .f-inconsolata {
-  font-family: "Inconsolata", serif;
-  font-weight: 500;
+    font-family: "Inconsolata", serif;
+    font-weight: 500;
 }
 
-// NAVBAR 
+// NAVBAR
 .navbar {
     backdrop-filter: blur(50px);
     padding: 1rem;
@@ -32,4 +32,42 @@ $primary: #2d4e94;
 .navbar.bg-dark .navbar-brand {
     color: white;
 }
+
+/*card*/
+.category-box {
+    overflow: hidden;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+.category-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.category-image img {
+    object-fit: cover;
+    height: 250px;
+}
+
+.category-title h5 {
+    font-size: 1.25rem;
+    color: #333;
+    font-weight: bold;
+}
+
+.inspect-btn {
+    background-color: #007bff;
+    color: white;
+    font-weight: 600;
+    padding: 10px 20px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+.inspect-btn:hover {
+    background-color: #0056b3;
+}
+
 

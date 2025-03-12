@@ -1,56 +1,61 @@
 ﻿@model FilterViewModel
 
-<form method="POST" asp-action="Search" asp-controller="Home"> 
-	<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
-		<div class="col">
-			<label asp-for="CategoryId"  class="form-label"></label>
-			<div class="input-group">
-				<span class="input-group-text">
-					<i class="fas fa-ship"></i>
-				</span>
-				<select asp-for="CategoryId" asp-items="@(ViewBag.CategoriesSelectList)" class="form-select"> 
-					<option value="" selected>Select...</option>
-				</select>
-			</div>
-		</div>
+<form method="POST" asp-action="Search" asp-controller="Home">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+        <div class="col">
+            <label asp-for="CategoryId" class="form-label">
+                @Html.DisplayNameFor(model => model.CategoryId)
+            </label>
+            <div class="input-group">
+                <span class="input-group-text">
+                    <i class="bi bi-binoculars"></i>
+                </span>
+                <select asp-for="CategoryId" asp-items="@(ViewBag.CategoriesSelectList)" class="form-select">
+                    <option value="" selected>Select...</option>
+                </select>
+            </div>
+        </div>
 
-		<div class="col">
-			<label asp-for="Cabin" class="form-label"></label>
-			<div class="input-group">
-				<span class="input-group-text">
-					<i class="fas fa-bed"></i>
-				</span>
-				<select asp-for="Cabin" class="form-select">
-					<option value="" selected>Select...</option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4+</option>
-				</select>
-			</div>
-		</div>
+        <div class="col">
+            <label asp-for="Cabin" class="form-label">
+                @Html.DisplayNameFor(model => model.Cabin)
+            </label>
+            <div class="input-group">
+                <span class="input-group-text">
+                    <i class="bi bi-border-all"></i>
+                </span>
+                <select asp-for="Cabin" class="form-select">
+                    <option value="" selected>Select...</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4+</option>
+                </select>
+            </div>
+        </div>
 
-		<div class="col">
-			<label asp-for="Guests" class="form-label"></label>
-			<div class="input-group">
-				<span class="input-group-text">
-					<i class="fas fa-users"></i>
-				</span>
-				<select asp-for="Guests" class="form-select">
-					<option value="" selected>Select...</option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4+</option>
-				</select>
-			</div>
-		</div>
+        <div class="col">
+            <label asp-for="Guests" class="form-label">
+                @Html.DisplayNameFor(model => model.Guests)
+            </label>
+            <div class="input-group">
+                <span class="input-group-text">
+                    <i class="bi bi-people"></i>
+                </span>
+                <select asp-for="Guests" class="form-select">
+                    <option value="" selected>Select...</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4+</option>
+                </select>
+            </div>
+        </div>
 
-		<div class="col d-flex align-items-end">
-			<button type="submit" class="btn btn-primary w-100">
-				<i class="fas fa-search"></i> Search
-			</button>
-		</div>
-
-	</div>
+        <div class="col d-flex align-items-end justify-content-center">
+            <button type="submit" class="btn btn-primary w-100">
+                <i class="me-2 bi bi-search"> </i> Search
+            </button>
+        </div>
+    </div>
 </form>

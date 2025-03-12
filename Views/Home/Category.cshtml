@@ -1,67 +1,37 @@
 ﻿@model List<SailingPeople.Domain.Boat>
 
 @{
-    ViewData["Title"] = "Category Detail";
+	ViewData["Title"] = "Category Detail";
 }
-
-
-    <div class="card-container">
-        <div class="card">
-            <img src="~/images/no-image.jpg" alt="Card Image" class="card-image">
-            <div class="card-content">
-                <h3 class="card-title">Kart Başlığı</h3>
-                <p class="card-description">Bu kartın açıklamasıdır. Burada kartla ilgili daha fazla bilgi bulunabilir.</p>
-                <ul class="card-features">
-                    <li>Özellik 1</li>
-                    <li>Özellik 2</li>
-                    <li>Özellik 3</li>
-                </ul>
-            </div>
-        </div>
-        <!-- Diğer kartlar buraya eklenebilir -->
-    </div>
-
-@*     <div class="container my-5">
-        <h1 class="mb-4">@ViewData["Title"]</h1>
-
-        @if (Model == null || !Model.Any())
-        {
-            <div class="alert alert-warning" role="alert">
-                Gösterilecek tekne bulunamadı.
-            </div>
-        }
-        else
-        {
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                @foreach (var boat in Model)
-                {
-                    <div class="col">
-                        <div class="card h-100 border-0 shadow-sm">
-                            <img src="@boat.Image"
-                                 class="card-img-top"
-                                 alt="@boat.Name"
-                                 style="object-fit: cover;" />
-
-                            <div class="card-body d-flex flex-column">
-                                <span class="text-muted mb-1">@boat.Category</span>
-                                <span class="text-muted mb-1">Yelkenli</span>
-
-                                <h5 class="card-title fw-bold mb-2">@boat.Name</h5>
-                                <p class="text-primary fw-semibold mb-3">
-                                    Haftalık €3.430’dan başlayan fiyatlarla
-                                </p>
-
-                                <p class="mb-4">
-                                    <strong>Kabin:</strong> @boat.Cabin <br />
-                                    <strong>Misafir:</strong> @boat.Guest <br />
-                                    <strong>Kiralama Tipi:</strong> @boat.RentType
-                                </p>
-
-                                <a href="#" class="btn btn-primary mt-auto">İncele</a>
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>
-        }
-    </div> *@
+<div class="container mt-5">
+	<div class="row justify-content-center">
+		<div class="splide" aria-label="Boats">
+			<div class="splide__track">
+				<ul class="splide__list">
+						<li class="splide__slide">
+					@foreach (var boat in Model)
+					{
+							<div class="col-md-4">
+								<div class="card">
+									<a>
+										<img src="@boat.Image" class="card-img-top" alt="@boat.Name">
+									</a>
+									<div class="card-body">
+										<h5 class="card-title">@boat.Name</h5>
+										<p class="card-text">@boat.Width ft @boat.Length</p>
+									</div>
+									<div class="card-footer">
+										<div class="footer-icons">
+											<div><i class="bi bi-people"></i> @boat.Cabin</div>
+											<div><i class="bi bi-door-closed"></i> @boat.Guest</div>
+										</div>
+									</div>
+								</div>
+							</div>
+					}
+						</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
