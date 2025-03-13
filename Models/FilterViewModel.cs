@@ -10,7 +10,7 @@ public class FilterViewModel
     [Display(Name = "Cabin")]
     public int Cabin { get; set; }
 
-    [Display(Name = "Guest")]
+    [Display(Name = "Guests")]
     public int Guests { get; set; }
 
 }

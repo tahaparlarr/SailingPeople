@@ -34,8 +34,11 @@ public class HomeController(AppDbContext dbContext) : Controller
     [HttpPost]
     public async Task<IActionResult> Search(FilterViewModel model)
     {
+
+        ViewBag.Categories = (await dbContext.Categories.ToListAsync()).Select(p => new CategoryDto(p));
+
         var result = await dbContext.Boats.Where(p =>
-        p.CategoryId == model.CategoryId &&
+        (p.CategoryId == model.CategoryId || model.CategoryId == null) &&
         p.Guest == model.Guests &&
         p.Cabin == model.Cabin
         ).ToListAsync();
