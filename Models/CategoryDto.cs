@@ -4,9 +4,6 @@ namespace SailingPeople.Models;
 
 public class CategoryDto
 {
-    public CategoryDto()
-    {
-    }
 
     public CategoryDto(Category category)
     {
@@ -14,6 +11,11 @@ public class CategoryDto
         NameTr = category.NameTr;
         NameEn = category.NameEn;
     }
+
+    public CategoryDto()
+    {
+    }
+
     public Guid Id { get; set; }
     public string NameTr { get; set; }
     public string NameEn { get; set; }

@@ -28,9 +28,7 @@ public class Boat
     public virtual ICollection<BoatSpec> BoatSpecs{ get; set; } = new List<BoatSpec>();
     public virtual ICollection<Spec> Specs { get; set; } = new List<Spec>();
     public virtual Category? Category { get; set; }
-
 }
-
 
 public class BoatEntityTypeConfiguration : IEntityTypeConfiguration<Boat>
 {

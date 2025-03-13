@@ -17,5 +17,7 @@ public class AppDbContext : IdentityDbContext
     public required virtual DbSet<Boat> Boats { get; set; }
     public required virtual DbSet<Category> Categories { get; set; }
     public required virtual DbSet<BoatImage> BoatImages { get; set; }
+    public required virtual DbSet<Spec> Specs { get; set; }
+    public required virtual DbSet<BoatSpec> BoatSpecs { get; set; }
 
 }

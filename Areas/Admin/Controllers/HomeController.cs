@@ -9,21 +9,19 @@ namespace SailingPeople.Areas.Admin.Controllers;
 [Area("Admin")]
 public class HomeController(AppDbContext dbContext) : Controller
 {
-    // Index GET
     public IActionResult Index()
     {
         return View();
     }
 
-    // Create GET
     [HttpGet]
     public IActionResult Create()
     {
+        ViewBag.Specs = dbContext.Specs.ToList();
         ViewBag.Categories = new SelectList(dbContext.Categories.ToList().Select(p => new CategoryDto(p)), "Id", "LocalizedName");
         return View(new BoatDto());
     }
 
-    // Create POST
     [HttpPost]
     public async Task<IActionResult> Create(BoatDto model)
     {
@@ -40,12 +38,17 @@ public class HomeController(AppDbContext dbContext) : Controller
             Width = model.Width ?? 0,
             Length = model.Length ?? 0,
             Cabin = model.Cabin ?? 0,
-            Guest = model.Guest ?? 0
+            Guest = model.Guest ?? 0,
+            Code = model.Code,
+            MayToOctoberPrice = model.MayToOctoberPrice,
+            JunePrice = model.JunePrice,
+            JulyToAugustPrice = model.JulyToAugustPrice,
+            SeptemberPrice = model.SeptemberPrice
         };
 
         if (model.Image != null)
         {
-            using var image = await Image.LoadAsync(model.Image!.OpenReadStream());
+            using var image = await Image.LoadAsync(model.ImageFile!.OpenReadStream());
             image.Mutate(p => p.Resize(new ResizeOptions { Mode = ResizeMode.Crop, Size = new Size(800, 800) }));
             boat.Image = image.ToBase64String(WebpFormat.Instance);
         }
@@ -65,6 +68,4 @@ public class HomeController(AppDbContext dbContext) : Controller
 
         return RedirectToAction("Index");
     }
-
-
 }

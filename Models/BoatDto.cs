@@ -13,17 +13,20 @@ public class BoatDto
     {
         Name = boat.Name;
         Id = boat.Id;
+        Image = boat.Image;
         Width = boat.Width;
         Length = boat.Length;
         Cabin = boat.Cabin;
         Guest = boat.Guest;
         CategoryId = boat.CategoryId;
+        Category = new CategoryDto(boat.Category!);
         Code = boat.Code;
         MayToOctoberPrice = boat.MayToOctoberPrice;
         JunePrice = boat.JunePrice;
         JulyToAugustPrice = boat.JulyToAugustPrice;
         SeptemberPrice = boat.SeptemberPrice;
     }
+
     public Guid Id { get; set; } = Guid.NewGuid();
 
     [Display(Name = "Name")]
@@ -33,6 +36,7 @@ public class BoatDto
     [Display(Name = "Category")]
     [Required()]
     public Guid CategoryId { get; set; }
+    public CategoryDto Category { get; set; }
 
     [Display(Name = "Code")]
     [Required()]
@@ -50,10 +54,11 @@ public class BoatDto
     [Display(Name = "September Price")]
     [Required()]
     public decimal SeptemberPrice { get; set; }
+    public string? Image { get; set; }
 
     [Display(Name = "Cover Image")]
     [Required()]
-    public IFormFile? Image { get; set; }
+    public IFormFile? ImageFile { get; set; }
 
     [Display(Name = "Images")]
     [Required()]

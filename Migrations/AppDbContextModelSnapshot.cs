@@ -320,7 +320,7 @@ namespace SailingPeople.Migrations
 
                     b.HasIndex("SpecId");
 
-                    b.ToTable("BoatSpec");
+                    b.ToTable("BoatSpecs");
                 });
 
             modelBuilder.Entity("SailingPeople.Domain.Category", b =>
@@ -384,7 +384,7 @@ namespace SailingPeople.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Spec");
+                    b.ToTable("Specs");
 
                     b.HasData(
                         new

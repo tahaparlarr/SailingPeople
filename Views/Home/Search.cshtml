@@ -11,10 +11,37 @@
 						<strong>@category.NameTr</strong>
 					</h5>
 
-					<div class="mbr-section-btn item-footer"><a href="" class="btn item-btn btn-primary display-7">@SharedResources.Inspect</a></div>
+					<div><a href="" class="btn item-btn btn-primary display-7">@SharedResources.Inspect</a></div>
 				</div>
 			</div>
 		</div>
 	}
 
 </div>
+@* 
+<div class="container">
+	<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+		@foreach (var boat in ViewBag.Boats as IEnumerable<BoatDto>)
+		{
+			<div class="col ">
+				<div class="card h-100 custom-card">
+					<a href="#">
+						<img src="@boat.Image" class="card-img-top" alt="@boat.Name">
+					</a>
+					<div class="card-body">
+						<div><i class="bi bi-people"></i> @boat.Category.LocalizedName</div>
+						<h5 class="card-title">@boat.Name</h5>
+
+					</div>
+					<div class="card-footer">
+						<div class="footer-icons">
+							<div><i class="bi bi-people"></i> @boat.Cabin</div>
+							<div><i class="bi bi-people"></i> @boat.Guest</div>
+							<p class="card-text">@boat.Width ft @boat.Length</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		}
+	</div>
+</div> *@
