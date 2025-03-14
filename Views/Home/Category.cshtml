@@ -4,23 +4,25 @@
 	ViewData["Title"] = "Category Detail";
 }
 
-<div class="container mt-5">
-	<div class="row justify-content-center">
+<div class="container pt-5">
+	<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
 		@foreach (var boat in Model)
 		{
-			<div class="col-md-4 mb-4">
-				<div class="card custom-card">
+			<div class="col">
+				<div class="card h-100 custom-card">
 					<a href="#">
 						<img src="@boat.Image" class="card-img-top" alt="@boat.Name">
 					</a>
 					<div class="card-body">
+						<div><i class="bi bi-people"></i> @boat.Category.NameTr</div>
 						<h5 class="card-title">@boat.Name</h5>
-						<p class="card-text">@boat.Width ft @boat.Length</p>
+
 					</div>
 					<div class="card-footer">
 						<div class="footer-icons">
 							<div><i class="bi bi-people"></i> @boat.Cabin</div>
-							<div><i class="bi bi-door-closed"></i> @boat.Guest</div>
+							<div><i class="bi bi-people"></i> @boat.Guest</div>
+							<p class="card-text">@boat.Width ft @boat.Length</p>
 						</div>
 					</div>
 				</div>

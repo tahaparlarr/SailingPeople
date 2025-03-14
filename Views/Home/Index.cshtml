@@ -2,7 +2,6 @@
 	ViewData["Title"] = "Home Page";
 }
 
-@* header *@
 <section class="custom-header">
 	<div class="container-fluid">
 		<div class="content-wrap text-center py-5">
@@ -27,7 +26,6 @@
 	</div>
 </section>
 
-@* category card *@
 <section>
 	<div class="container-fluid">
 		<div class="text-center m-4">
@@ -40,7 +38,7 @@
 		<div class="row d-flex flex-wrap">
 			@foreach (var category in ViewBag.Categories as IEnumerable<CategoryDto>)
 			{
-				<div class="col-12 col-md-6 m-0 p-0 border border-sm-none">
+				<div class="col-12 col-md-6 m-0 p-0 border">
 					<div class="category-box">
 						<div class="category-img position-relative">
 							<img class="object-fit-cover" src="~/images/categories/@(category.Id).jpg"
@@ -73,15 +71,14 @@
 		</h5>
 		<p class="text-muted mb-0">Explore our collection of amazing boats</p>
 	</div>
-
 	<div class="container">
 		<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
 			@foreach (var boat in ViewBag.Boats as IEnumerable<BoatDto>)
 			{
 				<div class="col">
 					<div class="card h-100 custom-card">
-						<a href="#">
-							<img src="@boat.Image" class="card-img-top" alt="@boat.Name">
+						<a asp-controller="Home" asp-action="BoatDetail" asp-route-id="@boat.Id">
+							<img src="@boat.Image" class="card-img-top object-fit-cover" alt="@boat.Name">
 						</a>
 						<div class="card-body">
 							<div><i class="bi bi-people"></i> @boat.Category.LocalizedName</div>

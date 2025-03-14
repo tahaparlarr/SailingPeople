@@ -1,0 +1,116 @@
+﻿@model BoatDto
+
+@{
+
+	ViewData["Title"] = "Boat Detail";
+}
+
+
+<div class="container my-5">
+
+    <div class="mb-4 text-center">
+        <h1 class="display-5">@Model.Name - Tekne Detayları</h1>
+        <p class="text-muted">Koda göre: @Model.Code</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5 mb-4">
+            <div class="card">
+                <img src="@Model.Image"
+                     class="card-img-top img-fluid"
+                     alt="@Model.Name"
+                     style="object-fit: cover; max-height: 300px;" />
+            </div>
+        </div>
+
+        <div class="col-md-7 mb-4">
+            <div class="card border-0">
+                <div class="card-body">
+                    <h3 class="card-title mb-3">@Model.Name</h3>
+                    <hr />
+
+                    <div class="mb-4">
+                        <h5 class="mb-2">Tekne Özellikleri</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <strong>En (Metre):</strong> @Model.Width
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Boy (Metre):</strong> @Model.Length
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Kabin Sayısı:</strong> @Model.Cabin
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Misafir Kapasitesi:</strong> @Model.Guest
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5 class="mb-2">Fiyat Bilgileri</h5>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Dönem</th>
+                                    <th>Fiyat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Mayıs - Ekim</td>
+                                    <td>@Model.MayToOctoberPrice</td>
+                                </tr>
+                                <tr>
+                                    <td>Haziran</td>
+                                    <td>@Model.JunePrice</td>
+                                </tr>
+                                <tr>
+                                    <td>Temmuz - Ağustos</td>
+                                    <td>@Model.JulyToAugustPrice</td>
+                                </tr>
+                                <tr>
+                                    <td>Eylül</td>
+                                    <td>@Model.SeptemberPrice</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="d-flex gap-3">
+                        <a href="@Url.Action("Index", "Home")" class="btn btn-outline-primary">
+                            Anasayfa'ya Dön
+                        </a>
+                        <button type="button" class="btn btn-primary">
+                            Rezervasyon Yap
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card border-0">
+                <div class="card-header bg-white">
+                    <h4 class="mb-0">Tekne Hakkında</h4>
+                </div>
+                <div class="card-body">
+                    <p>
+                        Bu bölümde teknenin genel tanıtım metni, özellikleri,
+                        rotaları, ek hizmetleri veya ilgilenenlerin bilmek isteyebileceği
+                        diğer detaylar yer alabilir. Teknenin hangi limanlardan hareket ettiği,
+                        hangi koylara ve destinasyonlara uğradığı, konfor detayları vb.
+                        gibi önemli bilgileri burada paylaşabilirsiniz.
+                    </p>
+                    <p>
+                        Dilerseniz, teknenin iç ve dış mekan fotoğraflarına dair bir galeri veya
+                        ekstra resimler de ekleyebilirsiniz. Ayrıca varsa videoları veya
+                        sanal tur linkini de yine bu alanda sunabilirsiniz.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,6 +1,4 @@
-﻿@model List<SailingPeople.Domain.Boat>
-
-<head>
+﻿<head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>@ViewData["Title"] - SealingPeople</title>
@@ -41,7 +39,7 @@
 		</nav>
 	</header>
 
-	<main role="main" style="padding-top: 50px">
+	<main role="main" class="pt-5 mb-5">
 		@RenderBody()
 	</main>
 
@@ -50,20 +48,6 @@
 		<footer class="footer">
 			<div class="container py-5">
 				<div class="row justify-content-evenly">
-					<div class="col-12 col-md-3 mb-4">
-						<h5>Boat Categories</h5>
-						<ul class="list-unstyled text-left">
-							@* 							@foreach (var category in ViewBag.Categories as IEnumerable<CategoryDto>)
-							{
-								<li>
-									<a asp-controller="Home" asp-action="Category" asp-route-id="@category.Id">
-										<i class="bi bi-boats"></i> @category.LocalizedName
-									</a>
-								</li>
-							} *@
-						</ul>
-					</div>
-
 					<div class="col-12 col-md-3 mb-4">
 						<h5>Follow Us</h5>
 						<ul class="list-unstyled text-left">
