@@ -37,35 +37,6 @@
 						</div>
 
 						<div class="mb-3">
-							<label asp-for="MayToOctoberPrice" class="form-label fw-bold"></label>
-							<input asp-for="MayToOctoberPrice" class="form-control" placeholder="Boat May To October Price" />
-							<span asp-validation-for="MayToOctoberPrice" class="text-danger"></span>
-						</div>
-
-						<div class="mb-3">
-							<label asp-for="JunePrice" class="form-label fw-bold"></label>
-							<input asp-for="JunePrice" class="form-control" placeholder="Boat June Price" />
-							<span asp-validation-for="JunePrice" class="text-danger"></span>
-						</div>
-
-						<div class="mb-3">
-							<label asp-for="JulyToAugustPrice" class="form-label fw-bold"></label>
-							<input asp-for="JulyToAugustPrice" class="form-control" placeholder="Boat July To August Price" />
-							<span asp-validation-for="JulyToAugustPrice" class="text-danger"></span>
-						</div>
-
-						<div class="mb-3">
-							<label asp-for="SeptemberPrice" class="form-label fw-bold"></label>
-							<input asp-for="SeptemberPrice" class="form-control" placeholder="Boat September Price" />
-							<span asp-validation-for="SeptemberPrice" class="text-danger"></span>
-						</div>
-						<div class="mb-3">
-							<label asp-for="Name" class="form-label fw-bold"></label>
-							<input asp-for="Name" class="form-control" placeholder="Boat Name" />
-							<span asp-validation-for="Name" class="text-danger"></span>
-						</div>
-
-						<div class="mb-3">
 							<label asp-for="Width" class="form-label fw-bold"></label>
 							<input asp-for="Width" class="form-control" placeholder="Width (meters)" />
 							<span asp-validation-for="Width" class="text-danger"></span>
@@ -102,6 +73,30 @@
 						</div>
 
 						<div class="mb-3">
+							<label asp-for="MayToOctoberPrice" class="form-label fw-bold"></label>
+							<input asp-for="MayToOctoberPrice" class="form-control" placeholder="Boat May To October Price" />
+							<span asp-validation-for="MayToOctoberPrice" class="text-danger"></span>
+						</div>
+
+						<div class="mb-3">
+							<label asp-for="JunePrice" class="form-label fw-bold"></label>
+							<input asp-for="JunePrice" class="form-control" placeholder="Boat June Price" />
+							<span asp-validation-for="JunePrice" class="text-danger"></span>
+						</div>
+
+						<div class="mb-3">
+							<label asp-for="JulyToAugustPrice" class="form-label fw-bold"></label>
+							<input asp-for="JulyToAugustPrice" class="form-control" placeholder="Boat July To August Price" />
+							<span asp-validation-for="JulyToAugustPrice" class="text-danger"></span>
+						</div>
+
+						<div class="mb-3">
+							<label asp-for="SeptemberPrice" class="form-label fw-bold"></label>
+							<input asp-for="SeptemberPrice" class="form-control" placeholder="Boat September Price" />
+							<span asp-validation-for="SeptemberPrice" class="text-danger"></span>
+						</div>
+
+						@* <div class="mb-3">
 							@foreach (var spec in specs)
 							{
 								<div class="mb-3">
@@ -110,7 +105,7 @@
 									<span asp-validation-for="@spec.Id" class="text-danger"></span>
 								</div>
 							}
-						</div>
+						</div> *@
 
 						<div class="d-grid">
 							<button asp-action="Create" type="submit" class="btn btn-primary fw-bold">

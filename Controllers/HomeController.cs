@@ -31,19 +31,6 @@ public class HomeController(AppDbContext dbContext) : Controller
         return View();
     }
 
-
-
-    //public async Task<IActionResult> BoatDetail(Guid Id)
-    //{
-    //    var boat = await dbContext.Boats.FindAsync(Id);
-
-    //    if (boat == null)
-    //    {
-    //        return NotFound();
-    //    }
-    //    return View(new BoatDto(boat));
-    //}
-
     public async Task<IActionResult> BoatDetail(Guid Id)
     {
         var boat = await dbContext.Boats.FindAsync(Id);
@@ -54,8 +41,6 @@ public class HomeController(AppDbContext dbContext) : Controller
         }
         return View(new BoatDto(boat));
     }
-
-
 
     [HttpPost]
     public async Task<IActionResult> Search(FilterViewModel model)
