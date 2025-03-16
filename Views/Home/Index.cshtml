@@ -5,12 +5,12 @@
 <section class="custom-header">
 	<div class="container-fluid">
 		<div class="content-wrap text-center py-5">
-			<h1 class="mb-4 display-1">
+			<h1 class="mb-4 display-1 f-calvino">
 				<strong>Discover Freedom in the Blue</strong>
 			</h1>
 
-			<p class="mb-4 display-7">
-				Embark on an unforgettable sea voyage with comfortable boats and unique routes.<br>
+			<p class="mb-4 display-7 f-calvino">
+				Embark on an unforgettable sea voyage with comfortable boats and unique routes.
 			</p>
 
 			<section class="p-0 m-3 bg-transparent">
@@ -29,30 +29,31 @@
 <section>
 	<div class="container-fluid">
 		<div class="text-center m-4">
-			<h5 class="display-6 text-primary fw-bold">
+			<h5 class="display-6 text-primary fw-bold f-calvino">
 				Boats Category
 			</h5>
-			<p class="text-muted mb-0">Explore our collection of amazing boats</p>
+			<p class="text-muted mb-0 f-calvino">Explore our collection of amazing boats</p>
 		</div>
-
 		<div class="row d-flex flex-wrap">
 			@foreach (var category in ViewBag.Categories as IEnumerable<CategoryDto>)
 			{
-				<div class="col-12 col-md-6 m-0 p-0 border">
-					<div class="category-box">
+				<div class="col-12 col-md-6 p-0">
+					<div class="category-box border shadow-sm overflow-hidden m-2 position-relative">
 						<div class="category-img position-relative">
-							<img class="object-fit-cover" src="~/images/categories/@(category.Id).jpg"
-								 alt="@category.LocalizedName">
+							<a asp-controller="Home" asp-action="Category" asp-route-id="@category.Id">
+								<img class="object-fit-cover w-100" src="~/images/categories/@(category.Id).jpg"
+									alt="@category.LocalizedName" />
+							</a>
 
 							<div class="position-absolute start-50 translate-middle-x bottom-0 mb-3">
 								<a asp-controller="Home" asp-action="Category" asp-route-id="@category.Id"
-								   class="btn item-btn btn-outline-primary display-7">
+									class="btn item-btn btn-outline-primary display-7">
 									Inspect
 								</a>
 							</div>
 
-							<div class="category-info">
-								<h5 class="mt-0 mb-2">
+							<div class="category-info position-absolute top-0 start-0 bg-white bg-opacity-75 p-2 mt-2">
+								<h5 class="m-0 f-calvino">
 									<strong>@category.LocalizedName</strong>
 								</h5>
 							</div>
@@ -66,10 +67,8 @@
 
 <section class="py-5">
 	<div class="text-center mb-4">
-		<h5 class="display-6 text-primary fw-bold">
-			All Boats
-		</h5>
-		<p class="text-muted mb-0">Explore our collection of amazing boats</p>
+		<h5 class="display-6 text-primary fw-bold f-calvino">All Boats</h5>
+		<p class="text-muted mb-0 f-calvino">Explore our collection of amazing boats</p>
 	</div>
 	<div class="container">
 		<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
@@ -81,16 +80,23 @@
 							<img src="@boat.Image" class="card-img-top object-fit-cover" alt="@boat.Name">
 						</a>
 						<div class="card-body">
-							<div><i class="bi bi-people"></i> @boat.Category.LocalizedName</div>
-							<h5 class="card-title">@boat.Name</h5>
-
+							<div class="text-muted mb-2">
+								<i class="bi bi-people me-1"></i> @boat.Category.LocalizedName
+							</div>
+							<h5 class="card-title mb-0 f-calvino">@boat.Name</h5>
 						</div>
 						<div class="card-footer">
 							<div class="footer-icons">
-								<div><i class="bi bi-people"></i> @boat.Cabin</div>
-								<div><i class="bi bi-people"></i> @boat.Guest</div>
-								<p class="card-text">@boat.Width ft @boat.Length</p>
+								<div>
+									<i class="bi bi-door-closed me-1"></i> @boat.Cabin
+								</div>
+								<div>
+									<i class="bi bi-people me-1"></i> @boat.Guest
+								</div>
 							</div>
+							<p class="card-text mb-0">
+								<i class="bi bi-rulers me-1"></i>@boat.Width ft x @boat.Length
+							</p>
 						</div>
 					</div>
 				</div>
@@ -99,22 +105,144 @@
 	</div>
 </section>
 
-
-@* 
-<section data-bs-version="5.1" class="image01 cid-uEmru6qbKe" id="image01-3">
+<section class="why-choose-us py-5">
 	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-12 col-lg-9">
-				<div class="image-wrapper mb-4">
-					<img class="w-100" src="/images/wp-yatch.jpg" alt="Contact">
+		<div class="text-center mb-5">
+			<h2 class="display-6 text-primary fw-bold f-calvino">Why Choose Us?</h2>
+			<p class="text-muted mb-0 f-calvino">
+				We offer the best experience at sea with our top-quality service.
+			</p>
+		</div>
+		<div class="row g-4">
+			<div class="col-12 col-md-6 col-lg-3">
+				<div class="card border-0 h-100 text-center p-3">
+					<div class="mb-3 text-primary">
+						<i class="bi bi-trophy" style="font-size: 2rem;"></i>
+					</div>
+					<h5 class="f-calvino">Award-Winning Service</h5>
+					<p class="text-muted">
+						Our dedication to excellence has been recognized globally, ensuring top-notch voyages.
+					</p>
 				</div>
-				<h4 class="mbr-description mbr-fonts-style mb-3 align-center display-5">
-					<strong>@SharedResources.WpFooterText</strong>
-				</h4>
-				<p class="mbr-description mbr-fonts-style mb-0 align-center display-7">
-					@($"Sailing&People{SharedResources.WpFooterSubText}")
-				</p>
+			</div>
+			<div class="col-12 col-md-6 col-lg-3">
+				<div class="card border-0 h-100 text-center p-3">
+					<div class="mb-3 text-primary">
+						<i class="bi bi-compass" style="font-size: 2rem;"></i>
+					</div>
+					<h5 class="f-calvino">Unique Routes</h5>
+					<p class="text-muted">
+						Explore hidden gems of the sea that few have seen, guided by our expert teams.
+					</p>
+				</div>
+			</div>
+			<div class="col-12 col-md-6 col-lg-3">
+				<div class="card border-0 h-100 text-center p-3">
+					<div class="mb-3 text-primary">
+						<i class="bi bi-gem" style="font-size: 2rem;"></i>
+					</div>
+					<h5 class="f-calvino">Luxurious Boats</h5>
+					<p class="text-muted">
+						Our vessels are equipped with modern amenities to provide maximum comfort on your journey.
+					</p>
+				</div>
+			</div>
+			<div class="col-12 col-md-6 col-lg-3">
+				<div class="card border-0 h-100 text-center p-3">
+					<div class="mb-3 text-primary">
+						<i class="bi bi-shield-check" style="font-size: 2rem;"></i>
+					</div>
+					<h5 class="f-calvino">Safety First</h5>
+					<p class="text-muted">
+						We prioritize your well-being with highly trained crews and state-of-the-art safety measures.
+					</p>
+				</div>
 			</div>
 		</div>
 	</div>
-</section> *@
+</section>
+
+<section class="testimonials py-5 bg-light">
+	<div class="container">
+		<div class="text-center mb-5">
+			<h2 class="display-6 text-primary fw-bold f-calvino">Our Happy Clients</h2>
+			<p class="text-muted mb-0 f-calvino">
+				Here's what our customers say about sailing with us:
+			</p>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="card border-0 shadow-sm mb-4">
+					<div class="card-body">
+						<p class="f-calvino">
+							<i class="bi bi-quote me-2"></i>
+							Absolutely the best boat trip ever! The crew was fantastic and the route was breathtaking.
+						</p>
+						<p class="text-end mb-0 fw-bold">- John D.</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card border-0 shadow-sm mb-4">
+					<div class="card-body">
+						<p class="f-calvino">
+							<i class="bi bi-quote me-2"></i>
+							The boat was luxurious and clean. We felt truly pampered throughout the journey.
+						</p>
+						<p class="text-end mb-0 fw-bold">- Sarah P.</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card border-0 shadow-sm mb-4">
+					<div class="card-body">
+						<p class="f-calvino">
+							<i class="bi bi-quote me-2"></i>
+							It was our honeymoon trip, and everything was perfect from start to finish!
+						</p>
+						<p class="text-end mb-0 fw-bold">- Emily & Mark</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card border-0 shadow-sm mb-4">
+					<div class="card-body">
+						<p class="f-calvino">
+							<i class="bi bi-quote me-2"></i>
+							The team was very professional. We discovered hidden coves and gorgeous spots.
+						</p>
+						<p class="text-end mb-0 fw-bold">- Alex R.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="whatsapp-section py-5">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="card border-0 shadow p-3 text-center">
+                    <img src="~/images/whatsapp.jpg"
+                         alt="WhatsApp Contact"
+                         class="img-fluid rounded mb-3"
+                         style="max-height: 300px; object-fit: cover;" />
+
+                    <h4 class="mb-2 f-calvino">Need Assistance?</h4>
+                    <p class="mb-4 f-calvino">
+                        We are here to help you. Reach us via WhatsApp now and let’s chat!
+                    </p>
+
+                    <a href="https://wa.me/1234567890" 
+                       class="btn btn-success d-inline-flex align-items-center justify-content-center whatsapp-btn"
+                       target="_blank" rel="noopener noreferrer">
+                        <i class="bi bi-whatsapp me-2"></i>
+                        Chat on WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
