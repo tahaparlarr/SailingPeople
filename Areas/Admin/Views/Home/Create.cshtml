@@ -59,11 +59,6 @@
 							<input asp-for="SeptemberPrice" class="form-control" placeholder="Boat September Price" />
 							<span asp-validation-for="SeptemberPrice" class="text-danger"></span>
 						</div>
-						<div class="mb-3">
-							<label asp-for="Name" class="form-label fw-bold"></label>
-							<input asp-for="Name" class="form-control" placeholder="Boat Name" />
-							<span asp-validation-for="Name" class="text-danger"></span>
-						</div>
 
 						<div class="mb-3">
 							<label asp-for="Width" class="form-label fw-bold"></label>
@@ -101,7 +96,7 @@
 							<span asp-validation-for="Images" class="text-danger"></span>
 						</div>
 
-						<div class="mb-3">
+@* 						<div class="mb-3">
 							@foreach (var spec in specs)
 							{
 								<div class="mb-3">
@@ -110,7 +105,7 @@
 									<span asp-validation-for="@spec.Id" class="text-danger"></span>
 								</div>
 							}
-						</div>
+						</div> *@
 
 						<div class="d-grid">
 							<button asp-action="Create" type="submit" class="btn btn-primary fw-bold">
