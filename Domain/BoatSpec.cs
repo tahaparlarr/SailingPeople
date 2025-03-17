@@ -17,7 +17,5 @@ public class BoatSpecEntityTypeConfiguration : IEntityTypeConfiguration<BoatSpec
 {
     public void Configure(EntityTypeBuilder<BoatSpec> builder)
     {
-
-
     }
 }
