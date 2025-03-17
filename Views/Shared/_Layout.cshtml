@@ -11,7 +11,7 @@
 	<header>
 		<nav class="navbar fixed-top navbar-expand-lg bg-transparent">
 			<div class="container">
-				<a class="navbar-brand d-flex align-items-center" asp-controller="Home" asp-action="Index">
+				<a class="navbar-brand d-flex align-items-center" asp-area="" asp-controller="Home" asp-action="Index">
 					<img src="/images/logo.svg" alt="Logo" height="30">
 					<a asp-controller="Home" asp-action="Index" class="nav-link">Sailing&People</a>
 				</a>
@@ -38,66 +38,94 @@
 		</nav>
 	</header>
 
-	<main role="main" class="pt-5 mb-5">
+	<main role="main" class="py-5 ">
 		@RenderBody()
 	</main>
 
-	<section>
-		<footer class="footer">
-			<div class="container py-5">
-				<div class="row justify-content-evenly">
-					<div class="col-12 col-md-3 mb-4">
-						<h5>Follow Us</h5>
-						<ul class="list-unstyled text-left">
-							<li><a href="https://www.facebook.com/sailingandpeoplecom/" target="_blank"><i
-										class="bi bi-facebook"></i> Facebook</a></li>
-							<li><a href="https://twitter.com/sailing_people/" target="_blank"><i
-										class="bi bi-twitter"></i> Twitter</a></li>
-							<li><a href="https://www.instagram.com/sailingandpeople/" target="_blank"><i
-										class="bi bi-instagram"></i> Instagram</a></li>
-							<li><a href="https://www.linkedin.com/company/sailing-and-people/" target="_blank"><i
-										class="bi bi-linkedin"></i> LinkedIn</a></li>
-							<li><a href="https://www.youtube.com/channel/UC_LQt8r6LuEUj3a6KBKqXaQ" target="_blank"><i
-										class="bi bi-youtube"></i> YouTube</a></li>
-							<li><a href="https://wa.me/905300907998" target="_blank"><i class="bi bi-whatsapp"></i>
-									WhatsApp</a></li>
-						</ul>
-					</div>
+    <section class="footer-section bg-light bottom-0">
+        <footer class="footer">
+            <div class="container">
+                <div class="row justify-content-evenly">
+                    <div class="col-12 col-md-3 mb-4">
+                        <h4 class="text-primary fw-bold f-calvino">Follow Us</h4>
+                        <ul class="list-unstyled text-left">
+                            <li>
+                                <a href="https://www.facebook.com/sailingandpeoplecom/" target="_blank">
+                                    <i class="bi bi-facebook"></i> Facebook
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/sailing_people/" target="_blank">
+                                    <i class="bi bi-twitter"></i> Twitter
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/sailingandpeople/" target="_blank">
+                                    <i class="bi bi-instagram"></i> Instagram
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/company/sailing-and-people/" target="_blank">
+                                    <i class="bi bi-linkedin"></i> LinkedIn
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.youtube.com/channel/UC_LQt8r6LuEUj3a6KBKqXaQ" target="_blank">
+                                    <i class="bi bi-youtube"></i> YouTube
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://wa.me/905300907998" target="_blank">
+                                    <i class="bi bi-whatsapp"></i> WhatsApp
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
 
-					<div class="col-12 col-md-3 mb-4">
-						<h5>Contact Information</h5>
-						<ul class="list-unstyled text-left">
-							<li>
-								<i class="bi bi-telephone"></i>
-								Phone: <a href="tel:0530 090 79 98">0530 090 79 98</a>
-							</li>
-							<li>
-								<i class="bi bi-envelope"></i>
-								Email: <a href="mailto:info@sailingandpeople.com">info@sailingandpeople.com</a>
-							</li>
-						</ul>
-					</div>
+                    <div class="col-12 col-md-3 mb-4">
+                        <h4 class="text-primary fw-bold f-calvino">Contact Information</h4>
+                        <ul class="list-unstyled text-left mb-0">
+                            <li class="mb-2">
+                                <i class="bi bi-telephone me-1"></i>
+                                Phone: <a href="tel:0530 090 79 98" class="text-decoration-none">0530 090 79 98</a>
+                            </li>
+                            <li>
+                                <i class="bi bi-envelope me-1"></i>
+                                Email:
+                                <a href="mailto:info@sailingandpeople.com" class="text-decoration-none">
+                                    info@sailingandpeople.com
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
 
-					<div class="col-12 col-md-3 mb-4">
-						<h5>Pages</h5>
-						<ul class="list-unstyled text-left">
-							<li><a asp-controller="Home" asp-action="Index"><i class="bi bi-house-door"></i>
-									@SharedResources.Home</a></li>
-							<li><a asp-controller="Home" asp-action="Contact"><i class="bi bi-envelope"></i>
-									@SharedResources.Contact</a></li>
-							<li><a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a></li>
-						</ul>
-					</div>
-				</div>
+                    <div class="col-12 col-md-3 mb-4">
+                        <h4 class="text-primary fw-bold f-calvino">Pages</h4>
+                        <ul class="list-unstyled text-left">
+                            <li class="mb-2">
+                                <a asp-controller="Home" asp-action="Index" class="text-decoration-none">
+                                    <i class="bi bi-house-door me-1"></i> @SharedResources.Home
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a asp-controller="Home" asp-action="Contact" class="text-decoration-none">
+                                    <i class="bi bi-envelope me-1"></i> @SharedResources.Contact
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-				<div class="row">
-					<div class="col-12 text-center mt-4">
-						<p>Copyright © 2025 CMOS Teknoloji</p>
-					</div>
-				</div>
-			</div>
-		</footer>
-	</section>
+                <div class="row">
+                    <div class="col-12 text-center mt-4">
+                        <p class="mb-0">
+                            Copyright © 2025 CMOS Teknoloji
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </section>
 
 	<script type="importmap"></script>
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>

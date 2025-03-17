@@ -3,6 +3,7 @@ using SailingPeople.Models;
 using SailingPeople.Domain;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SixLabors.ImageSharp.Formats.Webp;
+using Microsoft.EntityFrameworkCore;
 
 namespace SailingPeople.Areas.Admin.Controllers;
 
@@ -68,4 +69,29 @@ public class HomeController(AppDbContext dbContext) : Controller
 
         return RedirectToAction("Index");
     }
+
+    [HttpGet]
+    public async Task<IActionResult> Delete()
+    {
+        var boats = await dbContext.Boats.Select(p => new BoatDto(p)).ToListAsync();
+
+        return View(boats);
+    }
+
+    //[HttpPost]
+    //public async Task<IActionResult> Delete(Guid Id)
+    //{
+
+    //    var boat = await dbContext.Boats.FindAsync(Id);
+
+    //    if (boat == null)
+    //    {
+    //        return NotFound();
+    //    }
+
+    //    dbContext.Boats.Remove(boat);
+    //    dbContext.SaveChanges();
+
+    //    return RedirectToAction("Index");
+    //}
 }

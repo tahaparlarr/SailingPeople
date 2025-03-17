@@ -11,10 +11,11 @@ public class HomeController(AppDbContext dbContext) : Controller
     public async Task<IActionResult> Index()
     {
         var categories = await dbContext.Categories.ToListAsync();
-
         ViewBag.CategoriesSelectList = new SelectList(categories, "Id", "NameTr");
-        ViewBag.Boats = (await dbContext.Boats.ToListAsync()).Select(p => new BoatDto(p));
-        ViewBag.Categories = (await dbContext.Categories.ToListAsync()).Select(p => new CategoryDto(p));
+        ViewBag.Categories = categories.Select(p => new CategoryDto(p));
+
+        var boats = await dbContext.Boats.ToListAsync();
+        ViewBag.Boats = boats.Select(p => new BoatDto(p));
 
         return View();
     }

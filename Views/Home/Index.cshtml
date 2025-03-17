@@ -65,45 +65,7 @@
 	</div>
 </section>
 
-<section class="py-5">
-	<div class="text-center mb-4">
-		<h5 class="display-6 text-primary fw-bold f-calvino">All Boats</h5>
-		<p class="text-muted mb-0 f-calvino">Explore our collection of amazing boats</p>
-	</div>
-	<div class="container">
-		<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
-			@foreach (var boat in ViewBag.Boats as IEnumerable<BoatDto>)
-			{
-				<div class="col">
-					<div class="card h-100 custom-card">
-						<a asp-controller="Home" asp-action="BoatDetail" asp-route-id="@boat.Id">
-							<img src="@boat.Image" class="card-img-top object-fit-cover" alt="@boat.Name">
-						</a>
-						<div class="card-body">
-							<div class="text-muted mb-2">
-								<i class="bi bi-people me-1"></i> @boat.Category.LocalizedName
-							</div>
-							<h5 class="card-title mb-0 f-calvino">@boat.Name</h5>
-						</div>
-						<div class="card-footer">
-							<div class="footer-icons">
-								<div>
-									<i class="bi bi-door-closed me-1"></i> @boat.Cabin
-								</div>
-								<div>
-									<i class="bi bi-people me-1"></i> @boat.Guest
-								</div>
-							</div>
-							<p class="card-text mb-0">
-								<i class="bi bi-rulers me-1"></i>@boat.Width ft x @boat.Length
-							</p>
-						</div>
-					</div>
-				</div>
-			}
-		</div>
-	</div>
-</section>
+<partial name="_BoatListPartial"></partial>
 
 <section class="why-choose-us py-5">
 	<div class="container">
@@ -235,7 +197,7 @@
                         We are here to help you. Reach us via WhatsApp now and let’s chat!
                     </p>
 
-                    <a href="https://wa.me/1234567890" 
+                    <a href="https://wa.me/05300907998" 
                        class="btn btn-success d-inline-flex align-items-center justify-content-center whatsapp-btn"
                        target="_blank" rel="noopener noreferrer">
                         <i class="bi bi-whatsapp me-2"></i>
