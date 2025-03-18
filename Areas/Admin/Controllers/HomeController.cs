@@ -10,9 +10,11 @@ namespace SailingPeople.Areas.Admin.Controllers;
 [Area("Admin")]
 public class HomeController(AppDbContext dbContext) : Controller
 {
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        return View();
+        var boats = (await dbContext.Boats.ToListAsync()).Select(p => new BoatDto(p));
+
+        return View(boats);
     }
 
     [HttpGet]
@@ -71,27 +73,11 @@ public class HomeController(AppDbContext dbContext) : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> Delete()
+    public async Task<IActionResult> Delete(Guid Id)
     {
-        var boats = await dbContext.Boats.Select(p => new BoatDto(p)).ToListAsync();
 
-        return View(boats);
+        await dbContext.Boats.Where(p => p.Id == Id).ExecuteDeleteAsync();
+
+        return RedirectToAction("Index");
     }
-
-    //[HttpPost]
-    //public async Task<IActionResult> Delete(Guid Id)
-    //{
-
-    //    var boat = await dbContext.Boats.FindAsync(Id);
-
-    //    if (boat == null)
-    //    {
-    //        return NotFound();
-    //    }
-
-    //    dbContext.Boats.Remove(boat);
-    //    dbContext.SaveChanges();
-
-    //    return RedirectToAction("Index");
-    //}
 }
