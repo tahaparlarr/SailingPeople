@@ -1,5 +1,5 @@
 $primary: #00648d;
-$secondary: #86b4ff;
+$secondary: #ecf0f1;
 $warning: #f95738;
 $accent: #2d4057;
 $light: #f8f9fa;
@@ -11,7 +11,7 @@ $danger: #950606;
 @import url("https://fonts.cdnfonts.com/css/calvino-grande-trial");
 @import url("https://fonts.googleapis.com/css2?family=Inconsolata:wdth,wght@50..200,200..900&display=swap");
 
-/* Fonts */
+// Fonts
 .f-calvino {
   font-family: "Calvino Grande Trial", sans-serif;
   font-weight: 300;
@@ -22,24 +22,55 @@ $danger: #950606;
   font-weight: 500;
 }
 
-/* Navbar */
+// Navbar
 .navbar {
   backdrop-filter: blur(30px);
   padding: 1rem;
+  transition: background-color 0.3s ease;
 }
 
-.navbar .nav-link,
-.navbar .navbar-brand {
+.navbar .navbar-brand,
+.navbar .nav-link {
   color: black;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.2s ease;
 }
 
-.navbar.bg-dark .nav-link,
-.navbar.bg-dark .navbar-brand {
+.navbar.bg-dark .navbar-brand,
+.navbar.bg-dark .nav-link {
   color: white;
 }
 
-/* Headers */
+.navbar .nav-link.active {
+  color: $primary;
+  font-weight: bold;
+}
+
+.navbar .nav-link:hover {
+  color: $primary;
+  text-decoration: none;
+  transform: scale(1.02);
+}
+
+.navbar .nav-link {
+  position: relative;
+}
+
+.navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1.3px;
+  background-color: $primary;
+  transition: width 0.5s ease;
+}
+
+.navbar .nav-link:hover::after {
+  width: 100%;
+}
+
+// Headers
 .custom-header {
   background: url("/images/header.jpeg") no-repeat center center;
   background-size: cover;
@@ -56,7 +87,7 @@ $danger: #950606;
   padding: 80px 0;
 }
 
-/* Category Boxes */
+// Category Boxes
 .category-box {
   border: 1px solid #ddd;
   overflow: hidden;
@@ -130,7 +161,7 @@ $danger: #950606;
   background-color: white;
 }
 
-/* Whatsapp */
+// Whatsapp
 .whatsapp-section {
   /* Dilerseniz tüm ekranı kaplamak için min-height: 100vh ekleyebilirsiniz. */
   background: linear-gradient(135deg, #f5f7fa, #cfd8dc);
@@ -207,7 +238,7 @@ $danger: #950606;
   }
 }
 
-/* Boat Cards */
+// Boat Cards
 .boat-box {
   position: relative;
   border-radius: 4px;
@@ -344,10 +375,9 @@ $danger: #950606;
       color: #666;
     }
   }
-
 }
 
-/* Footer */
+// Footer
 .footer-section {
   .footer {
     background-color: #f1f1f1;
@@ -411,7 +441,7 @@ $danger: #950606;
   }
 }
 
-/* Splide */
+// Splide
 .splide__slide img {
   display: block;
   width: 100%;
@@ -427,6 +457,149 @@ $danger: #950606;
 .carousel-image-container img {
   object-fit: cover;
   width: 100%;
+}
+
+.faq-section {
+  padding: 80px 0;
+  background-color: $secondary;
+
+  .accordion-button {
+    background-color: $primary;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 20px 25px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+
+    &:not(.collapsed) {
+      background-color: darken($primary, 5%);
+      transform: translateY(-2px);
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
+
+    &::after {
+      content: "\2193";
+      font-size: 1.5rem;
+      color: white;
+      transition: transform 0.3s ease;
+    }
+
+    &:not(.collapsed)::after {
+      content: "\2191";
+      transform: rotate(180deg); 
+    }
+
+    &:hover {
+      background-color: darken($primary, 7%);
+      cursor: pointer;
+    }
+  }
+
+  .accordion-body {
+    font-size: 1rem;
+    color: #555;
+    padding: 25px;
+    background-color: white;
+    border-top: 2px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .accordion-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+
+    &:hover {
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+.faq-header {
+  background-color: $primary;
+  color: white;
+  padding: 80px 0;
+  border-bottom: 5px solid $secondary;
+
+  h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+
+  .lead {
+    font-size: 1.3rem;
+    font-weight: 300;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+
+.contact-info {
+  padding: 70px 0;
+  background-color: $secondary;
+
+  h2 {
+    font-size: 2.5rem;
+    color: $primary;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  p {
+    color: #777;
+    font-size: 1.1rem;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .row {
+    justify-content: center;
+
+    .col-md-6 {
+      margin-bottom: 40px;
+
+      h5 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: $primary;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 1rem;
+        color: #555;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+// Additional Information Section Styling
+.additional-info {
+  background-color: $secondary;
+  padding: 70px 0;
+  text-align: center;
+
+  p {
+    color: #555;
+    font-size: 1.2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
 }
 
 /* Keyframes Animations */
@@ -450,6 +623,15 @@ $danger: #950606;
 
   100% {
     transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
     opacity: 1;
   }
 }

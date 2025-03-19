@@ -32,6 +32,14 @@ public class HomeController(AppDbContext dbContext) : Controller
         return View(boats);
     }
 
+    public async Task<IActionResult> Faq()
+    {
+        var categories = await dbContext.Categories.ToListAsync();
+        ViewBag.Categories = categories.Select(p => new CategoryDto(p));
+  
+        return View(new BoatDto());
+    }
+
     public async Task<IActionResult> BoatDetail(Guid Id)
     {
         var categories = await dbContext.Categories.ToListAsync();

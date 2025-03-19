@@ -13,7 +13,7 @@
 			<div class="container">
 				<a class="navbar-brand d-flex align-items-center" asp-area="" asp-controller="Home" asp-action="Index">
 					<img src="/images/logo.svg" alt="Logo" height="30">
-					<a asp-controller="Home" asp-action="Index" class="nav-link">Sailing&People</a>
+					<span class="ms-2">Sailing&People</span>
 				</a>
 
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
@@ -43,6 +43,10 @@
 						}
 
 						<li class="nav-item">
+							<a class="nav-link" asp-controller="Home" asp-action="Faq">FAQ</a>
+						</li>
+
+						<li class="nav-item">
 							<a class="nav-link" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a>
 						</li>
 					</ul>
@@ -51,9 +55,11 @@
 		</nav>
 	</header>
 
+
 	<main role="main" class="py-5 ">
 		@RenderBody()
 	</main>
+
 
 	<section class="footer-section bg-light bottom-0">
 		<footer class="footer">
@@ -156,7 +162,6 @@
 			</div>
 		</footer>
 	</section>
-
 
 	<script type="importmap"></script>
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
