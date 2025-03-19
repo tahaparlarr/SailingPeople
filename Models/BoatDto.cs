@@ -33,6 +33,8 @@ public class BoatDto
     [Display(Name = "Name")]
     [Required()]
     public string? Name { get; set; }
+    public string? ShortName { get; set; }
+
 
     [Display(Name = "Category")]
     [Required(ErrorMessage = "Lütfen bir kategori seçiniz")]

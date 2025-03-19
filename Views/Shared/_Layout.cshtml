@@ -29,6 +29,19 @@
 						<li class="nav-item">
 							<a class="nav-link" asp-controller="Home" asp-action="Contact">@SharedResources.Contact</a>
 						</li>
+
+						@if (ViewBag.Categories != null)
+						{
+							@foreach (var category in ViewBag.Categories as IEnumerable<CategoryDto>)
+							{
+								<li class="nav-item">
+									<a class="nav-link" asp-action="Category" asp-route-id="@category.Id">
+										@category.LocalizedName
+									</a>
+								</li>
+							}
+						}
+
 						<li class="nav-item">
 							<a class="nav-link" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a>
 						</li>

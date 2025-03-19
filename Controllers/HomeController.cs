@@ -24,18 +24,19 @@ public class HomeController(AppDbContext dbContext) : Controller
 
     public async Task<IActionResult> Category(Guid Id)
     {
+        var categories = await dbContext.Categories.ToListAsync();
+        ViewBag.Categories = categories.Select(p => new CategoryDto(p));
+
         var boats = await dbContext.Boats.Where(p => p.CategoryId == Id).ToListAsync();
 
         return View(boats);
     }
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
-
     public async Task<IActionResult> BoatDetail(Guid Id)
     {
+        var categories = await dbContext.Categories.ToListAsync();
+        ViewBag.Categories = categories.Select(p => new CategoryDto(p));
+
         var boat = await dbContext.Boats.FindAsync(Id);
 
         if (boat == null)
@@ -49,6 +50,8 @@ public class HomeController(AppDbContext dbContext) : Controller
     [HttpPost]
     public async Task<IActionResult> Search(FilterViewModel model)
     {
+        var categories = await dbContext.Categories.ToListAsync();
+        ViewBag.Categories = categories.Select(p => new CategoryDto(p));
 
         ViewBag.Categories = (await dbContext.Categories.ToListAsync()).Select(p => new CategoryDto(p));
 
@@ -67,8 +70,11 @@ public class HomeController(AppDbContext dbContext) : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 
-    public IActionResult Contact()
+    public async Task<IActionResult> Contact()
     {
+        var categories = await dbContext.Categories.ToListAsync();
+        ViewBag.Categories = categories.Select(p => new CategoryDto(p));
+
         return View();
     }
 
