@@ -11,277 +11,429 @@ $danger: #950606;
 @import url("https://fonts.cdnfonts.com/css/calvino-grande-trial");
 @import url("https://fonts.googleapis.com/css2?family=Inconsolata:wdth,wght@50..200,200..900&display=swap");
 
+/* Fonts */
 .f-calvino {
-  font-family: "Calvino Grande Trial", sans-serif;
-  font-weight: 300;
+    font-family: "Calvino Grande Trial", sans-serif;
+    font-weight: 300;
 }
 
 .f-inconsolata {
-  font-family: "Inconsolata", serif;
-  font-weight: 500;
+    font-family: "Inconsolata", serif;
+    font-weight: 500;
 }
 
-/* NAVBAR */
+/* Navbar */
 .navbar {
-  backdrop-filter: blur(30px);
-  padding: 1rem;
+    backdrop-filter: blur(30px);
+    padding: 1rem;
 }
 
 .navbar .nav-link,
 .navbar .navbar-brand {
-  color: black;
-  transition: color 0.3s ease;
+    color: black;
+    transition: color 0.3s ease;
 }
 
 .navbar.bg-dark .nav-link,
 .navbar.bg-dark .navbar-brand {
-  color: white;
+    color: white;
 }
 
-/* HEADERS */
+/* Headers */
 .custom-header {
-  background: url("/images/header.jpeg") no-repeat center center;
-  background-size: cover;
-  position: relative;
-  color: white;
-  padding: 80px 0;
+    background: url("/images/header.jpeg") no-repeat center center;
+    background-size: cover;
+    position: relative;
+    color: white;
+    padding: 80px 0;
 }
 
 .contact-header {
-  background: url("/images/contact_header.jpg") no-repeat center center;
-  background-size: cover;
-  position: relative;
-  color: white;
-  padding: 80px 0;
+    background: url("/images/contact_header.jpg") no-repeat center center;
+    background-size: cover;
+    position: relative;
+    color: white;
+    padding: 80px 0;
 }
 
-/* CATEGORY CARDS */
+/* Category Boxes */
 .category-box {
-  border: 1px solid #ddd;
-  overflow: hidden;
-  transition: box-shadow 0.3s ease-in-out;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease-in-out;
 
-  &:hover {
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  }
+    &:hover {
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
 
-  &:hover .category-overlay {
-    animation: overlaySlideOut 1s ease-in-out forwards;
-  }
+    &:hover .category-overlay {
+        animation: overlaySlideOut 1s ease-in-out forwards;
+    }
 
-  &:not(:hover) .category-overlay {
-    animation: overlaySlideIn 1s ease-in-out forwards;
-  }
+    &:not(:hover) .category-overlay {
+        animation: overlaySlideIn 1s ease-in-out forwards;
+    }
 }
 
 .category-img {
-  position: relative;
-  width: 100%;
-  height: 500px;
-  overflow: hidden;
-
-  img {
+    position: relative;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
+    height: 500px;
+    overflow: hidden;
 
-  .category-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.45);
-    transform: translateY(0);
-    transition: transform 1s ease-in-out;
-
-    .overlay-content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      color: #fff;
-
-      .overlay-title {
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin: 0;
-      }
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
     }
-  }
-}
 
-@keyframes overlaySlideOut {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-}
+    .category-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.45);
+        transform: translateY(0);
+        transition: transform 1s ease-in-out;
 
-@keyframes overlaySlideIn {
-  0% {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
+        .overlay-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+
+            .overlay-title {
+                font-size: 1.5rem;
+                font-weight: bold;
+                margin: 0;
+            }
+        }
+    }
 }
 
 .btn-inspect {
-  transition: 0.2s ease-in-out all;
-  color: white;
-  border: 1px solid white;
+    transition: 0.2s ease-in-out all;
+    color: white;
+    border: 1px solid white;
 }
 
 .btn-inspect:hover {
-  transition: 0.5s ease-in-out all;
-  color: black;
-  border: 1px solid white;
-  background-color: white;
+    transition: 0.5s ease-in-out all;
+    color: black;
+    border: 1px solid white;
+    background-color: white;
 }
 
-/* FOOTER */
-.footer-section {
-  .footer {
-    background-color: #f1f1f1;
-    color: #333;
-    padding: 40px 0;
+/* Whatsapp */
+.whatsapp-section {
+    /* Dilerseniz tüm ekranı kaplamak için min-height: 100vh ekleyebilirsiniz. */
+    background: linear-gradient(135deg, #f5f7fa, #cfd8dc);
+    padding: 60px 0;
 
-    h5 {
-      font-size: 16px;
-      font-weight: bold;
-      margin-bottom: 20px;
-      color: #333;
+    .container {
+        /* Ortalayıp, boşluk ayarı */
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    ul {
-      padding-left: 0;
-      list-style: none;
+    .whatsapp-card {
+        background-color: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        text-align: center;
+        padding: 40px 30px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-      li {
-        margin-bottom: 10px;
+        &:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
 
-        a {
-          color: #555;
-          text-decoration: none;
-          font-size: 14px;
-          transition: 0.3s ease-in-out all;
+        .icon-container {
+            margin-bottom: 24px;
 
-          &:hover {
-            margin-left: 8px;
+            .whatsapp-image {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                object-fit: cover;
+                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+                border: 3px solid #fff;
+            }
+        }
+
+        .title {
+            font-weight: 600;
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .description {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #25d366;
+            color: #fff;
+            font-size: 16px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
 
             i {
-              transition: color 0.3s ease-in-out;
+                font-size: 18px;
+                margin-right: 8px;
             }
 
-            i.bi-facebook {
-              color: #3b5998;
+            &:hover {
+                background-color: #20be5b; /* Biraz daha koyu bir yeşil */
             }
-            i.bi-twitter {
-              color: #1da1f2;
-            }
-            i.bi-instagram {
-              color: #c13584;
-            }
-            i.bi-linkedin {
-              color: #0077b5;
-            }
-            i.bi-youtube {
-              color: #ff0000;
-            }
-            i.bi-whatsapp {
-              color: #25d366;
-            }
-          }
         }
-      }
     }
-  }
 }
 
-/* WHATSAPP */
-.whatsapp-section {
-  /* Dilerseniz tüm ekranı kaplamak için min-height: 100vh ekleyebilirsiniz. */
-  background: linear-gradient(135deg, #f5f7fa, #cfd8dc);
-  padding: 60px 0;
-
-  .container {
-    /* Ortalayıp, boşluk ayarı */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .whatsapp-card {
-    background-color: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-    text-align: center;
-    padding: 40px 30px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* Boat Cards */
+.boat-box {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
 
     &:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     }
 
-    .icon-container {
-      margin-bottom: 24px;
+    .boat-img {
+        position: relative;
+        overflow: hidden;
 
-      .whatsapp-image {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        object-fit: cover;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-        border: 3px solid #fff;
-      }
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+        }
+
+        .boat-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.45);
+            transform: translateY(0);
+            opacity: 1;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-inspect {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            display: inline-block;
+            padding: 0.50rem 1rem;
+            background-color: transparent;
+            color: white;
+            letter-spacing: 1px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: color 0.3s ease;
+            outline: none;
+            text-decoration: none;
+            border-radius: 0px;
+
+            &::before,
+            &::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                width: 100%;
+                height: 0;
+                background: white;
+                color: black;
+                z-index: -1;
+                transition: height 0.3s ease;
+            }
+
+            &::before {
+                top: 0;
+            }
+
+            &::after {
+                bottom: 0;
+            }
+
+            &:hover {
+                color: #000;
+            }
+
+            &:hover::before {
+                height: 50%;
+            }
+
+            &:hover::after {
+                height: 50%;
+            }
+        }
     }
 
-    .title {
-      font-weight: 600;
-      font-size: 22px;
-      margin-bottom: 12px;
-      color: #333;
+    &:hover .boat-overlay {
+        transform: translateY(-100%);
+        opacity: 0;
     }
 
-    .description {
-      font-size: 16px;
-      color: #666;
-      margin-bottom: 24px;
-      line-height: 1.5;
+    .boat-footer {
+        background-color: #f9f9f9;
+        border-top: 1px solid #eee;
+        padding: 1rem;
+        color: #444;
+
+        .boat-meta-small {
+            font-size: 0.85rem;
+        }
+
+        .boat-dimensions {
+            font-size: 0.85rem;
+            color: #666;
+
+            i {
+                margin-right: 0.25rem;
+                color: #888;
+            }
+        }
+
+        .boat-price {
+            font-size: 0.85rem;
+            color: #666;
+        }
+    }
+}
+
+/* Footer */
+.footer-section {
+    .footer {
+        background-color: #f1f1f1;
+        color: #333;
+        padding: 40px 0;
+
+        h5 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        ul {
+            padding-left: 0;
+            list-style: none;
+
+            li {
+                margin-bottom: 10px;
+
+                a {
+                    color: #555;
+                    text-decoration: none;
+                    font-size: 14px;
+                    transition: 0.3s ease-in-out all;
+
+                    &:hover {
+                        margin-left: 8px;
+
+                        i {
+                            transition: color 0.3s ease-in-out;
+                        }
+
+                        i.bi-facebook {
+                            color: #3b5998;
+                        }
+
+                        i.bi-twitter {
+                            color: #1da1f2;
+                        }
+
+                        i.bi-instagram {
+                            color: #c13584;
+                        }
+
+                        i.bi-linkedin {
+                            color: #0077b5;
+                        }
+
+                        i.bi-youtube {
+                            color: #ff0000;
+                        }
+
+                        i.bi-whatsapp {
+                            color: #25d366;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Splide */
+.splide__slide img {
+    display: block;
+    width: 100%;
+}
+
+.carousel-image-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+}
+
+.carousel-image-container img {
+    object-fit: cover;
+    width: 100%;
+}
+
+
+/* Keyframes Animations */
+@keyframes overlaySlideOut {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
     }
 
-    .btn-whatsapp {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #25d366;
-      color: #fff;
-      font-size: 16px;
-      padding: 12px 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: background-color 0.3s ease;
-
-      i {
-        font-size: 18px;
-        margin-right: 8px;
-      }
-
-      &:hover {
-        background-color: #20be5b; /* Biraz daha koyu bir yeşil */
-      }
+    100% {
+        transform: translateY(-100%);
+        opacity: 0;
     }
-  }
+}
+
+@keyframes overlaySlideIn {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }

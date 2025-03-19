@@ -13,7 +13,7 @@ public class HomeController(AppDbContext dbContext) : Controller
     public async Task<IActionResult> Index()
     {
         var boats = (await dbContext.Boats.ToListAsync()).Select(p => new BoatDto(p));
-
+        
         return View(boats);
     }
 
@@ -49,14 +49,14 @@ public class HomeController(AppDbContext dbContext) : Controller
             SeptemberPrice = model.SeptemberPrice
         };
 
-        if (model.Image != null)
+        if (model.ImageFile != null && model.ImageFile.Length > 0)
         {
             using var image = await Image.LoadAsync(model.ImageFile!.OpenReadStream());
             image.Mutate(p => p.Resize(new ResizeOptions { Mode = ResizeMode.Crop, Size = new Size(800, 800) }));
             boat.Image = image.ToBase64String(WebpFormat.Instance);
         }
 
-        if (model.Images != null)
+        if (model.Images != null && model.Images.Count > 0)
         {
             foreach (var item in model.Images)
             {

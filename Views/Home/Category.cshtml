@@ -4,27 +4,49 @@
 	ViewData["Title"] = "Category Detail";
 }
 
-<div class="container pt-5">
+
+<div class="container mt-5">
 	<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
 		@foreach (var boat in Model)
 		{
 			<div class="col">
-				<div class="card h-100 custom-card">
-					<a href="#">
-						<img src="@boat.Image" class="card-img-top" alt="@boat.Name">
-					</a>
-					<div class="card-body">
-						<div><i class="bi bi-people"></i> @boat.Category.NameTr</div>
-						<h5 class="card-title">@boat.Name</h5>
+				<div class="boat-box position-relative shadow-sm border">
+					<div class="boat-img position-relative overflow-hidden ">
+						<img class="object-fit-cover w-100"
+							 src="@boat.Image"
+							 alt="@boat.Name" />
 
+						<div class="boat-overlay d-flex flex-column justify-content-center align-items-center">
+							<div class="overlay-content">
+								<h5 class="overlay-title text-white">@boat.Name</h5>
+							</div>
+						</div>
+
+						<a asp-controller="Home"
+						   asp-action="BoatDetail"
+						   asp-route-id="@boat.Id"
+						   class="btn btn-inspect position-absolute display-7">
+							View Detail
+						</a>
 					</div>
-					<div class="card-footer">
-						<div class="footer-icons">
-							<div><i class="bi bi-people"></i> @boat.Cabin</div>
-							<div><i class="bi bi-people"></i> @boat.Guest</div>
-							<p class="card-text">@boat.Width ft @boat.Length</p>
+
+					<div class="card-footer boat-footer position-relative p-2">
+						<div class="boat-info">
+							<span class="text-muted d-block">@boat.Category.NameEn</span>
+							<span class="fw-bold d-block">@boat.Name</span>
+							<span class="fw-bold d-block">@boat.Code</span>
+						</div>
+
+						<div class="boat-icons position-absolute top-0 end-0 mt-2 me-2 text-nowrap">
+							<i class="bi bi-people me-1"></i>@boat.Guest
+							<i class="bi bi-door-closed ms-3 me-1"></i>@boat.Cabin
+						</div>
+
+						<div class="boat-price mt-4">
+							Price start from €@(boat.MayToOctoberPrice) p/week
 						</div>
 					</div>
+
 				</div>
 			</div>
 		}

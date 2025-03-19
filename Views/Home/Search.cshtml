@@ -1,4 +1,6 @@
-﻿@* <div class="row">
+﻿@model BoatDto
+
+@* <div class="row">
 	@foreach (var category in ViewBag.Category as IEnumerable<CategoryDto>)
 	{
 		<div class="item features-image col-12 col-md-6 col-lg-3 active">
@@ -16,15 +18,14 @@
 			</div>
 		</div>
 	}
+</div>
+ *@
 
-
-</div> *@
-@* 
 <div class="container">
 	<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
-		@foreach (var boat in ViewBag.Boats as IEnumerable<BoatDto>)
+		@foreach (var boat in Model)
 		{
-			<div class="col ">
+			<div class="col">
 				<div class="card h-100 custom-card">
 					<a href="#">
 						<img src="@boat.Image" class="card-img-top" alt="@boat.Name">
@@ -45,4 +46,4 @@
 			</div>
 		}
 	</div>
-</div> *@
+</div>

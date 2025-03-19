@@ -1,7 +1,9 @@
 using System.Diagnostics;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using SailingPeople.Domain;
 using SailingPeople.Models;
 
 namespace SailingPeople.Controllers;
@@ -15,7 +17,7 @@ public class HomeController(AppDbContext dbContext) : Controller
         ViewBag.Categories = categories.Select(p => new CategoryDto(p));
 
         var boats = await dbContext.Boats.ToListAsync();
-        ViewBag.Boats = boats.Select(p => new BoatDto(p));
+        ViewBag.Boats = boats.Select(p => new BoatDto(p)).Take(20);
 
         return View();
     }
@@ -40,6 +42,7 @@ public class HomeController(AppDbContext dbContext) : Controller
         {
             return NotFound();
         }
+
         return View(new BoatDto(boat));
     }
 

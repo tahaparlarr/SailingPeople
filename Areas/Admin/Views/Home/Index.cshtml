@@ -1,19 +1,63 @@
-﻿@{
+﻿@model IEnumerable<BoatDto>
+
+@{
 	ViewData["Title"] = "Admin Panel";
 }
 
 <div class="container mt-5">
-	<h1 class="mb-4 text-center f-calvino">Admin Panel</h1>
-	<div class="p-4 mb-4 rounded shadow" style="background-color: #f8f9fa;">
-		<h4 class="mb-3">Transactions</h4>
-		<div class="d-flex flex-wrap gap-2">
-			<a class="btn btn-primary" asp-area="Admin" asp-controller="Home" asp-action="Create">
-				Add New Boat
-			</a>
+	<div class="row">
+		<div class="col-12">
+			<h1 class="mb-4 text-center f-calvino">Admin Panel</h1>
+		</div>
+	</div>
 
-			<a class="btn btn-danger" asp-area="Admin" asp-controller="Home" asp-action="Delete">
-				Delete Boat
-			</a>
+	<div class="p-4 mb-4 rounded shadow" style="background-color: #f8f9fa;">
+		<div class="row mb-2">
+			<div class="col-12 col-md-6">
+				<h4 class="mb-3">Transactions</h4>
+			</div>
+			<div class="col-12 col-md-6 text-md-end">
+				<a class="btn btn-primary" asp-area="Admin" asp-controller="Home" asp-action="Create">
+					Add New Boat
+				</a>
+			</div>
+		</div>
+
+		<div class="table-responsive">
+			<table class="table table-bordered table-hover text-center align-middle">
+				<thead class="table-light">
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					@if (Model != null && Model.Any())
+					{
+						foreach (var boat in Model)
+						{
+							<tr>
+								<td>@boat.Id</td>
+								<td>@boat.Name</td>
+								<td>
+									<form asp-action="Delete">
+											<a asp-action="Delete" asp-route-id="@boat.Id" class="btn btn-danger" onclick="">
+											Delete
+											</a>
+									</form>
+								</td>
+							</tr>
+						}
+					}
+					else
+					{
+						<tr>
+							<td colspan="3" class="text-center">Kayıtlı tekne bulunamadı.</td>
+						</tr>
+					}
+				</tbody>
+			</table>
 		</div>
 	</div>
 </div>

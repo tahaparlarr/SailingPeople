@@ -1,4 +1,5 @@
 ﻿using SailingPeople.Domain;
+using SailingPeople.Migrations;
 using System.ComponentModel.DataAnnotations;
 
 namespace SailingPeople.Models;
@@ -14,13 +15,13 @@ public class BoatDto
         Name = boat.Name;
         Id = boat.Id;
         Image = boat.Image;
+        BoatImages = boat.BoatImages.Select(p => new BoatImageDto(p)).ToList();
         Width = boat.Width;
         Length = boat.Length;
         Cabin = boat.Cabin;
         Guest = boat.Guest;
         CategoryId = boat.CategoryId;
-        Category = new CategoryDto(boat.Category!);
-        Code = boat.Code;
+        Category = boat.Category != null ? new CategoryDto(boat.Category) : null; Code = boat.Code;
         MayToOctoberPrice = boat.MayToOctoberPrice;
         JunePrice = boat.JunePrice;
         JulyToAugustPrice = boat.JulyToAugustPrice;
@@ -34,9 +35,9 @@ public class BoatDto
     public string? Name { get; set; }
 
     [Display(Name = "Category")]
-    [Required()]
+    [Required(ErrorMessage = "Lütfen bir kategori seçiniz")]
     public Guid CategoryId { get; set; }
-    public CategoryDto Category { get; set; }
+    public CategoryDto? Category { get; set; }
 
     [Display(Name = "Code")]
     [Required()]
@@ -45,23 +46,25 @@ public class BoatDto
     [Display(Name = "May-October Price")]
     [Required()]
     public decimal MayToOctoberPrice { get; set; }
+
     [Display(Name = "June Price")]
     [Required()]
     public decimal JunePrice { get; set; }
+
     [Display(Name = "July-August Price")]
     [Required()]
     public decimal JulyToAugustPrice { get; set; }
+
     [Display(Name = "September Price")]
     [Required()]
     public decimal SeptemberPrice { get; set; }
     public string? Image { get; set; }
 
     [Display(Name = "Cover Image")]
-    [Required()]
-    public IFormFile? ImageFile { get; set; }
+    [Required(ErrorMessage = "Lütfen bir resim seçiniz.")]
+    public IFormFile ImageFile { get; set; }
 
     [Display(Name = "Images")]
-    [Required()]
     public IFormFileCollection? Images { get; set; }
 
     [Display(Name = "Width")]
@@ -79,4 +82,7 @@ public class BoatDto
     [Display(Name = "Cabin")]
     [Required()]
     public int? Cabin { get; set; }
+
+    public virtual ICollection<BoatImageDto> BoatImages { get; set; } = new List<BoatImageDto>();
+
 }

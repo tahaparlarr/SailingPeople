@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<BoatDto>
+
+@{
 	ViewData["Title"] = "Home Page";
 }
 
@@ -46,12 +48,12 @@
 						<div class="category-img position-relative f-calvino">
 							<a asp-controller="Home" asp-action="Category" asp-route-id="@category.Id">
 								<img class="object-fit-cover w-100" src="~/images/categories/@(category.Id).jpg"
-									alt="@category.LocalizedName" />
+									 alt="@category.LocalizedName" />
 							</a>
 
 							<div class="position-absolute start-50 translate-middle-x bottom-0 mb-3" style="z-index: 10;">
 								<a asp-controller="Home" asp-action="Category" asp-route-id="@category.Id"
-									class="btn btn-inspect rounded-0 display-7">
+								   class="btn btn-inspect rounded-0 display-7">
 									Inspect
 								</a>
 							</div>
@@ -70,7 +72,60 @@
 	</div>
 </section>
 
-<partial name="_BoatListPartial"></partial>
+<section class="py-5">
+	<div class="text-center mb-4">
+		<h5 class="display-6 text-primary fw-bold f-calvino">All Boats</h5>
+		<p class="text-muted mb-0 f-calvino">Explore our collection of amazing boats</p>
+	</div>
+
+	<div class="container">
+		<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+			@foreach (var boat in ViewBag.Boats as IEnumerable<BoatDto>)
+			{
+				<div class="col">
+					<div class="boat-box position-relative shadow-sm border">
+						<div class="boat-img position-relative overflow-hidden ">
+							<img class="object-fit-cover w-100"
+								 src="@boat.Image"
+								 alt="@boat.Name" />
+
+							<div class="boat-overlay d-flex flex-column justify-content-center align-items-center">
+								<div class="overlay-content">
+									<h5 class="overlay-title text-white">@boat.Name</h5>
+								</div>
+							</div>
+
+							<a asp-controller="Home"
+							   asp-action="BoatDetail"
+							   asp-route-id="@boat.Id"
+							   class="btn btn-inspect position-absolute display-7">
+								View Detail
+							</a>
+						</div>
+
+						<div class="card-footer boat-footer position-relative p-2">
+							<div class="boat-info">
+								<span class="text-muted d-block">@boat.Category.LocalizedName</span>
+								<span class="fw-bold d-block">@boat.Name</span>
+								<span class="fw-bold d-block">@boat.Code</span>
+							</div>
+
+							<div class="boat-icons position-absolute top-0 end-0 mt-2 me-2 text-nowrap">
+								<i class="bi bi-people me-1"></i>@boat.Guest
+								<i class="bi bi-door-closed ms-3 me-1"></i>@boat.Cabin
+							</div>
+
+							<div class="boat-price mt-4">
+								Price start from €@(boat.MayToOctoberPrice) p/week
+							</div>
+						</div>
+
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+</section>
 
 <section class="why-choose-us py-5">
 	<div class="container">
@@ -129,6 +184,28 @@
 	</div>
 </section>
 
+<section class="whatsapp-section">
+	<div class="container-fluid">
+		<div class="d-flex justify-content-center align-items-center">
+			<div class="whatsapp-card">
+				<div class="icon-container">
+					<img src="~/images/whatsapp.jpg" alt="WhatsApp Contact" class="whatsapp-image" />
+				</div>
+
+				<h2 class="title">Need Assistance?</h2>
+				<p class="description">
+					Get in touch with us on WhatsApp for quick support and immediate help.
+				</p>
+
+				<a href="https://wa.me/05300907998" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+					<i class="bi bi-whatsapp me-2"></i>
+					Start Chat on WhatsApp
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+
 <section class="testimonials py-5 bg-light">
 	<div class="container">
 		<div class="text-center mb-5">
@@ -139,7 +216,6 @@
 				Here's what our customers say about sailing with us:
 			</p>
 		</div>
-
 		<div class="row">
 			<div class="col-md-6">
 				<div class="card border-0 shadow-sm mb-4">
@@ -188,28 +264,6 @@
 						<p class="text-end mb-0 fw-bold">Nicole T.</p>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-<section class="whatsapp-section">
-	<div class="container-fluid">
-		<div class="d-flex justify-content-center align-items-center">
-			<div class="whatsapp-card">
-				<div class="icon-container">
-					<img src="~/images/whatsapp.jpg" alt="WhatsApp Contact" class="whatsapp-image" />
-				</div>
-
-				<h2 class="title">Need Assistance?</h2>
-				<p class="description">
-					Get in touch with us on WhatsApp for quick support and immediate help.
-				</p>
-
-				<a href="https://wa.me/05300907998" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
-					<i class="bi bi-whatsapp me-2"></i>
-					Start Chat on WhatsApp
-				</a>
 			</div>
 		</div>
 	</div>

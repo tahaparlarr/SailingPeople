@@ -2,7 +2,6 @@
 @model BoatDto
 
 @{
-
 	ViewData["Title"] = "Create Boat";
 	var specs = ViewBag.Specs as IEnumerable<Spec>;
 }
@@ -15,7 +14,7 @@
 					<h4 class="mb-0">Create Boat</h4>
 				</div>
 				<div class="card-body p-4">
-					<form asp-action="Create" asp-controller="Home" method="post" enctype="multipart/form-data">
+					<form asp-area="Admin" asp-action="Create" asp-controller="Home" method="post" enctype="multipart/form-data">
 						<div class="mb-3">
 							<label asp-for="CategoryId" class="form-label fw-bold"></label>
 							<select asp-for="CategoryId" class="form-control" asp-items="ViewBag.Categories">
@@ -59,11 +58,6 @@
 							<input asp-for="SeptemberPrice" class="form-control" placeholder="Boat September Price" />
 							<span asp-validation-for="SeptemberPrice" class="text-danger"></span>
 						</div>
-						<div class="mb-3">
-							<label asp-for="Name" class="form-label fw-bold"></label>
-							<input asp-for="Name" class="form-control" placeholder="Boat Name" />
-							<span asp-validation-for="Name" class="text-danger"></span>
-						</div>
 
 						<div class="mb-3">
 							<label asp-for="Width" class="form-label fw-bold"></label>
@@ -90,9 +84,9 @@
 						</div>
 
 						<div class="mb-3">
-							<label asp-for="Image" class="form-label fw-bold">Main Image</label>
-							<input asp-for="Image" class="form-control" type="file" />
-							<span asp-validation-for="Image" class="text-danger"></span>
+							<label asp-for="ImageFile" class="form-label fw-bold">Main Image</label>
+							<input asp-for="ImageFile" class="form-control" type="file" />
+							<span asp-validation-for="ImageFile" class="text-danger"></span>
 						</div>
 
 						<div class="mb-3">
