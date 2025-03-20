@@ -30,7 +30,8 @@
 						<th>Image</th>
 						<th>ID</th>
 						<th>Name</th>
-						<th></th>
+						<th>Code</th>
+						<th>Category Name</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -42,6 +43,9 @@
 								<td><img src="@boat.Image" width="100" /></td>
 								<td>@boat.Id</td>
 								<td>@boat.Name</td>
+								<td>@boat.Code</td>
+								<td>@boat.Category.LocalizedName</td>
+
 								<td>
 									<form asp-action="Delete">
 										<a asp-action="Delete" asp-route-id="@boat.Id" class="btn btn-danger" onclick="">

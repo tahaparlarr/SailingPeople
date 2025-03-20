@@ -32,9 +32,9 @@ public class HomeController(AppDbContext dbContext) : Controller
     }
     public async Task<IActionResult> Category(Guid Id)
     {
-
         var boats = await dbContext.Boats.Where(p => p.CategoryId == Id).ToListAsync();
-
+        ViewBag.Categories = (await dbContext.Categories.ToListAsync())
+                                      .Select(p => new CategoryDto(p));
         return View(boats);
     }
 
@@ -53,9 +53,7 @@ public class HomeController(AppDbContext dbContext) : Controller
     }
     public async Task<IActionResult> BoatDetail(Guid Id)
     {
-
         var boat = await dbContext.Boats.FindAsync(Id);
-
 
         if (boat == null)
         {
@@ -65,28 +63,21 @@ public class HomeController(AppDbContext dbContext) : Controller
         return View(new BoatDto(boat));
     }
 
-    [HttpGet]
-    public async Task<IActionResult> Search()
-    {
-        ViewBag.Categories = (await dbContext.Categories.ToListAsync())
-                                .Select(p => new CategoryDto(p));
-
-        return View(new FilterViewModel());
-    }
-
     [HttpPost]
     public async Task<IActionResult> Search(FilterViewModel model)
     {
         ViewBag.Categories = (await dbContext.Categories.ToListAsync())
-                                  .Select(p => new CategoryDto(p));
+                                      .Select(p => new CategoryDto(p));
 
-        var result = await dbContext.Boats.Where(p =>
-        (p.CategoryId == model.CategoryId || model.CategoryId == null) &&
-        p.Guest == model.Guests &&
-        p.Cabin == model.Cabin
+        var boats = await dbContext.Boats.Where(p =>
+            (p.CategoryId == model.CategoryId || model.CategoryId == null) &&
+            (p.Guest == model.Guests) &&
+            p.Cabin == model.Cabin
         ).ToListAsync();
 
-        return View(result);
+        var filteredBoat = boats.Select(boat => new BoatDto(boat)).ToList();
+
+        return View(filteredBoat);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -97,7 +88,6 @@ public class HomeController(AppDbContext dbContext) : Controller
 
     public async Task<IActionResult> Contact()
     {
-
         return View();
     }
 

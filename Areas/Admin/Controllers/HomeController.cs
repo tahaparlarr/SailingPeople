@@ -22,11 +22,11 @@ public class HomeController(AppDbContext dbContext) : Controller
     [HttpGet]
     public IActionResult Create()
     {
-        var specs = dbContext.Specs.ToList();
-        ViewBag.Specs = specs;
+        // var specs = dbContext.Specs.ToList();
+        // ViewBag.Specs = specs;
 
-        var facility = dbContext.Facilities.ToList();
-        ViewBag.Facility = facility;
+        // var facility = dbContext.Facilities.ToList();
+        // ViewBag.Facility = facility;
 
         ViewBag.Categories = new SelectList(dbContext.Categories.ToList().Select(p => new CategoryDto(p)), "Id", "LocalizedName");
         return View(new BoatDto());
@@ -57,10 +57,12 @@ public class HomeController(AppDbContext dbContext) : Controller
         };
 
         for (int i = 0; i < model.SpecId.Count(); i++)
-            boat.BoatSpecs.Add(new BoatSpec { 
+            boat.BoatSpecs.Add(new BoatSpec
+            {
                 SpecId = model.SpecId[i],
                 ValueTr = model.SpecValue[i],
-                ValueEn = model.SpecValue[i] });
+                ValueEn = model.SpecValue[i]
+            });
 
         if (model.ImageFile != null && model.ImageFile.Length > 0)
         {
@@ -88,7 +90,6 @@ public class HomeController(AppDbContext dbContext) : Controller
     [HttpGet]
     public async Task<IActionResult> Delete(Guid Id)
     {
-
         await dbContext.Boats.Where(p => p.Id == Id).ExecuteDeleteAsync();
 
         return RedirectToAction("Index");

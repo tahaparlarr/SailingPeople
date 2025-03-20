@@ -9,7 +9,6 @@ public class BoatDto
     public BoatDto()
     {
     }
-
     public BoatDto(Boat boat)
     {
         Name = boat.Name;
@@ -26,9 +25,7 @@ public class BoatDto
         JunePrice = boat.JunePrice;
         JulyToAugustPrice = boat.JulyToAugustPrice;
         SeptemberPrice = boat.SeptemberPrice;
-
     }
-
     public Guid Id { get; set; } = Guid.NewGuid();
 
     [Display(Name = "Name")]
@@ -85,10 +82,13 @@ public class BoatDto
     [Required()]
     public int? Cabin { get; set; }
 
-    public List<Guid> SpecId { get; set; }
-    public List<string> SpecValue { get; set; }
+    public List<Spec> BoatSpecs { get; set; } = new List<Spec>();
+    public List<Facility> Facilities { get; set; } = new List<Facility>();
 
-    public List<Guid> FacilityIds { get; set; }
-    public List<string> FacilityNames { get; set; }
+    public List<Guid> SpecId { get; set; } = new List<Guid>();
+    public List<string> SpecValue { get; set; } = new List<string>();
+
+    public List<Guid> FacilityId { get; set; } = new List<Guid>();
+    public List<string> FacilityNames { get; set; } = new List<string>();
     public virtual ICollection<BoatImageDto> BoatImages { get; set; } = new List<BoatImageDto>();
 }

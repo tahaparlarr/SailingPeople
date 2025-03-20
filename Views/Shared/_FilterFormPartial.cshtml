@@ -24,13 +24,7 @@
                 <span class="input-group-text">
                     <i class="bi bi-border-all"></i>
                 </span>
-                <select asp-for="Cabin" class="form-select">
-                    <option value="" selected>Select...</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4+</option>
-                </select>
+                <input asp-for="Cabin" class="form-control" type="number" placeholder="Enter a number!" />
             </div>
         </div>
 
@@ -42,13 +36,7 @@
                 <span class="input-group-text">
                     <i class="bi bi-people"></i>
                 </span>
-                <select asp-for="Guests" class="form-select">
-                    <option value="" selected>Select...</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4+</option>
-                </select>
+                <input asp-for="Guests" class="form-control" type="number" placeholder="Enter a number!" />
             </div>
         </div>
 

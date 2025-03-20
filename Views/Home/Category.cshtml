@@ -4,6 +4,14 @@
 	ViewData["Title"] = "Category Detail";
 }
 
+<div class="text-center m-4">
+	<h5 class="display-6 text-primary fw-bold f-calvino">
+		Selected Category
+	</h5>
+	<p class="text-muted mb-0 f-calvino">
+		Explore our collection of amazing boats
+	</p>
+</div>
 
 <div class="container mt-5">
 	<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
@@ -12,9 +20,7 @@
 			<div class="col">
 				<div class="boat-box position-relative shadow-sm border">
 					<div class="boat-img position-relative overflow-hidden ">
-						<img class="object-fit-cover w-100"
-							 src="@boat.Image"
-							 alt="@boat.Name" />
+						<img class="object-fit-cover w-100" src="@boat.Image" alt="@boat.Name" />
 
 						<div class="boat-overlay d-flex flex-column justify-content-center align-items-center">
 							<div class="overlay-content">
@@ -22,10 +28,8 @@
 							</div>
 						</div>
 
-						<a asp-controller="Home"
-						   asp-action="BoatDetail"
-						   asp-route-id="@boat.Id"
-						   class="btn btn-inspect position-absolute display-7">
+						<a asp-controller="Home" asp-action="BoatDetail" asp-route-id="@boat.Id"
+							class="btn btn-inspect position-absolute display-7">
 							View Detail
 						</a>
 					</div>
