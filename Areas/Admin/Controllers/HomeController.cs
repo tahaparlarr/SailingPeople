@@ -4,6 +4,8 @@ using SailingPeople.Domain;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SixLabors.ImageSharp.Formats.Webp;
 using Microsoft.EntityFrameworkCore;
+using SailingPeople.Migrations;
+using SixLabors.ImageSharp.Metadata.Profiles.Iptc;
 
 namespace SailingPeople.Areas.Admin.Controllers;
 
@@ -13,14 +15,19 @@ public class HomeController(AppDbContext dbContext) : Controller
     public async Task<IActionResult> Index()
     {
         var boats = (await dbContext.Boats.ToListAsync()).Select(p => new BoatDto(p));
-        
+
         return View(boats);
     }
 
     [HttpGet]
     public IActionResult Create()
     {
-        ViewBag.Specs = dbContext.Specs.ToList();
+        var specs = dbContext.Specs.ToList();
+        ViewBag.Specs = specs;
+
+        var facility = dbContext.Facilities.ToList();
+        ViewBag.Facility = facility;
+
         ViewBag.Categories = new SelectList(dbContext.Categories.ToList().Select(p => new CategoryDto(p)), "Id", "LocalizedName");
         return View(new BoatDto());
     }
@@ -46,8 +53,14 @@ public class HomeController(AppDbContext dbContext) : Controller
             MayToOctoberPrice = model.MayToOctoberPrice,
             JunePrice = model.JunePrice,
             JulyToAugustPrice = model.JulyToAugustPrice,
-            SeptemberPrice = model.SeptemberPrice
+            SeptemberPrice = model.SeptemberPrice,
         };
+
+        for (int i = 0; i < model.SpecId.Count(); i++)
+            boat.BoatSpecs.Add(new BoatSpec { 
+                SpecId = model.SpecId[i],
+                ValueTr = model.SpecValue[i],
+                ValueEn = model.SpecValue[i] });
 
         if (model.ImageFile != null && model.ImageFile.Length > 0)
         {

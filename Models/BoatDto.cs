@@ -26,6 +26,7 @@ public class BoatDto
         JunePrice = boat.JunePrice;
         JulyToAugustPrice = boat.JulyToAugustPrice;
         SeptemberPrice = boat.SeptemberPrice;
+
     }
 
     public Guid Id { get; set; } = Guid.NewGuid();
@@ -34,7 +35,6 @@ public class BoatDto
     [Required()]
     public string? Name { get; set; }
     public string? ShortName { get; set; }
-
 
     [Display(Name = "Category")]
     [Required(ErrorMessage = "Lütfen bir kategori seçiniz")]
@@ -85,6 +85,10 @@ public class BoatDto
     [Required()]
     public int? Cabin { get; set; }
 
-    public virtual ICollection<BoatImageDto> BoatImages { get; set; } = new List<BoatImageDto>();
+    public List<Guid> SpecId { get; set; }
+    public List<string> SpecValue { get; set; }
 
+    public List<Guid> FacilityIds { get; set; }
+    public List<string> FacilityNames { get; set; }
+    public virtual ICollection<BoatImageDto> BoatImages { get; set; } = new List<BoatImageDto>();
 }

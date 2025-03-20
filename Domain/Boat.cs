@@ -27,6 +27,7 @@ public class Boat
     public virtual ICollection<BoatImage> BoatImages{ get; set; } = new List<BoatImage>();
     public virtual ICollection<BoatSpec> BoatSpecs{ get; set; } = new List<BoatSpec>();
     public virtual ICollection<Spec> Specs { get; set; } = new List<Spec>();
+    public virtual ICollection<Facility> Facilities { get; set; } = new List<Facility>();
     public virtual Category? Category { get; set; }
 }
 
@@ -39,11 +40,9 @@ public class BoatEntityTypeConfiguration : IEntityTypeConfiguration<Boat>
         builder.HasIndex(p => p.Cabin).IsUnique(false);
         builder.HasIndex(p => p.Guest).IsUnique(false);
 
-
         builder
             .HasMany(p => p.Specs)
             .WithMany(p => p.Boats)
             .UsingEntity<BoatSpec>();
-
     }
 }

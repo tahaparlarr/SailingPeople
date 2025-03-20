@@ -12,40 +12,50 @@ public class HomeController(AppDbContext dbContext) : Controller
 {
     public async Task<IActionResult> Index()
     {
-        var categories = await dbContext.Categories.ToListAsync();
-        ViewBag.CategoriesSelectList = new SelectList(categories, "Id", "NameTr");
-        ViewBag.Categories = categories.Select(p => new CategoryDto(p));
+        var categories = (await dbContext.Categories.ToListAsync()).Select(p => new CategoryDto(p));
+        ViewBag.CategoriesSelectList = new SelectList(categories, "Id", "LocalizedName");
+        ViewBag.Categories = categories;
 
         var boats = await dbContext.Boats.ToListAsync();
         ViewBag.Boats = boats.Select(p => new BoatDto(p)).Take(20);
 
+        ViewBag.BoatsGroupedByCategory = boats
+            .Where(p => categories.Any(c => c.Id == p.CategoryId))
+            .GroupBy(p => p.CategoryId)
+            .Select(group => new
+            {
+                CategoryId = group.Key,
+                Boats = group.Select(p => new BoatDto(p)).Take(20).ToList()
+            });
+
         return View();
     }
-
     public async Task<IActionResult> Category(Guid Id)
     {
-        var categories = await dbContext.Categories.ToListAsync();
-        ViewBag.Categories = categories.Select(p => new CategoryDto(p));
 
         var boats = await dbContext.Boats.Where(p => p.CategoryId == Id).ToListAsync();
 
         return View(boats);
     }
 
-    public async Task<IActionResult> Faq()
+    public IActionResult Faq()
     {
-        var categories = await dbContext.Categories.ToListAsync();
-        ViewBag.Categories = categories.Select(p => new CategoryDto(p));
-  
-        return View(new BoatDto());
+
+        return View();
     }
 
+    public async Task<IActionResult> Boats()
+    {
+        var boats = (await dbContext.Boats.ToListAsync());
+        ViewBag.Boats = boats.Select(p => new BoatDto(p));
+
+        return View();
+    }
     public async Task<IActionResult> BoatDetail(Guid Id)
     {
-        var categories = await dbContext.Categories.ToListAsync();
-        ViewBag.Categories = categories.Select(p => new CategoryDto(p));
 
         var boat = await dbContext.Boats.FindAsync(Id);
+
 
         if (boat == null)
         {
@@ -55,13 +65,20 @@ public class HomeController(AppDbContext dbContext) : Controller
         return View(new BoatDto(boat));
     }
 
+    [HttpGet]
+    public async Task<IActionResult> Search()
+    {
+        ViewBag.Categories = (await dbContext.Categories.ToListAsync())
+                                .Select(p => new CategoryDto(p));
+
+        return View(new FilterViewModel());
+    }
+
     [HttpPost]
     public async Task<IActionResult> Search(FilterViewModel model)
     {
-        var categories = await dbContext.Categories.ToListAsync();
-        ViewBag.Categories = categories.Select(p => new CategoryDto(p));
-
-        ViewBag.Categories = (await dbContext.Categories.ToListAsync()).Select(p => new CategoryDto(p));
+        ViewBag.Categories = (await dbContext.Categories.ToListAsync())
+                                  .Select(p => new CategoryDto(p));
 
         var result = await dbContext.Boats.Where(p =>
         (p.CategoryId == model.CategoryId || model.CategoryId == null) &&
@@ -80,8 +97,6 @@ public class HomeController(AppDbContext dbContext) : Controller
 
     public async Task<IActionResult> Contact()
     {
-        var categories = await dbContext.Categories.ToListAsync();
-        ViewBag.Categories = categories.Select(p => new CategoryDto(p));
 
         return View();
     }

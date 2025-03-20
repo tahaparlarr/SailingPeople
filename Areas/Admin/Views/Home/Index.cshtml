@@ -27,6 +27,7 @@
 			<table class="table table-bordered table-hover text-center align-middle">
 				<thead class="table-light">
 					<tr>
+						<th>Image</th>
 						<th>ID</th>
 						<th>Name</th>
 						<th></th>
@@ -38,13 +39,14 @@
 						foreach (var boat in Model)
 						{
 							<tr>
+								<td><img src="@boat.Image" width="100" /></td>
 								<td>@boat.Id</td>
 								<td>@boat.Name</td>
 								<td>
 									<form asp-action="Delete">
-											<a asp-action="Delete" asp-route-id="@boat.Id" class="btn btn-danger" onclick="">
+										<a asp-action="Delete" asp-route-id="@boat.Id" class="btn btn-danger" onclick="">
 											Delete
-											</a>
+										</a>
 									</form>
 								</td>
 							</tr>

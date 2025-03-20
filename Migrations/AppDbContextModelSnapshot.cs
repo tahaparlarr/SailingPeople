@@ -25,6 +25,21 @@ namespace SailingPeople.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("BoatFacility", b =>
+                {
+                    b.Property<Guid>("BoatsId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("FacilitiesId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("BoatsId", "FacilitiesId");
+
+                    b.HasIndex("FacilitiesId");
+
+                    b.ToTable("BoatFacility");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -368,6 +383,159 @@ namespace SailingPeople.Migrations
                         });
                 });
 
+            modelBuilder.Entity("SailingPeople.Domain.Facility", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("NameEn")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("NameTr")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Facilities");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("da17d13c-0b26-4858-a9cb-b9582bdb74be"),
+                            NameEn = "Year Of Construction",
+                            NameTr = "Yapım Yılı"
+                        },
+                        new
+                        {
+                            Id = new Guid("61108cac-c37e-4f69-9ecf-ec55eda48e96"),
+                            NameEn = "Wc-Shower",
+                            NameTr = "Wc-Shower"
+                        },
+                        new
+                        {
+                            Id = new Guid("ddb0dc04-930d-453a-bf1d-2b0e674a1994"),
+                            NameEn = "Water Capacity",
+                            NameTr = "Su Kapasitesi"
+                        },
+                        new
+                        {
+                            Id = new Guid("ec25eeab-c424-477a-9b4a-a3b4f5c9e361"),
+                            NameEn = "Winding Genoa",
+                            NameTr = "Yelkenin Sarılması"
+                        },
+                        new
+                        {
+                            Id = new Guid("4e46cd80-163b-4718-a286-ddc378d45c13"),
+                            NameEn = "Engine",
+                            NameTr = "Motor"
+                        },
+                        new
+                        {
+                            Id = new Guid("a07cb0f9-4c39-4f57-9405-77bf8d6e1d93"),
+                            NameEn = "Flag",
+                            NameTr = "Bayrak"
+                        },
+                        new
+                        {
+                            Id = new Guid("5d87b59a-97bc-4afb-955b-175e6556e429"),
+                            NameEn = "Draft",
+                            NameTr = "Taslak"
+                        },
+                        new
+                        {
+                            Id = new Guid("6e0db24f-e1eb-46eb-86b1-cde121c1cf24"),
+                            NameEn = "Fuel Capacity",
+                            NameTr = "Yakıt Kapasitesi"
+                        },
+                        new
+                        {
+                            Id = new Guid("675bd427-8434-4f0a-96f5-9c7961ba0941"),
+                            NameEn = "Classic Mainsail",
+                            NameTr = "Klasik Ana Yelken"
+                        },
+                        new
+                        {
+                            Id = new Guid("a7bc34ac-f43f-4e67-b59b-40ef07a31592"),
+                            NameEn = "Electric Winch",
+                            NameTr = "Elektrikli Winch"
+                        },
+                        new
+                        {
+                            Id = new Guid("e51798a7-2047-4ef3-8db3-4ab87cc5d0b9"),
+                            NameEn = "Model",
+                            NameTr = "Model"
+                        },
+                        new
+                        {
+                            Id = new Guid("41e722c1-bfb5-48f3-b706-b99ecf754ebf"),
+                            NameEn = "Generator",
+                            NameTr = "Jeneratör"
+                        },
+                        new
+                        {
+                            Id = new Guid("b7a326a4-7c04-4382-a667-aa0a062c4972"),
+                            NameEn = "Fuel Tank",
+                            NameTr = "Yakıt Tankı"
+                        },
+                        new
+                        {
+                            Id = new Guid("e0a49834-40ae-487f-ae8b-a33194cc9d1c"),
+                            NameEn = "Double Cabin",
+                            NameTr = "Çift Kabin"
+                        },
+                        new
+                        {
+                            Id = new Guid("2a48445d-384e-4fd9-9100-60df49125e1a"),
+                            NameEn = "Clean Water Tank",
+                            NameTr = "Temiz Su Tankı"
+                        },
+                        new
+                        {
+                            Id = new Guid("f713fb86-a965-4bad-8e5e-cde3714f2e0e"),
+                            NameEn = "Master Cabin",
+                            NameTr = "Ana Kabin"
+                        },
+                        new
+                        {
+                            Id = new Guid("f0d7957c-c779-4a6a-a9e8-07e7d097c164"),
+                            NameEn = "Mainsail",
+                            NameTr = "Ana Yelken"
+                        },
+                        new
+                        {
+                            Id = new Guid("a0710b91-2461-41b6-a36d-827e7e68c21a"),
+                            NameEn = "Built in",
+                            NameTr = "Yapıldığı Yıl"
+                        },
+                        new
+                        {
+                            Id = new Guid("e7a5e5f6-c5d5-43be-a7bc-68897d7977c1"),
+                            NameEn = "Water Withdrawal",
+                            NameTr = "Su Çekilmesi"
+                        },
+                        new
+                        {
+                            Id = new Guid("48fe5920-1dd1-4583-bf74-fbac08209ba9"),
+                            NameEn = "Furling Mainsail",
+                            NameTr = "Sarılabilen Ana Yelken"
+                        },
+                        new
+                        {
+                            Id = new Guid("d02087d8-7684-4b78-9d1a-7e70e092cbeb"),
+                            NameEn = "Twin Cabin",
+                            NameTr = "İkiz Kabin"
+                        },
+                        new
+                        {
+                            Id = new Guid("66d2fe7f-1319-455c-b1c6-79b66b5a4420"),
+                            NameEn = "Chartplotter",
+                            NameTr = "Harita Plotteri"
+                        });
+                });
+
             modelBuilder.Entity("SailingPeople.Domain.Spec", b =>
                 {
                     b.Property<Guid>("Id")
@@ -519,6 +687,21 @@ namespace SailingPeople.Migrations
                             NameEn = "Chartplotter",
                             NameTr = "Harita Plotteri"
                         });
+                });
+
+            modelBuilder.Entity("BoatFacility", b =>
+                {
+                    b.HasOne("SailingPeople.Domain.Boat", null)
+                        .WithMany()
+                        .HasForeignKey("BoatsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SailingPeople.Domain.Facility", null)
+                        .WithMany()
+                        .HasForeignKey("FacilitiesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
