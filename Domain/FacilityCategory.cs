@@ -10,7 +10,7 @@ public class FacilityCategory
     public Guid Id { get; set; }
     public required string NameTr { get; set; }
     public required string NameEn { get; set; }
-    public virtual ICollection<Facility> Facilities { get; set; } = [];
+    public virtual ICollection<Facility> Facilities { get; set; } = new List<Facility>();
 }
 
 public class FacilityCategoryEntityTypeConfiguration : IEntityTypeConfiguration<FacilityCategory>

@@ -52,16 +52,12 @@
                                 <strong>Misafir Kapasitesi:</strong> @Model.Guest
                             </li>
 
-                            <h4 class="mt-2">Technicial Specifications</h4>
-                            @foreach (var spec in Model.BoatSpecs)
+                            @*@foreach (var spec in Model.Specifications)
                             {
-                                if (spec.LocalizedValue != null)
-                                {
-                                    <li class="list-group-item">
-                                        <strong>@spec.Spec.LocalizedName:</strong> @spec.LocalizedValue
-                                    </li>
-                                }
-                            }
+                                <li class="list-group-item">
+                                    <strong>@spec.Name:</strong> @spec.Value
+                                </li>
+                            }*@
                         </ul>
                     </div>
 
@@ -95,18 +91,18 @@
                         </table>
                     </div>
 
-                    Display Facilities
-                        <div class="mb-4">
-                            <h5 class="mb-2">Tekne Donanımları</h5>
-                            <ul class="list-group">
-                                @foreach (var facility in Model.Facilities)
-                                {
-                                    <li class="list-group-item">
-                                        @facility.NameEn
-                                    </li>
-                                }
-                            </ul>
-                        </div>
+                     @*Display Facilities 
+                    <div class="mb-4">
+                        <h5 class="mb-2">Tekne Donanımları</h5>
+                        <ul class="list-group">
+                            @foreach (var facility in Model.Facilities)
+                            {
+                                <li class="list-group-item">
+                                    @facility.Name
+                                </li>
+                            }
+                        </ul>
+                    </div>*@
 
                     <div class="d-flex gap-3">
                         <a href="@Url.Action("Index", "Home")" class="btn btn-outline-primary">

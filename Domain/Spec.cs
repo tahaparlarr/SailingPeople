@@ -10,6 +10,20 @@ public class Spec
     public required string NameEn { get; set; }
     public virtual ICollection<Boat> Boats { get; set; } = new List<Boat>();
     public virtual ICollection<BoatSpec> BoatSpecs { get; set; } = new List<BoatSpec>();
+    public string LocalizedName
+    {
+        get
+        {
+            var culture = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
+
+            if (culture == "tr")
+            {
+                return NameTr;
+            }
+            return NameEn;
+        }
+
+    }
 }
 
 public class SpecEntityTypeConfiguration : IEntityTypeConfiguration<Spec>

@@ -1,8 +1,8 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SailingPeople;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Builder;
+using SailingPeople.Domain;
+using SailingPeople.Models;
 using SailingPeople.Resources;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,6 +26,21 @@ builder
         option.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
         option.UseLazyLoadingProxies();
     });
+
+//builder
+//.Services.AddIdentity<User, Role>()
+//    .AddEntityFrameworkStores<AppDbContext>()
+//    .AddDefaultTokenProviders();
+
+builder
+.Services.AddAutoMapper(config =>
+{
+    config.CreateMap<Boat, BoatDto>().ReverseMap();
+    config.CreateMap<BoatImage, BoatImageDto>().ReverseMap();
+    config.CreateMap<BoatSpec, BoatSpecDto>().ReverseMap();
+    config.CreateMap<Spec, SpecDto>().ReverseMap();
+    config.CreateMap<Category, CategoryDto>().ReverseMap();
+});
 
 var app = builder.Build();
 
@@ -60,5 +75,9 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
+
+using var scope = app.Services.CreateScope();
+using var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+dbContext.Database.Migrate();
 
 app.Run();

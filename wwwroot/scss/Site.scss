@@ -75,19 +75,34 @@ body {
 
 // Headers
 .custom-header {
-  background: url("/images/header.jpeg") no-repeat center center;
-  background-size: cover;
-  position: relative;
-  color: white;
-  padding: 80px 0;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+}
+.custom-header video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.content-wrap {
+    position: relative;
+    z-index: 1;
+    text-align: center;
 }
 
 .contact-header {
-  background: url("/images/contact_header.jpg") no-repeat center center;
-  background-size: cover;
-  position: relative;
-  color: white;
-  padding: 80px 0;
+    background: url("/images/contact_header.jpg") no-repeat center center;
+    background-size: cover;
+    position: relative;
+    color: white;
+    padding: 150px 0;
 }
 
 // Category Boxes
@@ -112,7 +127,7 @@ body {
 .category-img {
   position: relative;
   width: 100%;
-  height: 600px;
+  height: 700px;
   overflow: hidden;
 
   img {
@@ -448,14 +463,15 @@ body {
 
 // Splide
 .splide__slide img {
-  display: block;
-  width: 100%;
+    object-fit: cover;
+    display: block;
+    height: 600px;
+    width: 100%;
 }
 
 .carousel-image-container {
   position: relative;
   width: 100%;
-  aspect-ratio: 16/9;
   overflow: hidden;
 }
 
@@ -607,6 +623,38 @@ body {
     margin: 0 auto;
     line-height: 1.6;
   }
+}
+
+// Base Styles for Cards
+.custom-card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: 250px;
+        border-bottom: 3px solid #ddd;
+    }
+
+    .card-body {
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        color: #333;
+    }
 }
 
 /* Keyframes Animations */

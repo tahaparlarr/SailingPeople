@@ -1,16 +1,18 @@
-﻿@model List<SailingPeople.Domain.Boat>
+﻿@model IEnumerable<BoatDto>
 
 @{
 	ViewData["Title"] = "Category Detail";
 }
 
 <div class="text-center m-4">
-	<h5 class="display-6 text-primary fw-bold f-calvino">
-		Selected Category
-	</h5>
-	<p class="text-muted mb-0 f-calvino">
-		Explore our collection of amazing boats
-	</p>
+    <h5 class="display-6 text-primary fw-bold f-calvino">
+        @foreach (var category in ViewBag.Categories as IEnumerable<CategoryDto>)
+        {
+            <p>@category.LocalizedName Category Boats</p>}
+    </h5>
+    <p class="text-muted mb-0 f-calvino">
+        Discover our selection of extraordinary boats.
+    </p>
 </div>
 
 <div class="container mt-5">
@@ -36,7 +38,7 @@
 
 					<div class="card-footer boat-footer position-relative p-2">
 						<div class="boat-info">
-							<span class="text-muted d-block">@boat.Category.NameEn</span>
+							<span class="text-muted d-block">@boat.Category.LocalizedName</span>
 							<span class="fw-bold d-block">@boat.Name</span>
 							<span class="fw-bold d-block">@boat.Code</span>
 						</div>

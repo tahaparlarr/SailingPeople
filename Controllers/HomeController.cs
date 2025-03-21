@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Linq;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -8,16 +9,16 @@ using SailingPeople.Models;
 
 namespace SailingPeople.Controllers;
 
-public class HomeController(AppDbContext dbContext) : Controller
+public class HomeController(AppDbContext dbContext, IMapper mapper) : Controller
 {
     public async Task<IActionResult> Index()
     {
-        var categories = (await dbContext.Categories.ToListAsync()).Select(p => new CategoryDto(p));
+        var categories = (await dbContext.Categories.ToListAsync()).Select(p => mapper.Map<CategoryDto>(p));
         ViewBag.CategoriesSelectList = new SelectList(categories, "Id", "LocalizedName");
         ViewBag.Categories = categories;
 
         var boats = await dbContext.Boats.ToListAsync();
-        ViewBag.Boats = boats.Select(p => new BoatDto(p)).Take(20);
+        ViewBag.Boats = boats.Select(p => mapper.Map<BoatDto>(p)).Take(20);
 
         ViewBag.BoatsGroupedByCategory = boats
             .Where(p => categories.Any(c => c.Id == p.CategoryId))
@@ -25,16 +26,19 @@ public class HomeController(AppDbContext dbContext) : Controller
             .Select(group => new
             {
                 CategoryId = group.Key,
-                Boats = group.Select(p => new BoatDto(p)).Take(20).ToList()
+                Boats = group.Select(p => mapper.Map<BoatDto>(p)).Take(20).ToList()
             });
 
         return View();
     }
     public async Task<IActionResult> Category(Guid Id)
     {
-        var boats = await dbContext.Boats.Where(p => p.CategoryId == Id).ToListAsync();
-        ViewBag.Categories = (await dbContext.Categories.ToListAsync())
-                                      .Select(p => new CategoryDto(p));
+        var categories = (await dbContext.Categories.Where(p => p.Id == Id).ToListAsync()).Select(p => mapper.Map<CategoryDto>(p));
+        ViewBag.Categories = categories;
+
+        var boats = (await dbContext.Boats.Where(p => p.CategoryId == Id).ToListAsync()).Select(p => mapper.Map<BoatDto>(p));
+        ViewBag.Boats = boats;
+
         return View(boats);
     }
 
@@ -47,7 +51,7 @@ public class HomeController(AppDbContext dbContext) : Controller
     public async Task<IActionResult> Boats()
     {
         var boats = (await dbContext.Boats.ToListAsync());
-        ViewBag.Boats = boats.Select(p => new BoatDto(p));
+        ViewBag.Boats = boats.Select(p => mapper.Map<BoatDto>(p));
 
         return View();
     }
@@ -60,14 +64,14 @@ public class HomeController(AppDbContext dbContext) : Controller
             return NotFound();
         }
 
-        return View(new BoatDto(boat));
+        return View(mapper.Map<BoatDto>(boat));
     }
 
     [HttpPost]
     public async Task<IActionResult> Search(FilterViewModel model)
     {
         ViewBag.Categories = (await dbContext.Categories.ToListAsync())
-                                      .Select(p => new CategoryDto(p));
+                                      .Select(p => mapper.Map<CategoryDto>(p));
 
         var boats = await dbContext.Boats.Where(p =>
             (p.CategoryId == model.CategoryId || model.CategoryId == null) &&
@@ -75,7 +79,7 @@ public class HomeController(AppDbContext dbContext) : Controller
             p.Cabin == model.Cabin
         ).ToListAsync();
 
-        var filteredBoat = boats.Select(boat => new BoatDto(boat)).ToList();
+        var filteredBoat = boats.Select(boat => mapper.Map<BoatDto>(boat)).ToList();
 
         return View(filteredBoat);
     }
@@ -86,7 +90,7 @@ public class HomeController(AppDbContext dbContext) : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 
-    public async Task<IActionResult> Contact()
+    public IActionResult Contact()
     {
         return View();
     }

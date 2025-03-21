@@ -1,31 +1,10 @@
 ﻿using SailingPeople.Domain;
-using SailingPeople.Migrations;
 using System.ComponentModel.DataAnnotations;
 
 namespace SailingPeople.Models;
 
 public class BoatDto
 {
-    public BoatDto()
-    {
-    }
-    public BoatDto(Boat boat)
-    {
-        Name = boat.Name;
-        Id = boat.Id;
-        Image = boat.Image;
-        BoatImages = boat.BoatImages.Select(p => new BoatImageDto(p)).ToList();
-        Width = boat.Width;
-        Length = boat.Length;
-        Cabin = boat.Cabin;
-        Guest = boat.Guest;
-        CategoryId = boat.CategoryId;
-        Category = boat.Category != null ? new CategoryDto(boat.Category) : null; Code = boat.Code;
-        MayToOctoberPrice = boat.MayToOctoberPrice;
-        JunePrice = boat.JunePrice;
-        JulyToAugustPrice = boat.JulyToAugustPrice;
-        SeptemberPrice = boat.SeptemberPrice;
-    }
     public Guid Id { get; set; } = Guid.NewGuid();
 
     [Display(Name = "Name")]
@@ -82,7 +61,9 @@ public class BoatDto
     [Required()]
     public int? Cabin { get; set; }
 
-    public List<Spec> BoatSpecs { get; set; } = new List<Spec>();
+    public List<SpecDto> Specs { get; set; } = new List<SpecDto>(); 
+    public List<BoatSpecDto> BoatSpecs { get; set; } = new List<BoatSpecDto>();
+
     public List<Facility> Facilities { get; set; } = new List<Facility>();
 
     public List<Guid> SpecId { get; set; } = new List<Guid>();

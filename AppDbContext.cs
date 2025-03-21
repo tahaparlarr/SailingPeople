@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SailingPeople.Domain;
+using SailingPeople.Models;
 using System.Reflection;
 
 namespace SailingPeople;
 
-public class AppDbContext : IdentityDbContext
+public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options) { }

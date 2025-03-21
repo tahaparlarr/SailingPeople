@@ -1,20 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SailingPeople.Models;
-using SailingPeople.Domain;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using SixLabors.ImageSharp.Formats.Webp;
 using Microsoft.EntityFrameworkCore;
-using SailingPeople.Migrations;
-using SixLabors.ImageSharp.Metadata.Profiles.Iptc;
+using SailingPeople.Domain;
+using SailingPeople.Models;
+using SixLabors.ImageSharp.Formats.Webp;
 
 namespace SailingPeople.Areas.Admin.Controllers;
 
 [Area("Admin")]
-public class HomeController(AppDbContext dbContext) : Controller
+public class HomeController(AppDbContext dbContext, IMapper mapper) : Controller
 {
     public async Task<IActionResult> Index()
     {
-        var boats = (await dbContext.Boats.ToListAsync()).Select(p => new BoatDto(p));
+        var boats = (await dbContext.Boats.ToListAsync()).Select(p => mapper.Map<BoatDto>(p));
 
         return View(boats);
     }
@@ -22,13 +21,13 @@ public class HomeController(AppDbContext dbContext) : Controller
     [HttpGet]
     public IActionResult Create()
     {
-        // var specs = dbContext.Specs.ToList();
-        // ViewBag.Specs = specs;
+        var specs = dbContext.Specs.ToList();
+        ViewBag.Specs = specs;
 
-        // var facility = dbContext.Facilities.ToList();
-        // ViewBag.Facility = facility;
+        var facility = dbContext.Facilities.ToList();
+        ViewBag.Facility = facility;
 
-        ViewBag.Categories = new SelectList(dbContext.Categories.ToList().Select(p => new CategoryDto(p)), "Id", "LocalizedName");
+        ViewBag.Categories = new SelectList(dbContext.Categories.ToList().Select(p => mapper.Map<CategoryDto>(p)), "Id", "LocalizedName");
         return View(new BoatDto());
     }
 
