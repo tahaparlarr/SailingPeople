@@ -95,4 +95,14 @@ public class HomeController(AppDbContext dbContext, IMapper mapper) : Controller
         return View();
     }
 
+    public IActionResult Gocek()
+    {
+        return View();
+    }
+
+    public IActionResult Hisaronu()
+    {
+        return View();
+    }
+
 }

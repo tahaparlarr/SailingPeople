@@ -1,5 +1,140 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Marmaris Rodos Routes";
 }
+
+<section class="hero-section position-relative">
+    <div class="hero-overlay"></div>
+    <div class="container py-5 text-center text-white position-relative">
+        <h1 class="display-4 fw-bold mb-4">Marmaris Rodos Routes</h1>
+        <p class="lead mb-4">Embark on an unforgettable journey through the Aegean, discovering hidden bays and pristine waters.</p>
+        <div class="d-flex justify-content-center mb-3">
+            <img src="~/images/marmaris.gif" alt="Route GIF" class="img-fluid hero-gif shadow-lg">
+        </div>
+    </div>
+</section>
+
+<section class="route-video my-5">
+    <div class="container">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold text-primary">Discover the Adventure</h2>
+            <p class="text-muted mb-0">Watch this short video to get a taste of the journey.</p>
+        </div>
+        <div class="ratio ratio-16x9 mx-auto" style="max-width: 800px;">
+            <video controls>
+                <source src="~/video/routes.m4v" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+</section>
+
+<section class="itinerary-section py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold text-primary">Weekly Schedule</h2>
+            <p class="text-muted mb-0">Explore each day’s highlights and activities.</p>
+        </div>
+        <div class="accordion" id="weekAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSaturday">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSaturday" aria-expanded="true" aria-controls="collapseSaturday">
+                        <strong>Saturday</strong>
+                    </button>
+                </h2>
+                <div id="collapseSaturday" class="accordion-collapse collapse show" aria-labelledby="headingSaturday" data-bs-parent="#weekAccordion">
+                    <div class="accordion-body">
+                        <p class="mb-2"><strong>10:00</strong> Meeting at Netsel Marina. Boat introduction and orientation, voyage planning, food loading.</p>
+                        <p class="mb-2"><strong>12:00</strong> Departure from the marina, sailing for an average of 2 hours.</p>
+                        <p class="mb-2"><strong>16:00</strong> Arrival at Çiftlik Bay, swimming and dinner (Azmak Restaurant).</p>
+                        <p class="mb-2">Arrival to Rodos</p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSunday">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSunday" aria-expanded="false" aria-controls="collapseSunday">
+                        <strong>Sunday</strong>
+                    </button>
+                </h2>
+                <div id="collapseSunday" class="accordion-collapse collapse" aria-labelledby="headingSunday" data-bs-parent="#weekAccordion">
+                    <div class="accordion-body">
+                        <p class="mb-2"><strong>07:00</strong> Morning Yoga, swimming and breakfast on the boat.</p>
+                        <p class="mb-2"><strong>10:00</strong> Departure from Çiftlik, 3 hours sailing on average.</p>
+                        <p class="mb-2">Swimming break and lunch in Alarga.</p>
+                        <p class="mb-2"><strong>16:00</strong> Arrival in Ekincik, dinner (My Marina).</p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingMonday">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMonday" aria-expanded="false" aria-controls="collapseMonday">
+                        <strong>Monday</strong>
+                    </button>
+                </h2>
+                <div id="collapseMonday" class="accordion-collapse collapse" aria-labelledby="headingMonday" data-bs-parent="#weekAccordion">
+                    <div class="accordion-body">
+                        <p class="mb-2"><strong>09:00</strong> Departure from Ekincik. Dalyan Kaunos tour (optional).</p>
+                        <p class="mb-2">Departure from Dalyan at 16:00, sailing for an average of 2 hours.</p>
+                        <p class="mb-2"><strong>18:00</strong> Arrival to Baba Island/Dinner in Alarga.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTuesday">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTuesday" aria-expanded="false" aria-controls="collapseTuesday">
+                        <strong>Tuesday</strong>
+                    </button>
+                </h2>
+                <div id="collapseTuesday" class="accordion-collapse collapse" aria-labelledby="headingTuesday" data-bs-parent="#weekAccordion">
+                    <div class="accordion-body">
+                        <p class="mb-2"><strong>10:00</strong> Departure from Baba Island, 3 hours sailing on average.</p>
+                        <p class="mb-2"><strong>13:00</strong> Göcek Göbün Bay lunch break; rest, swimming.</p>
+                        <p class="mb-2"><strong>17:00</strong> Accommodation on the boat in Gobun.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingWednesday">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWednesday" aria-expanded="false" aria-controls="collapseWednesday">
+                        <strong>Wednesday</strong>
+                    </button>
+                </h2>
+                <div id="collapseWednesday" class="accordion-collapse collapse" aria-labelledby="headingWednesday" data-bs-parent="#weekAccordion">
+                    <div class="accordion-body">
+                        <p class="mb-2"><strong>10:00</strong> Departure from Fethiye Turunc Spring, 1.5 hour sailing cruise.</p>
+                        <p class="mb-2"><strong>12:00</strong> alarga/lunch (restaurant available Olive) swimming break at Bedri-Rahmi bay.</p>
+                        <p class="mb-2"><strong>16:00</strong> Hamam Bay Adaia facility/dinner, entertainment (DJ).</p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThursday">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThursday" aria-expanded="false" aria-controls="collapseThursday">
+                        <strong>Thursday</strong>
+                    </button>
+                </h2>
+                <div id="collapseThursday" class="accordion-collapse collapse" aria-labelledby="headingThursday" data-bs-parent="#weekAccordion">
+                    <div class="accordion-body">
+                        <p class="mb-2"><strong>10:00</strong> Departure from Adaia, 6 hours on average sailing on a single long day.</p>
+                        <p class="mb-2"><strong>15:00</strong> Arrival to Ekincik Koyu/alarga, swimming, rest, dinner.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFriday">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFriday" aria-expanded="false" aria-controls="collapseFriday">
+                        <strong>Friday</strong>
+                    </button>
+                </h2>
+                <div id="collapseFriday" class="accordion-collapse collapse" aria-labelledby="headingFriday" data-bs-parent="#weekAccordion">
+                    <div class="accordion-body">
+                        <p class="mb-2"><strong>09:00</strong> Departure from Ekincik, sailing.</p>
+                        <p class="mb-2"><strong>12:00</strong> Lunch in Kumlubuk, swimming.</p>
+                        <p class="mb-2"><strong>14:00</strong> Departure from Kumlubuk to Marmaris.</p>
+                        <p class="mb-2"><strong>17:00</strong> Netsel Marina Connection, farewell cocktail.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

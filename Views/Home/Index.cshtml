@@ -5,18 +5,18 @@
 }
 
 <section class="custom-header">
-    <div class="container-fluid">
-        <div class="content-wrap text-center py-5">
-            <h1 class="mb-4 display-1 f-calvino">
+    <div class="container-fluid p-0 m-0">
+        <div class="content-wrap text-center p-3">
+            <h1 class="mb-4 display-1 f-calvino text-white">
                 <strong>Discover Freedom in the Blue</strong>
             </h1>
-            <video class="h-100" autoplay muted loop id="background-video">
+            <p class="mb-4 fs-4 f-calvino text-white">
+                Embark on an unforgettable sea voyage with comfortable boats and unique routes.
+            </p>
+            <video class="background-video" autoplay muted loop>
                 <source src="/video/hvideo.mp4" type="video/mp4">
                 Tarayıcınız video etiketini desteklemiyor.
             </video>
-            <p class="mb-4 fs-4 f-calvino">
-                Embark on an unforgettable sea voyage with comfortable boats and unique routes.
-            </p>
         </div>
     </div>
 </section>
@@ -137,73 +137,6 @@
         </div>
     </div>
 </section>
-@*
-    <section class="py-5">
-        <div class="text-center mb-4">
-            <h5 class="display-6 text-primary fw-bold f-calvino">Boats</h5>
-            <div class="d-flex justify-content-between align-items-center">
-                <p class="text-muted mb-0 f-calvino mx-auto" style="flex-grow: 1; text-align: center;">
-                    Explore our collection of amazing boats
-                </p>
-                <p class="text-muted mb-0 f-calvino">
-                    <a asp-controller="Home" asp-action="Boats" class="btn btn-link p-0 me-5 fs-5">
-                        Show All
-                    </a>
-                </p>
-            </div>
-        </div>
-
-        <div class="container">
-            @foreach (var group in ViewBag.BoatsGroupedByCategory as IEnumerable<dynamic>)
-            {
-                <div class="category-section mb-5">
-                    <h5 class="text-primary fw-bold">@group.CategoryId</h5>
-                    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
-                        @foreach (var boat in group.Boats)
-                        {
-                            <div class="col">
-                                <div class="boat-box position-relative shadow-sm border">
-                                    <div class="boat-img position-relative overflow-hidden">
-                                        <img class="object-fit-cover w-100" src="@boat.Image" alt="@boat.Name" />
-
-                                        <div class="boat-overlay d-flex flex-column justify-content-center align-items-center">
-                                            <div class="overlay-content">
-                                                <h5 class="overlay-title text-white text-center text-break p-4">@boat.Name</h5>
-                                            </div>
-                                        </div>
-
-                                        <a asp-controller="Home" asp-action="BoatDetail" asp-route-id="@boat.Id"
-                                           class="btn btn-inspect position-absolute display-7">
-                                            View Detail
-                                        </a>
-                                    </div>
-
-                                    <div class="card-footer boat-footer position-relative p-2">
-                                        <div class="boat-info">
-                                            <span class="text-muted d-block text-ellipsis">@boat.Category.LocalizedName</span>
-                                            <a asp-controller="Home" asp-action="BoatDetail" asp-route-id="@boat.Id">
-                                                <span class="fw-bold d-block">@boat.Name</span>
-                                            </a>
-                                            <span class="fw-bold d-block">@boat.Code</span>
-                                        </div>
-
-                                        <div class="boat-icons position-absolute top-0 end-0 mt-2 me-2 text-nowrap">
-                                            <i class="bi bi-people me-1"></i>@boat.Guest
-                                            <i class="bi bi-door-closed ms-3 me-1"></i>@boat.Cabin
-                                        </div>
-
-                                        <div class="boat-price mt-4">
-                                            Price start from €@(boat.MayToOctoberPrice) p/week
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                    </div>
-                </div>
-            }
-        </div>
-    </section> *@
 
 <section class="why-choose-us py-5">
     <div class="container">
@@ -257,28 +190,6 @@
                         We prioritize your well-being with highly trained crews and state-of-the-art safety measures.
                     </p>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="whatsapp-section">
-    <div class="container-fluid">
-        <div class="d-flex justify-content-center align-items-center">
-            <div class="whatsapp-card">
-                <div class="icon-container">
-                    <img src="~/images/whatsapp.jpg" alt="WhatsApp Contact" class="whatsapp-image" />
-                </div>
-
-                <h2 class="title">Need Assistance?</h2>
-                <p class="description">
-                    Get in touch with us on WhatsApp for quick support and immediate help.
-                </p>
-
-                <a href="https://wa.me/05300907998" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
-                    <i class="bi bi-whatsapp me-2"></i>
-                    Start Chat on WhatsApp
-                </a>
             </div>
         </div>
     </div>

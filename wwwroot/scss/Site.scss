@@ -73,36 +73,117 @@ body {
   width: 100%;
 }
 
+//Form Input
+.custom-search-form {
+  margin: 1rem 0;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+
+  .row {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  label {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 0.5rem;
+  }
+
+  .input-group {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(12px);
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+    .input-group-text {
+      border: none;
+      border-radius: 0.75rem 0 0 0.75rem;
+      background: transparent; 
+      color: #212529;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      i {
+        font-size: 1.2rem;
+      }
+    }
+
+    .form-control,
+    .form-select {
+      border: none;
+      border-radius: 0 0.75rem 0.75rem 0;
+      background: transparent; 
+      color: #212529;
+      box-shadow: none !important;
+      transition: all 0.3s ease;
+
+      &::placeholder {
+        color: #adb5bd;
+        opacity: 1;
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25); // #0d6efd alpha
+      }
+    }
+  }
+
+  button.btn-primary {
+    border: none;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 0.75rem 1rem;
+    color: #fff;
+    box-shadow: 0 3px 15px $primary;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px $primary;
+    }
+
+    &:active {
+      transform: translateY(1px);
+      box-shadow: 0 6px 15px $primary;
+    }
+  }
+}
+
+
+
 // Headers
 .custom-header {
-    color: white;
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    height: auto;
+  position: relative;
+  overflow: hidden;
+  height: 65vh;
 }
-.custom-header video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    object-fit: cover;
-    z-index: -1;
+
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
 }
 
 .content-wrap {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-}
-
-.contact-header {
-    background: url("/images/contact_header.jpg") no-repeat center center;
-    background-size: cover;
-    position: relative;
-    color: white;
-    padding: 150px 0;
+  position: relative;
+  z-index: 1;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 // Category Boxes
@@ -177,81 +258,6 @@ body {
   color: black;
   border: 1px solid white;
   background-color: white;
-}
-
-// Whatsapp
-.whatsapp-section {
-  background: linear-gradient(135deg, #f5f7fa, #cfd8dc);
-  padding: 60px 0;
-
-  .container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .whatsapp-card {
-    background-color: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-    text-align: center;
-    padding: 40px 30px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-    &:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-    }
-
-    .icon-container {
-      margin-bottom: 24px;
-
-      .whatsapp-image {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        object-fit: cover;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-        border: 3px solid #fff;
-      }
-    }
-
-    .title {
-      font-weight: 600;
-      font-size: 22px;
-      margin-bottom: 12px;
-      color: #333;
-    }
-
-    .description {
-      font-size: 16px;
-      color: #666;
-      margin-bottom: 24px;
-      line-height: 1.5;
-    }
-
-    .btn-whatsapp {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #25d366;
-      color: #fff;
-      font-size: 16px;
-      padding: 12px 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: background-color 0.3s ease;
-
-      i {
-        font-size: 18px;
-        margin-right: 8px;
-      }
-
-      &:hover {
-        background-color: #20be5b; /* Biraz daha koyu bir yeşil */
-      }
-    }
-  }
 }
 
 // Boat Cards
@@ -463,10 +469,10 @@ body {
 
 // Splide
 .splide__slide img {
-    object-fit: cover;
-    display: block;
-    height: 600px;
-    width: 100%;
+  object-fit: cover;
+  display: block;
+  height: 600px;
+  width: 100%;
 }
 
 .carousel-image-container {
@@ -627,36 +633,105 @@ body {
 
 // Base Styles for Cards
 .custom-card {
-    border: none;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 
-    &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    }
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
 
-    .card-img-top {
-        width: 100%;
-        height: 250px;
-        border-bottom: 3px solid #ddd;
-    }
+  .card-img-top {
+    width: 100%;
+    height: 250px;
+    border-bottom: 3px solid #ddd;
+  }
 
-    .card-body {
-        padding: 1.5rem;
-        text-align: center;
-    }
+  .card-body {
+    padding: 1.5rem;
+    text-align: center;
+  }
 
-    .card-title {
-        font-size: 1.25rem;
-        font-weight: bold;
-        margin-bottom: 1rem;
-        color: #333;
-    }
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #333;
+  }
 }
 
+// Boat Details
+.hero-section {
+  position: relative;
+  min-height: 40vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+.hero-background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  filter: brightness(0.5);
+  z-index: -1;
+}
+.hero-content {
+  z-index: 1;
+}
+
+.splide__slide img {
+  display: block;
+  max-width: 100%;
+  max-height: 600px;
+  margin: 0 auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 1rem;
+}
+
+.card-header {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 1rem 1rem 0 0;
+}
+
+.price-card .card-header {
+  background: linear-gradient(90deg, #198754, #74c69d);
+  color: #fff;
+}
+
+.facilities-card .card-header {
+  background: linear-gradient(90deg, #0dcaf0, #48cae4);
+  color: #fff;
+}
+
+.facility-item {
+  transition: background-color 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  background-color: #ffffff70;
+}
+.facility-item:hover {
+  background-color: #ffffff90;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
 /* Keyframes Animations */
 @keyframes overlaySlideOut {
   0% {

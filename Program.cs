@@ -27,11 +27,6 @@ builder
         option.UseLazyLoadingProxies();
     });
 
-//builder
-//.Services.AddIdentity<User, Role>()
-//    .AddEntityFrameworkStores<AppDbContext>()
-//    .AddDefaultTokenProviders();
-
 builder
 .Services.AddAutoMapper(config =>
 {
