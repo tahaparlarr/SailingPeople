@@ -1,25 +1,25 @@
-﻿@model IEnumerable<BoatDto>
+﻿@model List<BoatDto>
 
-@{
-    ViewData["Title"] = "Kategori Detayı";
-}
+    @{
+    ViewData["Title"] = "Searched Category";
+    }
 
-<div class="text-center m-4">
-    <h5 class="display-6 text-primary fw-bold f-calvino">
-        @foreach (var category in ViewBag.Categories as IEnumerable<CategoryDto>)
-        {
-            <p>@category.LocalizedName Kategorisindeki Tekneler</p>
-        }
-    </h5>
-    <p class="text-muted mb-0 f-calvino">
-        Olağanüstü teknelerimiz arasından seçim yapın.
-    </p>
-</div>
-
-<div class="container mt-5">
-    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
-        @foreach (var boat in Model)
-        {
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+            @if (!Model.Any())
+            {
+            <div class="container" style="height: 50vh;">
+                <div class="row d-flex justify-content-center align-items-center" style="height: 100%;">
+                    <div class="alert alert-primary text-center w-auto" role="alert">
+                        Sorry, no boat was found matching your criteria.
+                    </div>
+                </div>
+            </div>
+            }
+            else
+            {
+            @foreach (var boat in Model)
+            {
             <div class="col">
                 <div class="boat-box position-relative shadow-sm border">
                     <div class="boat-img position-relative overflow-hidden ">
@@ -27,20 +27,22 @@
 
                         <div class="boat-overlay d-flex flex-column justify-content-center align-items-center">
                             <div class="overlay-content">
-                                <h5 class="overlay-title text-white">@boat.Name</h5>
+                                <h5 class="overlay-title text-white text-center text-break p-4">@boat.Name</h5>
                             </div>
                         </div>
 
                         <a asp-controller="Home" asp-action="BoatDetail" asp-route-id="@boat.Id"
                            class="btn btn-inspect position-absolute display-7">
-                            Detayları Gör
+                            View Detail
                         </a>
                     </div>
 
                     <div class="card-footer boat-footer position-relative p-2">
                         <div class="boat-info">
-                            <span class="text-muted d-block">@boat.Category.LocalizedName</span>
-                            <span class="fw-bold d-block">@boat.Name</span>
+                            <span class="text-muted d-block text-ellipsis">@boat.Category.LocalizedName</span>
+                            <a asp-controller="Home" asp-action="BoatDetail" asp-route-id="@boat.Id">
+                                <span class="fw-bold d-block">@boat.Name</span>
+                            </a>
                             <span class="fw-bold d-block">@boat.Code</span>
                         </div>
 
@@ -50,12 +52,13 @@
                         </div>
 
                         <div class="boat-price mt-4">
-                            Haftalık fiyat: €@(boat.MayToOctoberPrice)'dan başlayan
+                            Price start from €@(boat.MayToOctoberPrice) p/week
                         </div>
                     </div>
 
                 </div>
             </div>
-        }
+            }
+            }
+        </div>
     </div>
-</div>

@@ -1,29 +1,32 @@
 ﻿@model IEnumerable<BoatDto>
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Anasayfa";
 }
 
 <section class="custom-header">
-    <div class="container-fluid">
-        <div class="content-wrap text-center py-5">
-            <h1 class="mb-4 display-1 f-calvino">
-                <strong>Discover Freedom in the Blue</strong>
+    <div class="container-fluid p-0 m-0">
+        <div class="content-wrap text-center p-3">
+            <h1 class="mb-4 display-1 f-calvino text-white">
+                <strong>Maviliklerde Özgürlüğü Keşfedin</strong>
             </h1>
-
-            <p class="mb-4 fs-4 f-calvino">
-                Embark on an unforgettable sea voyage with comfortable boats and unique routes.
+            <p class="mb-4 fs-4 f-calvino text-white">
+                Konforlu tekneler ve benzersiz rotalarla unutulmaz bir deniz yolculuğuna çıkın.
             </p>
+            <video class="background-video" autoplay muted loop>
+                <source src="/video/hvideo.mp4" type="video/mp4">
+                Tarayıcınız video etiketini desteklemiyor.
+            </video>
+        </div>
+    </div>
+</section>
 
-            <section class="p-0 m-3 bg-transparent">
-                <div class="row justify-content-center">
-                    <div class="col-md-10 col-lg-8 bg-white rounded-5">
-                        <div class="p-2">
-                            <partial name="_FilterFormPartial" />
-                        </div>
-                    </div>
-                </div>
-            </section>
+<section class="p-0 m-3 bg-transparent">
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8 bg-white rounded-5">
+            <div class="p-2">
+                <partial name="_FilterFormPartial" />
+            </div>
         </div>
     </div>
 </section>
@@ -32,10 +35,10 @@
     <div class="container-fluid p-0">
         <div class="text-center m-4">
             <h5 class="display-6 text-primary fw-bold f-calvino">
-                Boats Category
+                Tekne Kategorileri
             </h5>
             <p class="text-muted mb-0 f-calvino">
-                Explore our collection of amazing boats
+                Muhteşem tekneler koleksiyonumuzu keşfedin
             </p>
         </div>
 
@@ -54,7 +57,7 @@
                             <div class="position-absolute start-50 translate-middle-x bottom-0 mb-3" style="z-index: 10;">
                                 <a asp-controller="Home" asp-action="Category" asp-route-id="@category.Id"
                                    class="btn btn-inspect rounded-0 display-7">
-                                    Inspect
+                                    İncele
                                 </a>
                             </div>
 
@@ -74,19 +77,21 @@
 
 <section class="py-5">
     <div class="text-center mb-4">
-        <h5 class="display-6 text-primary fw-bold f-calvino">Boats</h5>
-        <div class="d-flex justify-content-between align-items-center">
-            <p class="text-muted mb-0 f-calvino mx-auto" style="flex-grow: 1; text-align: center;">
-                Explore our
-                collection of amazing boats
-            </p>
+        <h5 class="display-6 text-primary fw-bold f-calvino">Tekneler</h5>
+        <div class="d-flex justify-content-center align-items-center">
             <p class="text-muted mb-0 f-calvino">
-                <a asp-controller="Home" asp-action="Boats" class="btn btn-link p-0 me-5 fs-5">
-                    Show All
+                Konforlu ve şık teknelerden oluşan özenle seçilmiş filomuzla bir sonraki maceranıza atılın!
+            </p>
+        </div>
+        <div class="d-flex justify-content-center align-items-center">
+            <p class="text-muted mb-0 f-calvino">
+                <a asp-controller="Home" asp-action="Boats" class="btn btn-link p-0 fs-5 text-center">
+                    Tümünü Göster
                 </a>
             </p>
         </div>
     </div>
+
     <div class="container">
         <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
             @foreach (var boat in (ViewBag.Boats as IEnumerable<BoatDto>).Take(20))
@@ -104,7 +109,7 @@
 
                             <a asp-controller="Home" asp-action="BoatDetail" asp-route-id="@boat.Id"
                                class="btn btn-inspect position-absolute display-7">
-                                View Detail
+                                Detayları Gör
                             </a>
                         </div>
 
@@ -123,7 +128,7 @@
                             </div>
 
                             <div class="boat-price mt-4">
-                                Price start from €@(boat.MayToOctoberPrice) p/week
+                                Fiyat haftalık €@(boat.MayToOctoberPrice)'dan başlıyor
                             </div>
                         </div>
 
@@ -134,80 +139,13 @@
         </div>
     </div>
 </section>
-@*
-    <section class="py-5">
-        <div class="text-center mb-4">
-            <h5 class="display-6 text-primary fw-bold f-calvino">Boats</h5>
-            <div class="d-flex justify-content-between align-items-center">
-                <p class="text-muted mb-0 f-calvino mx-auto" style="flex-grow: 1; text-align: center;">
-                    Explore our collection of amazing boats
-                </p>
-                <p class="text-muted mb-0 f-calvino">
-                    <a asp-controller="Home" asp-action="Boats" class="btn btn-link p-0 me-5 fs-5">
-                        Show All
-                    </a>
-                </p>
-            </div>
-        </div>
-
-        <div class="container">
-            @foreach (var group in ViewBag.BoatsGroupedByCategory as IEnumerable<dynamic>)
-            {
-                <div class="category-section mb-5">
-                    <h5 class="text-primary fw-bold">@group.CategoryId</h5>
-                    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
-                        @foreach (var boat in group.Boats)
-                        {
-                            <div class="col">
-                                <div class="boat-box position-relative shadow-sm border">
-                                    <div class="boat-img position-relative overflow-hidden">
-                                        <img class="object-fit-cover w-100" src="@boat.Image" alt="@boat.Name" />
-
-                                        <div class="boat-overlay d-flex flex-column justify-content-center align-items-center">
-                                            <div class="overlay-content">
-                                                <h5 class="overlay-title text-white text-center text-break p-4">@boat.Name</h5>
-                                            </div>
-                                        </div>
-
-                                        <a asp-controller="Home" asp-action="BoatDetail" asp-route-id="@boat.Id"
-                                           class="btn btn-inspect position-absolute display-7">
-                                            View Detail
-                                        </a>
-                                    </div>
-
-                                    <div class="card-footer boat-footer position-relative p-2">
-                                        <div class="boat-info">
-                                            <span class="text-muted d-block text-ellipsis">@boat.Category.LocalizedName</span>
-                                            <a asp-controller="Home" asp-action="BoatDetail" asp-route-id="@boat.Id">
-                                                <span class="fw-bold d-block">@boat.Name</span>
-                                            </a>
-                                            <span class="fw-bold d-block">@boat.Code</span>
-                                        </div>
-
-                                        <div class="boat-icons position-absolute top-0 end-0 mt-2 me-2 text-nowrap">
-                                            <i class="bi bi-people me-1"></i>@boat.Guest
-                                            <i class="bi bi-door-closed ms-3 me-1"></i>@boat.Cabin
-                                        </div>
-
-                                        <div class="boat-price mt-4">
-                                            Price start from €@(boat.MayToOctoberPrice) p/week
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                    </div>
-                </div>
-            }
-        </div>
-    </section> *@
 
 <section class="why-choose-us py-5">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="display-6 text-primary fw-bold f-calvino">Why Choose Us?</h2>
+            <h2 class="display-6 text-primary fw-bold f-calvino">Neden Bizi Seçmelisiniz?</h2>
             <p class="text-muted mb-0 f-calvino">
-                We offer the best experience at sea with our top-quality service.
+                En kaliteli hizmetimizle denizde en iyi deneyimi sunuyoruz.
             </p>
         </div>
         <div class="row g-4">
@@ -216,9 +154,9 @@
                     <div class="mb-3 text-primary">
                         <i class="bi bi-trophy" style="font-size: 2rem;"></i>
                     </div>
-                    <h5 class="f-calvino">Award-Winning Service</h5>
+                    <h5 class="f-calvino">Ödüllü Hizmet</h5>
                     <p class="text-muted">
-                        Our dedication to excellence has been recognized globally, ensuring top-notch voyages.
+                        Mükemmelliğe olan bağlılığımız, dünya çapında tanınarak en iyi seyahatleri garanti eder.
                     </p>
                 </div>
             </div>
@@ -227,9 +165,9 @@
                     <div class="mb-3 text-primary">
                         <i class="bi bi-compass" style="font-size: 2rem;"></i>
                     </div>
-                    <h5 class="f-calvino">Unique Routes</h5>
+                    <h5 class="f-calvino">Benzersiz Rotalar</h5>
                     <p class="text-muted">
-                        Explore hidden gems of the sea that few have seen, guided by our expert teams.
+                        Uzman ekiplerimiz eşliğinde az kişinin görmüş olduğu denizin saklı güzelliklerini keşfedin.
                     </p>
                 </div>
             </div>
@@ -238,9 +176,9 @@
                     <div class="mb-3 text-primary">
                         <i class="bi bi-gem" style="font-size: 2rem;"></i>
                     </div>
-                    <h5 class="f-calvino">Luxurious Boats</h5>
+                    <h5 class="f-calvino">Lüks Tekneler</h5>
                     <p class="text-muted">
-                        Our vessels are equipped with modern amenities to provide maximum comfort on your journey.
+                        Teknelerimiz, yolculuğunuzda maksimum konfor sağlamak için modern olanaklarla donatılmıştır.
                     </p>
                 </div>
             </div>
@@ -249,9 +187,9 @@
                     <div class="mb-3 text-primary">
                         <i class="bi bi-shield-check" style="font-size: 2rem;"></i>
                     </div>
-                    <h5 class="f-calvino">Safety First</h5>
+                    <h5 class="f-calvino">Önce Güvenlik</h5>
                     <p class="text-muted">
-                        We prioritize your well-being with highly trained crews and state-of-the-art safety measures.
+                        Son teknoloji güvenlik önlemleri ve eğitimli mürettebatımızla rahatlığınızı her şeyden önde tutuyoruz.
                     </p>
                 </div>
             </div>
@@ -259,87 +197,37 @@
     </div>
 </section>
 
-<section class="whatsapp-section">
-    <div class="container-fluid">
-        <div class="d-flex justify-content-center align-items-center">
-            <div class="whatsapp-card">
-                <div class="icon-container">
-                    <img src="~/images/whatsapp.jpg" alt="WhatsApp Contact" class="whatsapp-image" />
-                </div>
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h2 class="display-6 text-primary fw-bold f-calvino">Örnek Rotalarımız</h2>
+        <p class="text-muted mb-0 f-calvino">
+            Özel rota talepleriniz için lütfen bizimle iletişime geçin.
+        </p>
+    </div>
 
-                <h2 class="title">Need Assistance?</h2>
-                <p class="description">
-                    Get in touch with us on WhatsApp for quick support and immediate help.
-                </p>
+    <div class="row row-cols-lg-2 justify-content-center ">
+        <div class="col">
+            <div class="card custom-card">
+                <a asp-action="hisaronu">
+                    <img src="/images/hisaronu.jpg" class="card-img-top" alt="Hisarönü Körfezi">
 
-                <a href="https://wa.me/05300907998" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
-                    <i class="bi bi-whatsapp me-2"></i>
-                    Start Chat on WhatsApp
                 </a>
+                <div class="card-body">
+                    <h5 class="card-title f-calvino">Hisarönü Körfezi</h5>
+                </div>
             </div>
         </div>
-    </div>
-</section>
 
-<section class="testimonials py-5 bg-light">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="display-6 text-primary fw-bold f-calvino">
-                Our Happy Clients
-            </h2>
-            <p class="text-muted mb-0 f-calvino">
-                Here's what our customers say about sailing with us:
-            </p>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card border-0 shadow-sm mb-4">
-                    <div class="card-body">
-                        <p class="f-calvino">
-                            <i class="bi bi-quote me-2"></i>
-                            We booked a private cruise for our anniversary, and it truly surpassed our expectations. The
-                            crew went above and beyond to make our experience unforgettable.
-                        </p>
-                        <p class="text-end mb-0 fw-bold">Jessica K.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card border-0 shadow-sm mb-4">
-                    <div class="card-body">
-                        <p class="f-calvino">
-                            <i class="bi bi-quote me-2"></i>
-                            The yacht was absolutely immaculate, and the attention to detail was incredible. I can't
-                            recommend this trip enough!
-                        </p>
-                        <p class="text-end mb-0 fw-bold">David K.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card border-0 shadow-sm mb-4">
-                    <div class="card-body">
-                        <p class="f-calvino">
-                            <i class="bi bi-quote me-2"></i>
-                            We celebrated our honeymoon onboard, and everything was magical from start to finish. We
-                            can’t wait to sail again!
-                        </p>
-                        <p class="text-end mb-0 fw-bold">Ana & Miguel</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card border-0 shadow-sm mb-4">
-                    <div class="card-body">
-                        <p class="f-calvino">
-                            <i class="bi bi-quote me-2"></i>
-                            From the moment we stepped on board, the team made us feel like VIPs. We discovered hidden
-                            coves and swam in crystal-clear waters!
-                        </p>
-                        <p class="text-end mb-0 fw-bold">Nicole T.</p>
-                    </div>
+        <div class="col">
+            <div class="card custom-card">
+                <a asp-action="gocek">
+                    <img src="/images/gocek.jpg" class="card-img-top" alt="Marmaris-Göcek">
+
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title f-calvino">Marmaris-Göcek</h5>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</div>

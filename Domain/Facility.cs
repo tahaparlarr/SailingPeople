@@ -207,7 +207,6 @@ new Facility
     FacilityCategoryId = Guid.Parse("{A3F47C0E-30A6-4C89-A4A0-5AC20551D595}")
 },
 
-// --
 new Facility
 {
     Id = Guid.Parse("{B6E2AA72-3CE9-4BED-96CB-B5A6AD0F1385}"),
@@ -229,22 +228,6 @@ new Facility
     Id = Guid.Parse("{88F8F14F-8A9A-45A4-954D-0FF7F1D8265F}"),
     NameTr = "Şnorkel ve Balık Avı Ekipmanları",
     NameEn = "Snorkeling and Fishing Equipment",
-    FacilityCategoryId = Guid.Parse("{C1C48A44-6B02-4E6A-95C5-1D262788B7F0}")
-},
-
-new Facility
-{
-    Id = Guid.Parse("{D16AC7AB-2C8E-4AE2-8A0F-F0F5A9397123}"),
-    NameTr = "Kano",
-    NameEn = "Canoe",
-    FacilityCategoryId = Guid.Parse("{C1C48A44-6B02-4E6A-95C5-1D262788B7F0}")
-},
-
-new Facility
-{
-    Id = Guid.Parse("{FC02F6E5-1EEC-4B1F-81E5-8AA4C95190F9}"),
-    NameTr = "Servis Botu",
-    NameEn = "Tender",
     FacilityCategoryId = Guid.Parse("{C1C48A44-6B02-4E6A-95C5-1D262788B7F0}")
 },
 

@@ -1,7 +1,7 @@
 ﻿@model BoatDto
 
 @{
-    ViewData["Title"] = "Boat Detail";
+    ViewData["Title"] = "Tekne Detayı";
 }
 
 <!-- HERO SECTION -->
@@ -21,18 +21,18 @@
         <!-- IMAGE CAROUSEL -->
         <div class="row mb-5">
             <div class="col-12">
-                <section id="image-carousel" class="splide" aria-label="Boat Images">
+                <section id="image-carousel" class="splide" aria-label="Tekne Resimleri">
                     <div class="splide__track">
                         <ul class="splide__list">
                             <!-- Kapak Resmi -->
                             <li class="splide__slide">
-                                <img src="@Model.Image" alt="Cover Image" class="img-fluid rounded shadow" />
+                                <img src="@Model.Image" alt="Kapak Resmi" class="img-fluid rounded shadow" />
                             </li>
                             <!-- Diğer Resimler -->
                             @foreach (var image in Model.BoatImages)
                             {
                                 <li class="splide__slide">
-                                    <img src="@image.Image" alt="Boat Image" class="img-fluid rounded shadow" />
+                                    <img src="@image.Image" alt="Tekne Resmi" class="img-fluid rounded shadow" />
                                 </li>
                             }
                         </ul>
