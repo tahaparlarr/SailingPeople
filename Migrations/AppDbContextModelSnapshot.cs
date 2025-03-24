@@ -213,7 +213,7 @@ namespace SailingPeople.Migrations
                         {
                             Id = new Guid("f00c470f-0595-4c35-af61-964e15ca4335"),
                             FacilityCategoryId = new Guid("a1e93a3d-6f42-4a15-a0c8-abf80693f9bc"),
-                            NameEn = "Hot water",
+                            NameEn = "Hot Water",
                             NameTr = "Sıcak Su"
                         },
                         new
@@ -248,14 +248,14 @@ namespace SailingPeople.Migrations
                         {
                             Id = new Guid("db35e9f6-419d-4c9e-a200-2c9902f9d148"),
                             FacilityCategoryId = new Guid("1db7a378-5e4e-4c61-b0a2-f7dab56f6d51"),
-                            NameEn = "Freezer",
+                            NameEn = "Refrigerator",
                             NameTr = "Buzdolabı"
                         },
                         new
                         {
                             Id = new Guid("16da6aca-5f9e-43c8-b2d7-40cb02ed4bdf"),
                             FacilityCategoryId = new Guid("a3f47c0e-30a6-4c89-a4a0-5ac20551d595"),
-                            NameEn = "Biminitop",
+                            NameEn = "Bimini Top",
                             NameTr = "Bimini Üstü"
                         },
                         new
@@ -270,7 +270,7 @@ namespace SailingPeople.Migrations
                             Id = new Guid("96b23f3c-bc3e-4260-8a21-8392a44e482f"),
                             FacilityCategoryId = new Guid("e00c8365-914d-4874-99b5-6c43d6a96717"),
                             NameEn = "Bow Thruster",
-                            NameTr = "Pervane İleri Yön"
+                            NameTr = "Baş Pervane"
                         },
                         new
                         {
@@ -297,7 +297,7 @@ namespace SailingPeople.Migrations
                         {
                             Id = new Guid("d2337f7f-581c-4df3-966f-d40ef528efcc"),
                             FacilityCategoryId = new Guid("a3f47c0e-30a6-4c89-a4a0-5ac20551d595"),
-                            NameEn = "TV/DVD",
+                            NameEn = "TV / DVD",
                             NameTr = "Televizyon / DVD"
                         },
                         new
@@ -318,8 +318,8 @@ namespace SailingPeople.Migrations
                         {
                             Id = new Guid("91cb398e-aae9-4d71-ad39-138aca252b25"),
                             FacilityCategoryId = new Guid("b2f7e13b-001a-48bb-b4ef-b387c5d90a4c"),
-                            NameEn = "Internet connection",
-                            NameTr = "Internet Bağlantısı"
+                            NameEn = "Internet Connection",
+                            NameTr = "İnternet Bağlantısı"
                         },
                         new
                         {
@@ -339,7 +339,7 @@ namespace SailingPeople.Migrations
                         {
                             Id = new Guid("e6d0c77b-714b-455f-8498-2433dbfae51a"),
                             FacilityCategoryId = new Guid("b2f7e13b-001a-48bb-b4ef-b387c5d90a4c"),
-                            NameEn = "Swimming Ladder",
+                            NameEn = "Swim Ladder",
                             NameTr = "Yüzme Merdiveni"
                         },
                         new
@@ -360,7 +360,7 @@ namespace SailingPeople.Migrations
                         {
                             Id = new Guid("e7f5594f-41eb-444f-80ea-2cd05cdffbea"),
                             FacilityCategoryId = new Guid("a3f47c0e-30a6-4c89-a4a0-5ac20551d595"),
-                            NameEn = "Service Boat",
+                            NameEn = "Tender",
                             NameTr = "Servis Botu"
                         },
                         new
@@ -374,7 +374,7 @@ namespace SailingPeople.Migrations
                         {
                             Id = new Guid("2f41793a-1d95-4006-8eeb-107ea418bc9c"),
                             FacilityCategoryId = new Guid("c1c48a44-6b02-4e6a-95c5-1d262788b7f0"),
-                            NameEn = "Depth Sounding",
+                            NameEn = "Depth Sounder",
                             NameTr = "Derinlik Ölçümü"
                         },
                         new
@@ -395,7 +395,7 @@ namespace SailingPeople.Migrations
                         {
                             Id = new Guid("fc02f6e5-1eec-4b1f-81e5-8aa4c95190f9"),
                             FacilityCategoryId = new Guid("c1c48a44-6b02-4e6a-95c5-1d262788b7f0"),
-                            NameEn = "Service Boat",
+                            NameEn = "Tender",
                             NameTr = "Servis Botu"
                         },
                         new
@@ -423,7 +423,7 @@ namespace SailingPeople.Migrations
                         {
                             Id = new Guid("78a8f2d1-9e2f-45e7-8dc2-8e1d640869c2"),
                             FacilityCategoryId = new Guid("a3f47c0e-30a6-4c89-a4a0-5ac20551d595"),
-                            NameEn = "Satellite Link",
+                            NameEn = "Satellite Connection",
                             NameTr = "Uydu Bağlantısı"
                         },
                         new
@@ -437,8 +437,8 @@ namespace SailingPeople.Migrations
                         {
                             Id = new Guid("ad91b440-9e12-4d6c-926b-7887397d1a79"),
                             FacilityCategoryId = new Guid("a3f47c0e-30a6-4c89-a4a0-5ac20551d595"),
-                            NameEn = "Navtek (Satellite Weather Report)",
-                            NameTr = "Navtek (Uydu Hava Raporu)"
+                            NameEn = "Navtex (Satellite Weather Report)",
+                            NameTr = "Navtex (Uydu Hava Raporu)"
                         });
                 });
 
@@ -521,13 +521,13 @@ namespace SailingPeople.Migrations
                         new
                         {
                             Id = new Guid("da17d13c-0b26-4858-a9cb-b9582bdb74be"),
-                            NameEn = "Year Of Construction",
+                            NameEn = "Year of Construction",
                             NameTr = "Yapım Yılı"
                         },
                         new
                         {
                             Id = new Guid("61108cac-c37e-4f69-9ecf-ec55eda48e96"),
-                            NameEn = "Wc-Shower",
+                            NameEn = "WC-Shower",
                             NameTr = "Wc-Shower"
                         },
                         new
@@ -539,7 +539,7 @@ namespace SailingPeople.Migrations
                         new
                         {
                             Id = new Guid("ec25eeab-c424-477a-9b4a-a3b4f5c9e361"),
-                            NameEn = "Winding Genoa",
+                            NameEn = "Furling Genoa",
                             NameTr = "Yelkenin Sarılması"
                         },
                         new
@@ -605,7 +605,7 @@ namespace SailingPeople.Migrations
                         new
                         {
                             Id = new Guid("2a48445d-384e-4fd9-9100-60df49125e1a"),
-                            NameEn = "Clean Water Tank",
+                            NameEn = "Fresh Water Tank",
                             NameTr = "Temiz Su Tankı"
                         },
                         new
@@ -623,13 +623,13 @@ namespace SailingPeople.Migrations
                         new
                         {
                             Id = new Guid("a0710b91-2461-41b6-a36d-827e7e68c21a"),
-                            NameEn = "Built in",
+                            NameEn = "Year Built",
                             NameTr = "Yapıldığı Yıl"
                         },
                         new
                         {
                             Id = new Guid("e7a5e5f6-c5d5-43be-a7bc-68897d7977c1"),
-                            NameEn = "Water Withdrawal",
+                            NameEn = "Draft",
                             NameTr = "Su Çekilmesi"
                         },
                         new

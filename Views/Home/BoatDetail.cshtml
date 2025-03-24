@@ -4,6 +4,7 @@
     ViewData["Title"] = "Boat Detail";
 }
 
+<!-- HERO SECTION -->
 <section class="hero-section">
     <div class="hero-background" style="background-image: url('@Model.Image');"></div>
     <div class="container hero-content text-center text-white">
@@ -12,17 +13,22 @@
         <a href="#boat-details" id="detail" class="btn btn-inspect mt-3">Detaylara Göz At</a>
     </div>
 </section>
-
+<!-- END HERO SECTION -->
+<!-- BOAT DETAILS SECTION -->
 <section id="boat-details" class="py-5">
     <div class="container">
+
+        <!-- IMAGE CAROUSEL -->
         <div class="row mb-5">
             <div class="col-12">
                 <section id="image-carousel" class="splide" aria-label="Boat Images">
                     <div class="splide__track">
                         <ul class="splide__list">
+                            <!-- Kapak Resmi -->
                             <li class="splide__slide">
                                 <img src="@Model.Image" alt="Cover Image" class="img-fluid rounded shadow" />
                             </li>
+                            <!-- Diğer Resimler -->
                             @foreach (var image in Model.BoatImages)
                             {
                                 <li class="splide__slide">
@@ -34,8 +40,10 @@
                 </section>
             </div>
         </div>
+        <!-- END IMAGE CAROUSEL -->
 
         <div class="row g-4">
+            <!-- TEKNE ÖZELLİKLERİ -->
             <div class="col-12 col-lg-6">
                 <div class="card shadow-sm h-100 glass-card">
                     <div class="card-header d-flex align-items-center">
@@ -44,23 +52,16 @@
                     </div>
                     <div class="card-body">
                         <ul class="list-unstyled mb-0">
-                            <li>
-                                <strong>En (Metre):</strong> @Model.Width
-                            </li>
-                            <li>
-                                <strong>Boy (Metre):</strong> @Model.Length
-                            </li>
-                            <li>
-                                <strong>Kabin Sayısı:</strong> @Model.Cabin
-                            </li>
-                            <li>
-                                <strong>Misafir Kapasitesi:</strong> @Model.Guest
-                            </li>
+                            <li><strong>En (Metre):</strong> @Model.Width</li>
+                            <li><strong>Boy (Metre):</strong> @Model.Length</li>
+                            <li><strong>Kabin Sayısı:</strong> @Model.Cabin</li>
+                            <li><strong>Misafir Kapasitesi:</strong> @Model.Guest</li>
+
                             <hr class="my-3" />
                             <h6 class="mb-3 text-primary">Teknik Özellikler</h6>
                             @foreach (var spec in Model.BoatSpecs)
                             {
-                                if (spec.LocalizedValue != null)
+                                if (!string.IsNullOrWhiteSpace(spec.LocalizedValue))
                                 {
                                     <li>
                                         <strong>@spec.Spec.LocalizedName:</strong> @spec.LocalizedValue
@@ -71,6 +72,8 @@
                     </div>
                 </div>
             </div>
+            <!-- END TEKNE ÖZELLİKLERİ -->
+            <!-- FİYAT BİLGİLERİ -->
             <div class="col-12 col-lg-6">
                 <div class="card shadow-sm h-100 glass-card price-card">
                     <div class="card-header d-flex align-items-center">
@@ -110,8 +113,10 @@
                     </div>
                 </div>
             </div>
+            <!-- END FİYAT BİLGİLERİ -->
         </div>
 
+        <!-- TEKNE DONANIMLARI -->
         <div class="row mt-5">
             <div class="col-12">
                 <div class="card shadow-sm facilities-card glass-card">
@@ -124,7 +129,7 @@
                             @foreach (var facility in Model.Facilities)
                             {
                                 <li class="list-inline-item m-2 p-2 rounded border facility-item d-flex align-items-center">
-                                    <i class="bi bi-check2-circle text-success me-1"></i> 
+                                    <i class="bi bi-check2-circle text-success me-1"></i>
                                     @facility.NameEn
                                 </li>
                             }
@@ -133,7 +138,8 @@
                 </div>
             </div>
         </div>
-
+        <!-- END TEKNE DONANIMLARI -->
+        <!-- ANASAYFA LİNKİ -->
         <div class="row mt-5">
             <div class="col-12 text-center">
                 <a href="@Url.Action("Index", "Home")" class="btn btn-outline-secondary">
@@ -141,7 +147,10 @@
                 </a>
             </div>
         </div>
+        <!-- END ANASAYFA LİNKİ -->
+
     </div>
 </section>
-
+<!-- END BOAT DETAILS SECTION -->
+<!-- Splide Scripts Partial -->
 <partial name="_SplideScriptsPartial" />

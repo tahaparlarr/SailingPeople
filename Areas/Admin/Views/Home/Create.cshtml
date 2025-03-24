@@ -95,7 +95,7 @@
                         </div>
 
                         @* Sepcs *@
-                         <div class="row mb-3">
+                        <div class="row mb-3">
                             <div class="col-12">
                                 <h5 class="fw-bold">Specifications</h5>
                             </div>
@@ -107,23 +107,18 @@
                                     <input type="text" name="SpecValue" class="form-control" />
                                 </div>
                             }
-                        </div> 
+                        </div>
 
                         @* Facilitys *@
-                         <div class="row mb-3">
-                            <div class="col-12">
-                                <h5 class="fw-bold">Facilities</h5>
-                            </div>
-                            @foreach (var facility in ViewBag.Facility as IEnumerable<Facility>)
-                            {
-                                <div class="col-md-3 mb-3">
-                                    <div class="form-check">
-                                        <input type="checkbox" name="Facility" value="@facility.Id" class="form-check-input" />
-                                        <label class="form-check-label">@facility.LocalizedName</label>
-                                    </div>
+                        @foreach (var facility in ViewBag.Facility as IEnumerable<Facility>)
+                        {
+                            <div class="col-md-3 mb-3">
+                                <div class="form-check">
+                                    <input type="checkbox" name="FacilityId" value="@facility.Id" class="form-check-input" />
+                                    <label class="form-check-label">@facility.LocalizedName</label>
                                 </div>
-                            }
-                        </div> 
+                            </div>
+                        }
 
                         <div>
                             <button type="submit" class="btn btn-primary fw-bold">

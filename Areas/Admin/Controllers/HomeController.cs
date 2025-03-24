@@ -63,10 +63,22 @@ public class HomeController(AppDbContext dbContext, IMapper mapper) : Controller
                 ValueEn = model.SpecValue[i]
             });
 
+        if (model.FacilityId != null && model.FacilityId.Any())
+        {
+            var selectedFacilities = dbContext.Facilities
+                .Where(p => model.FacilityId.Contains(p.Id))
+                .ToList();
+
+            foreach (var facility in selectedFacilities)
+            {
+                boat.Facilities.Add(facility);
+            }
+        }
+
         if (model.ImageFile != null && model.ImageFile.Length > 0)
         {
             using var image = await Image.LoadAsync(model.ImageFile!.OpenReadStream());
-            image.Mutate(p => p.Resize(new ResizeOptions { Mode = ResizeMode.Crop, Size = new Size(800, 800) }));
+            image.Mutate(p => p.Resize(new ResizeOptions { Mode = ResizeMode.Crop, Size = new Size(1024, 1024) }));
             boat.Image = image.ToBase64String(WebpFormat.Instance);
         }
 
@@ -94,3 +106,7 @@ public class HomeController(AppDbContext dbContext, IMapper mapper) : Controller
         return RedirectToAction("Index");
     }
 }
+
+
+
+

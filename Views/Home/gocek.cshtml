@@ -2,28 +2,37 @@
     ViewData["Title"] = "Marmaris Rodos Routes";
 }
 
-<section class="hero-section position-relative">
-    <div class="hero-overlay"></div>
-    <div class="container py-5 text-center text-white position-relative">
-        <h1 class="display-4 fw-bold mb-4">Marmaris Rodos Routes</h1>
-        <p class="lead mb-4">Embark on an unforgettable journey through the Aegean, discovering hidden bays and pristine waters.</p>
-        <div class="d-flex justify-content-center mb-3">
-            <img src="~/images/marmaris.gif" alt="Route GIF" class="img-fluid hero-gif shadow-lg">
-        </div>
-    </div>
-</section>
-
-<section class="route-video my-5">
+<section class="my-5">
     <div class="container">
-        <div class="text-center mb-4">
-            <h2 class="fw-bold text-primary">Discover the Adventure</h2>
-            <p class="text-muted mb-0">Watch this short video to get a taste of the journey.</p>
-        </div>
-        <div class="ratio ratio-16x9 mx-auto" style="max-width: 800px;">
-            <video controls>
-                <source src="~/video/routes.m4v" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+        <div class="row align-items-center">
+
+            <div class="text-center mb-4">
+                <h2 class="fw-bold text-primary">Discover the Adventure</h2>
+                <p class="text-muted mb-0">Watch this short video to get a taste of the journey.</p>
+            </div>
+
+            <div class="col-6">
+                <div class="text-center text-white position-relative py-5 hero-section">
+                    <div class="hero-overlay"></div>
+                    <h1 class="display-4 fw-bold mb-4">Marmaris Rodos Routes</h1>
+                    <p class="lead mb-4">
+                        Embark on an unforgettable journey through the Aegean, discovering hidden bays and pristine waters.
+                    </p>
+                    <div class="d-flex justify-content-center mb-3">
+                        <img src="~/images/marmaris.gif" alt="Route GIF" style="max-width: 500px;" class="img-fluid hero-gif">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="ratio ratio-16x9 mx-auto" style="max-width: 800px;">
+                    <video controls>
+                        <source src="~/video/routes_video.m4v" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
