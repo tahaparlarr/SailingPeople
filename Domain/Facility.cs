@@ -276,8 +276,80 @@ new Facility
     Id = Guid.Parse("{AD91B440-9E12-4D6C-926B-7887397D1A79}"),
     NameTr = "Navtex (Uydu Hava Raporu)",
     NameEn = "Navtex (Satellite Weather Report)",
+    FacilityCategoryId = Guid.Parse("{E00C8365-914D-4874-99B5-6C43D6A96717}")
+},
+
+new Facility
+{
+    Id = Guid.Parse("{D5BD72E7-A67D-4731-9694-87B0E86DE2A2}"),
+    NameTr = "Servis Botu",
+    NameEn = "Service Boat",
     FacilityCategoryId = Guid.Parse("{A3F47C0E-30A6-4C89-A4A0-5AC20551D595}")
+},
+
+new Facility
+{
+    Id = Guid.Parse("{144E94AA-6D38-45D1-BB8E-678019DE37FD}"),
+    NameTr = "Radar",
+    NameEn = "Radar",
+    FacilityCategoryId = Guid.Parse("{E00C8365-914D-4874-99B5-6C43D6A96717}")
+},
+
+new Facility
+{
+    Id = Guid.Parse("{D3CD6394-3222-46DF-A677-C9302E9499BF}"),
+    NameTr = "VHF",
+    NameEn = "VHF",
+    FacilityCategoryId = Guid.Parse("{E00C8365-914D-4874-99B5-6C43D6A96717}")
+},
+
+new Facility
+{
+    Id = Guid.Parse("{3E5E14C8-A9FA-4B54-A4EE-EC82189B10AF}"),
+    NameTr = "Buz Makinesi",
+    NameEn = "Ice Machine",
+    FacilityCategoryId = Guid.Parse("{1DB7A378-5E4E-4C61-B0A2-F7DAB56F6D51}")
+},
+
+new Facility
+{
+    Id = Guid.Parse("{DC88F861-098D-4152-B101-A8157C803DAF}"),
+    NameTr = "Klasik Ana Yelken",
+    NameEn = "Classic Mainsail",
+    FacilityCategoryId = Guid.Parse("{A3F47C0E-30A6-4C89-A4A0-5AC20551D595}")
+},
+new Facility
+{
+    Id = Guid.Parse("{A47E35DC-69AC-46BF-BFF5-43E9D26BE416}"),
+    NameTr = "Tamir Kitleri",
+    NameEn = "Repair Kits",
+    FacilityCategoryId = Guid.Parse("{C1C48A44-6B02-4E6A-95C5-1D262788B7F0}")
+},
+
+new Facility
+{
+    Id = Guid.Parse("{3ED945B9-DE82-461D-9349-6638DD2A75B4}"),
+    NameTr = "Yangın Söndürücü",
+    NameEn = "Fire Extinguisher",
+    FacilityCategoryId = Guid.Parse("{C1C48A44-6B02-4E6A-95C5-1D262788B7F0}")
+},
+
+new Facility
+{
+    Id = Guid.Parse("{2F700CE8-3625-4C97-8CA5-1A6FF658FB64}"),
+    NameTr = "Kahve Makinesi",
+    NameEn = "Coffee Machine",
+    FacilityCategoryId = Guid.Parse("{1DB7A378-5E4E-4C61-B0A2-F7DAB56F6D51}")
+},
+
+new Facility
+{
+    Id = Guid.Parse("{51D8BE6D-0990-41B7-9754-1B64860FDE74}"),
+    NameTr = "Navigasyon",
+    NameEn = "Navigation",
+    FacilityCategoryId = Guid.Parse("{E00C8365-914D-4874-99B5-6C43D6A96717}")
 }
-);
+
+        );
     }
 }

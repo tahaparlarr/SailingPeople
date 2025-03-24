@@ -386,20 +386,6 @@ namespace SailingPeople.Migrations
                         },
                         new
                         {
-                            Id = new Guid("d16ac7ab-2c8e-4ae2-8a0f-f0f5a9397123"),
-                            FacilityCategoryId = new Guid("c1c48a44-6b02-4e6a-95c5-1d262788b7f0"),
-                            NameEn = "Canoe",
-                            NameTr = "Kano"
-                        },
-                        new
-                        {
-                            Id = new Guid("fc02f6e5-1eec-4b1f-81e5-8aa4c95190f9"),
-                            FacilityCategoryId = new Guid("c1c48a44-6b02-4e6a-95c5-1d262788b7f0"),
-                            NameEn = "Tender",
-                            NameTr = "Servis Botu"
-                        },
-                        new
-                        {
                             Id = new Guid("99d9f57f-abf0-4d9f-85b5-db8a045c2b9c"),
                             FacilityCategoryId = new Guid("1db7a378-5e4e-4c61-b0a2-f7dab56f6d51"),
                             NameEn = "Dishwasher",
@@ -436,9 +422,72 @@ namespace SailingPeople.Migrations
                         new
                         {
                             Id = new Guid("ad91b440-9e12-4d6c-926b-7887397d1a79"),
-                            FacilityCategoryId = new Guid("a3f47c0e-30a6-4c89-a4a0-5ac20551d595"),
+                            FacilityCategoryId = new Guid("e00c8365-914d-4874-99b5-6c43d6a96717"),
                             NameEn = "Navtex (Satellite Weather Report)",
                             NameTr = "Navtex (Uydu Hava Raporu)"
+                        },
+                        new
+                        {
+                            Id = new Guid("d5bd72e7-a67d-4731-9694-87b0e86de2a2"),
+                            FacilityCategoryId = new Guid("a3f47c0e-30a6-4c89-a4a0-5ac20551d595"),
+                            NameEn = "Service Boat",
+                            NameTr = "Servis Botu"
+                        },
+                        new
+                        {
+                            Id = new Guid("144e94aa-6d38-45d1-bb8e-678019de37fd"),
+                            FacilityCategoryId = new Guid("e00c8365-914d-4874-99b5-6c43d6a96717"),
+                            NameEn = "Radar",
+                            NameTr = "Radar"
+                        },
+                        new
+                        {
+                            Id = new Guid("d3cd6394-3222-46df-a677-c9302e9499bf"),
+                            FacilityCategoryId = new Guid("e00c8365-914d-4874-99b5-6c43d6a96717"),
+                            NameEn = "VHF",
+                            NameTr = "VHF"
+                        },
+                        new
+                        {
+                            Id = new Guid("3e5e14c8-a9fa-4b54-a4ee-ec82189b10af"),
+                            FacilityCategoryId = new Guid("1db7a378-5e4e-4c61-b0a2-f7dab56f6d51"),
+                            NameEn = "Ice Machine",
+                            NameTr = "Buz Makinesi"
+                        },
+                        new
+                        {
+                            Id = new Guid("dc88f861-098d-4152-b101-a8157c803daf"),
+                            FacilityCategoryId = new Guid("a3f47c0e-30a6-4c89-a4a0-5ac20551d595"),
+                            NameEn = "Classic Mainsail",
+                            NameTr = "Klasik Ana Yelken"
+                        },
+                        new
+                        {
+                            Id = new Guid("a47e35dc-69ac-46bf-bff5-43e9d26be416"),
+                            FacilityCategoryId = new Guid("c1c48a44-6b02-4e6a-95c5-1d262788b7f0"),
+                            NameEn = "Repair Kits",
+                            NameTr = "Tamir Kitleri"
+                        },
+                        new
+                        {
+                            Id = new Guid("3ed945b9-de82-461d-9349-6638dd2a75b4"),
+                            FacilityCategoryId = new Guid("c1c48a44-6b02-4e6a-95c5-1d262788b7f0"),
+                            NameEn = "Fire Extinguisher",
+                            NameTr = "Yangın Söndürücü"
+                        },
+                        new
+                        {
+                            Id = new Guid("2f700ce8-3625-4c97-8ca5-1a6ff658fb64"),
+                            FacilityCategoryId = new Guid("1db7a378-5e4e-4c61-b0a2-f7dab56f6d51"),
+                            NameEn = "Coffee Machine",
+                            NameTr = "Kahve Makinesi"
+                        },
+                        new
+                        {
+                            Id = new Guid("51d8be6d-0990-41b7-9754-1b64860fde74"),
+                            FacilityCategoryId = new Guid("e00c8365-914d-4874-99b5-6c43d6a96717"),
+                            NameEn = "Navigation",
+                            NameTr = "Navigasyon"
                         });
                 });
 
@@ -526,12 +575,6 @@ namespace SailingPeople.Migrations
                         },
                         new
                         {
-                            Id = new Guid("61108cac-c37e-4f69-9ecf-ec55eda48e96"),
-                            NameEn = "WC-Shower",
-                            NameTr = "Wc-Shower"
-                        },
-                        new
-                        {
                             Id = new Guid("ddb0dc04-930d-453a-bf1d-2b0e674a1994"),
                             NameEn = "Water Capacity",
                             NameTr = "Su Kapasitesi"
@@ -556,21 +599,9 @@ namespace SailingPeople.Migrations
                         },
                         new
                         {
-                            Id = new Guid("5d87b59a-97bc-4afb-955b-175e6556e429"),
-                            NameEn = "Draft",
-                            NameTr = "Taslak"
-                        },
-                        new
-                        {
                             Id = new Guid("6e0db24f-e1eb-46eb-86b1-cde121c1cf24"),
                             NameEn = "Fuel Capacity",
                             NameTr = "Yakıt Kapasitesi"
-                        },
-                        new
-                        {
-                            Id = new Guid("675bd427-8434-4f0a-96f5-9c7961ba0941"),
-                            NameEn = "Classic Mainsail",
-                            NameTr = "Klasik Ana Yelken"
                         },
                         new
                         {
@@ -619,12 +650,6 @@ namespace SailingPeople.Migrations
                             Id = new Guid("f0d7957c-c779-4a6a-a9e8-07e7d097c164"),
                             NameEn = "Mainsail",
                             NameTr = "Ana Yelken"
-                        },
-                        new
-                        {
-                            Id = new Guid("a0710b91-2461-41b6-a36d-827e7e68c21a"),
-                            NameEn = "Year Built",
-                            NameTr = "Yapıldığı Yıl"
                         },
                         new
                         {

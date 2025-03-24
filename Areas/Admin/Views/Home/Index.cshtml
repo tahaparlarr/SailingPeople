@@ -32,6 +32,8 @@
 						<th>Name</th>
 						<th>Code</th>
 						<th>Category Name</th>
+						<th>Edit</th>
+						<th>Delete</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -39,21 +41,27 @@
 					{
 						foreach (var boat in Model)
 						{
-							<tr>
-								<td><img src="@boat.Image" width="100" /></td>
-								<td>@boat.Id</td>
-								<td>@boat.Name</td>
-								<td>@boat.Code</td>
-								<td>@boat.Category.LocalizedName</td>
-
-								<td>
-									<form asp-action="Delete">
-										<a asp-action="Delete" asp-route-id="@boat.Id" class="btn btn-danger" onclick="">
-											Delete
-										</a>
-									</form>
-								</td>
-							</tr>
+                            <tr>
+                                <td><img src="@boat.Image" width="100" /></td>
+                                <td>@boat.Id</td>
+                                <td>@boat.Name</td>
+                                <td>@boat.Code</td>
+                                <td>@boat.Category.LocalizedName</td>
+                                <td>
+                                    <form asp-action="Edit">
+                                        <a asp-action="Edit" asp-route-id="@boat.Id" class="btn btn-warning" onclick="">
+                                            Edit
+                                        </a>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form asp-action="Delete">
+                                        <a asp-action="Delete" asp-route-id="@boat.Id" class="btn btn-danger" onclick="">
+                                            Delete
+                                        </a>
+                                    </form>
+                                </td>
+                            </tr>
 						}
 					}
 					else

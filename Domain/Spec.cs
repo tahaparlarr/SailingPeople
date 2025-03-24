@@ -32,13 +32,11 @@ public class SpecEntityTypeConfiguration : IEntityTypeConfiguration<Spec>
     {
         builder.HasData(
 new Spec { Id = Guid.Parse("{DA17D13C-0B26-4858-A9CB-B9582BDB74BE}"), NameTr = "Yapım Yılı", NameEn = "Year of Construction" },
-new Spec { Id = Guid.Parse("{61108CAC-C37E-4F69-9ECF-EC55EDA48E96}"), NameTr = "Wc-Shower", NameEn = "WC-Shower" },
 new Spec { Id = Guid.Parse("{DDB0DC04-930D-453A-BF1D-2B0E674A1994}"), NameTr = "Su Kapasitesi", NameEn = "Water Capacity" },
 new Spec { Id = Guid.Parse("{EC25EEAB-C424-477A-9B4A-A3B4F5C9E361}"), NameTr = "Yelkenin Sarılması", NameEn = "Furling Genoa" },
 new Spec { Id = Guid.Parse("{4E46CD80-163B-4718-A286-DDC378D45C13}"), NameTr = "Motor", NameEn = "Engine" },
 new Spec { Id = Guid.Parse("{A07CB0F9-4C39-4F57-9405-77BF8D6E1D93}"), NameTr = "Bayrak", NameEn = "Flag" },
 new Spec { Id = Guid.Parse("{6E0DB24F-E1EB-46EB-86B1-CDE121C1CF24}"), NameTr = "Yakıt Kapasitesi", NameEn = "Fuel Capacity" },
-new Spec { Id = Guid.Parse("{675BD427-8434-4F0A-96F5-9C7961BA0941}"), NameTr = "Klasik Ana Yelken", NameEn = "Classic Mainsail" },
 new Spec { Id = Guid.Parse("{A7BC34AC-F43F-4E67-B59B-40EF07A31592}"), NameTr = "Elektrikli Winch", NameEn = "Electric Winch" },
 new Spec { Id = Guid.Parse("{E51798A7-2047-4EF3-8DB3-4AB87CC5D0B9}"), NameTr = "Model", NameEn = "Model" },
 new Spec { Id = Guid.Parse("{41E722C1-BFB5-48F3-B706-B99ECF754EBF}"), NameTr = "Jeneratör", NameEn = "Generator" },
