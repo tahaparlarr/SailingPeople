@@ -104,83 +104,83 @@ body {
 
 //Form Input
 .custom-search-form {
-    margin: 1rem 0;
-    padding: 1.5rem;
-    border-radius: 1rem;
-    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  margin: 1rem 0;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
 
-    .row {
-        max-width: 1200px;
-        margin: 0 auto;
+  .row {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  label {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 0.5rem;
+  }
+
+  .input-group {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(12px);
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+    .input-group-text {
+      border: none;
+      border-radius: 0.75rem 0 0 0.75rem;
+      background: transparent;
+      color: #212529;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      i {
+        font-size: 1.2rem;
+      }
     }
 
-    label {
-        font-weight: 600;
-        color: #495057;
-        margin-bottom: 0.5rem;
+    .form-control,
+    .form-select {
+      border: none;
+      border-radius: 0 0.75rem 0.75rem 0;
+      background: transparent;
+      color: #212529;
+      box-shadow: none !important;
+      transition: all 0.3s ease;
+
+      &::placeholder {
+        color: #adb5bd;
+        opacity: 1;
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+      }
+    }
+  }
+
+  button.btn-primary {
+    border: none;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transform: translateY(-3px);
     }
 
-    .input-group {
-        background: rgba(255, 255, 255, 0.3);
-        backdrop-filter: blur(12px);
-        border-radius: 0.75rem;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-
-        .input-group-text {
-            border: none;
-            border-radius: 0.75rem 0 0 0.75rem;
-            background: transparent;
-            color: #212529;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            i {
-                font-size: 1.2rem;
-            }
-        }
-
-        .form-control,
-        .form-select {
-            border: none;
-            border-radius: 0 0.75rem 0.75rem 0;
-            background: transparent;
-            color: #212529;
-            box-shadow: none !important;
-            transition: all 0.3s ease;
-
-            &::placeholder {
-                color: #adb5bd;
-                opacity: 1;
-            }
-
-            &:focus {
-                outline: none;
-                box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
-            }
-        }
+    &:active {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transform: translateY(1px);
     }
-
-    button.btn-primary {
-        border: none;
-        border-radius: 0.75rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        padding: 0.75rem 1rem;
-        color: #fff;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-        &:hover {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            transform: translateY(-3px);
-        }
-
-        &:active {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            transform: translateY(1px);
-        }
-    }
+  }
 }
 
 // Category Boxes
@@ -464,150 +464,104 @@ body {
   }
 }
 
-// Splide
-.splide__slide img {
-  object-fit: cover;
-  display: block;
-  height: 600px;
-  width: 100%;
-}
-
-.carousel-image-container {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-}
-
-.carousel-image-container img {
-  object-fit: cover;
-  width: 100%;
-}
-
 // Faq
 .faq-section {
+  background-color: #f9f9f9; /* Arka plan rengi */
   padding: 80px 0;
-  background-color: $secondary;
 
-  .accordion-button {
-    background-color: $primary;
-    color: white;
-    font-size: 1.2rem;
-    font-weight: 600;
-    padding: 20px 25px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    transition: all 0.3s ease;
+  /* Başlık Alanı */
+  .faq-title {
+    text-align: center;
+    margin-bottom: 2rem;
 
-    &:not(.collapsed) {
-      background-color: darken($primary, 5%);
-      transform: translateY(-2px);
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #2c3e50; // Koyu ton
+      margin-bottom: 0.5rem;
     }
 
-    &:focus {
-      box-shadow: none;
-    }
-
-    &::after {
-      content: "\2193"; /* Aşağı ok simgesi */
-      font-size: 1.5rem;
-      color: white;
-      transition: transform 0.3s ease;
-      margin-left: 10px;
-    }
-
-    &:not(.collapsed)::after {
-      content: "\2191"; /* Yukarı ok simgesi */
-      transform: rotate(180deg); /* 180 derece döndürme */
-    }
-
-    &:hover {
-      background-color: darken($primary, 7%);
-      cursor: pointer;
+    .subtitle {
+      font-size: 1.125rem;
+      color: #7f8c8d; // Daha açık gri ton
+      max-width: 700px;
+      margin: 0.5rem auto 0;
+      line-height: 1.6;
     }
   }
 
-  .accordion-body {
-    font-size: 1rem;
-    color: #555;
-    padding: 25px;
-    background-color: white;
-    border-top: 2px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  }
-
-  .accordion-item {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    background-color: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-
-    &:hover {
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-    }
-  }
-}
-
-.faq-header {
-  background-color: $primary;
-  color: white;
-  padding: 80px 0;
-  border-bottom: 5px solid $secondary;
-
-  h1 {
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    letter-spacing: 1px;
-  }
-
-  .lead {
-    font-size: 1.3rem;
-    font-weight: 300;
+  /* Accordion Alanı */
+  .accordion {
     max-width: 800px;
     margin: 0 auto;
-    text-align: center;
-  }
-}
 
-.contact-info {
-  padding: 70px 0;
-  background-color: $secondary;
+    .accordion-item {
+      background-color: #fff;
+      border: none;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
 
-  h2 {
-    font-size: 2.5rem;
-    color: $primary;
-    font-weight: 600;
-    margin-bottom: 30px;
-    text-align: center;
-  }
-
-  p {
-    color: #777;
-    font-size: 1.1rem;
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .row {
-    justify-content: center;
-
-    .col-md-6 {
-      margin-bottom: 40px;
-
-      h5 {
-        font-size: 1.3rem;
-        font-weight: 600;
-        color: $primary;
-        margin-bottom: 10px;
+      .accordion-header {
+        margin: 0;
+        padding: 0;
+        border: none;
       }
 
-      p {
-        font-size: 1rem;
-        color: #555;
-        font-weight: 500;
+      .accordion-button {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 1.25rem 1.5rem;
+        background-color: #fff; /* Arka plan */
+        font-size: 1.1rem; /* Soru yazı boyutu */
+        font-weight: 600; /* Soru yazı kalınlığı */
+        color: #333; /* Soru yazı rengi */
+        border: none; /* Varsayılan border kalksın */
+        text-align: left; /* Metin sola yaslı */
+        box-shadow: none; /* Bootstrap varsayılan gölgesini kaldır */
+        transition: background 0.3s ease, color 0.3s ease;
+
+        &::after {
+          content: none !important;
+          background-image: none !important;
+        }
+
+        &:focus {
+          outline: none;
+          box-shadow: none;
+        }
+
+        &:hover {
+          background-color: #f4f4f4; /* Hover efekti arka plan */
+          cursor: pointer;
+        }
+
+        &::before {
+          content: "\2795"; /* Plus işareti (\2795), dilerseniz "\2192" (→) kullanabilirsiniz */
+          font-size: 1.2rem;
+          color: #2980b9;
+          margin-right: 10px; /* Yazı ile ikon arası boşluk */
+          transition: transform 0.3s ease;
+        }
+
+        &[aria-expanded="true"]::before {
+          content: "\2796"; /* Minus işareti (\2796) */
+          transform: rotate(
+            180deg
+          ); /* Dilerseniz başka bir efekt kullanabilirsiniz */
+        }
+      }
+
+      .accordion-collapse {
+        .accordion-body {
+          padding: 1.5rem;
+          font-size: 1rem;
+          color: #555;
+          line-height: 1.6;
+          background-color: #fff;
+        }
       }
     }
   }
@@ -659,79 +613,6 @@ body {
   }
 }
 
-// Boat Details
-.hero-section {
-    position: relative;
-    min-height: 40vh;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-}
-
-.hero-background {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    filter: brightness(0.5);
-    z-index: -1;
-}
-
-.hero-content {
-    z-index: 1;
-}
-
-.splide__slide img {
-    display: block;
-    max-width: 100%;
-    max-height: 600px;
-    margin: 0 auto;
-    object-fit: contain;
-    object-position: center;
-}
-
-.glass-card {
-    background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 1rem;
-}
-
-.card-header {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    font-weight: 600;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 1rem 1rem 0 0;
-}
-
-.price-card .card-header {
-    background: linear-gradient(90deg, #198754, #74c69d);
-    color: #fff;
-}
-
-.facilities-card .card-header {
-    background: linear-gradient(90deg, #0dcaf0, #48cae4);
-    color: #fff;
-}
-
-.facility-item {
-    transition: background-color 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-    background-color: #ffffff70;
-}
-
-.facility-item:hover {
-    background-color: #ffffff90;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
 /* Keyframes Animations */
 @keyframes overlaySlideOut {
   0% {
@@ -767,5 +648,157 @@ body {
   }
 }
 
+// Routes
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Boat Details
+.hero-section {
+  position: relative;
+  min-height: 55vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, $primary 0%, $secondary 100%);
+    opacity: 0.6;
+    z-index: -1;
+  }
+
+  .hero-content {
+    z-index: 1;
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+  }
+}
+
+   .hero-new-design {
+    position: relative;
+    height: 60vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+  
+    .container {
+      position: relative;
+      z-index: 1;
+  
+      .btn-hero {
+        background-color: $primary;
+        color: #fff;
+        border-radius: 30px;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+      }
+    }
+  }
+
+  .details-container {
+    .card {
+      border: none;
+  
+      &.shadow-sm {
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+  
+      .card-header {
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+  
+      .card-body {
+        font-size: 0.95rem;
+        padding: 1rem 1.5rem;
+      }
+    }
+  
+    .price-info {
+      .table {
+        margin-bottom: 0;
+  
+        th {
+          font-weight: 700;
+        }
+      }
+    }
+  
+    .facilities {
+      .facility-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+  
+      .facility-item {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        padding: 0.4rem 1rem;
+        display: inline-flex;
+        align-items: center;
+        font-size: 0.9rem;
+        color: #2c3e50;
+        transition: background-color 0.3s ease;
+  
+        i {
+          color: #16a085;
+          margin-right: 0.4rem;
+        }
+  
+        &:hover {
+          background-color: #f1f2f6;
+          cursor: pointer;
+        }
+      }
+    }
+  }

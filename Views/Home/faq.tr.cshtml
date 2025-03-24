@@ -1,144 +1,128 @@
-@{
-    ViewData["Title"] = "SSS - Yardım Merkezi";
-}
-
-<section class="faq-header py-5 bg-light">
-    <div class="container text-center">
-        <h1 class="display-4 text-primary fw-bold f-calvino">
-            Yardım Merkezi
-        </h1>
-        <p class="lead text-muted mb-5 f-calvino">
-            Rezervasyonlarınız, hesabınız ve daha fazlası için yardım alın.
-        </p>
+<section class="faq-section">
+  <div class="container">
+    <div class="faq-title">
+      <h2>SÄ±kÃ§a Sorulan Sorular</h2>
+      <p class="subtitle">
+        AklÄ±nÄ±za takÄ±lan konular hakkÄ±nda bilgi almak iÃ§in lÃ¼tfen aÅŸaÄŸÄ±daki sorularÄ± inceleyin.
+      </p>
     </div>
-</section>
 
-<section class="contact-info py-5">
-    <div class="container">
-        <div class="text-center mb-4">
-            <h2 class="display-6 text-primary fw-bold f-calvino">Bize Ulaşın</h2>
-            <p class="text-muted f-calvino">
-                Size yardımcı olmak için buradayız! Herhangi bir sorunuz varsa çekinmeden ulaşabilirsiniz.
-            </p>
+    <div class="accordion" id="faqAccordion">
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button 
+            class="accordion-button" 
+            type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#collapseOne" 
+            aria-expanded="true" 
+            aria-controls="collapseOne">
+            1. Yelken yapmak iÃ§in herhangi bir belgeye ihtiyacÄ±m var mÄ±?
+          </button>
+        </h2>
+        <div 
+          id="collapseOne" 
+          class="accordion-collapse collapse show" 
+          aria-labelledby="headingOne" 
+          data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            MÃ¼rettebatlÄ± tekne kiralamalarÄ±nda herhangi bir belge veya yeterlilik gerekmemektedir...
+          </div>
         </div>
-        <div class="row justify-content-center">
-            <!-- Telefon bölümü orijinal kodda yorum satırı olarak bırakılmıştır -->
-            <!--
-            <div class="col-md-6 col-lg-4 text-center">
-                <h5 class="fw-bold"><i>Telefon</i></h5>
-                <p class="text-muted">
-                    <strong>
-                        <a href="tel:+905300907998" class="text-muted text-decoration-none">0530 090 79 98</a>
-                    </strong>
-                </p>
-            </div>
-            -->
-            <div class="col-md-6 col-lg-4 text-center">
-                <h5 class="fw-bold">E-posta</h5>
-                <p class="text-muted">
-                    <strong>
-                        <a href="mailto:info@sailingandpeople.com"
-                           class="text-muted text-decoration-none">info@sailingandpeople.com</a>
-                    </strong>
-                </p>
-            </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button 
+            class="accordion-button collapsed" 
+            type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#collapseTwo" 
+            aria-expanded="false" 
+            aria-controls="collapseTwo">
+            2. Hangi kiralama tÃ¼rÃ¼ bizim iÃ§in uygundur?
+          </button>
+        </h2>
+        <div 
+          id="collapseTwo" 
+          class="accordion-collapse collapse" 
+          aria-labelledby="headingTwo" 
+          data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Ã–zel Yat Kiralamada; tekne seÃ§imi, tur tarihi, yiyecek menÃ¼sÃ¼ ve tur programÄ±...
+          </div>
         </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+          <button 
+            class="accordion-button collapsed" 
+            type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#collapseThree" 
+            aria-expanded="false" 
+            aria-controls="collapseThree">
+            3. Yunan AdalarÄ±nÄ± ziyaret edebilir miyiz?
+          </button>
+        </h2>
+        <div 
+          id="collapseThree" 
+          class="accordion-collapse collapse" 
+          aria-labelledby="headingThree" 
+          data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Bir veya birden fazla Yunan AdasÄ±nÄ± kapsayan tur programlarÄ± dÃ¼zenleyebiliriz...
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFour">
+          <button 
+            class="accordion-button collapsed" 
+            type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#collapseFour" 
+            aria-expanded="false" 
+            aria-controls="collapseFour">
+            4. Kiralama Ã¼cretine neler dahildir?
+          </button>
+        </h2>
+        <div 
+          id="collapseFour" 
+          class="accordion-collapse collapse" 
+          aria-labelledby="headingFour" 
+          data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Gulet ve yelkenlilerde; TÃ¼rk karasularÄ±ndaki liman Ã¼cretleri, liman vergileri...
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFive">
+          <button 
+            class="accordion-button collapsed" 
+            type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#collapseFive" 
+            aria-expanded="false" 
+            aria-controls="collapseFive">
+            5. Teknede sigara iÃ§mek serbest midir?
+          </button>
+        </h2>
+        <div 
+          id="collapseFive" 
+          class="accordion-collapse collapse" 
+          aria-labelledby="headingFive" 
+          data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            SaÄŸlÄ±k ve gÃ¼venlik nedenleriyle salon ve kabinlerde sigara iÃ§mek yasaktÄ±r...
+          </div>
+        </div>
+      </div>
     </div>
-</section>
-
-<section class="faq-section py-5">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="display-6 text-primary fw-bold f-calvino">Sıkça Sorulan Sorular</h2>
-        </div>
-
-        <div class="accordion" id="faqAccordion">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="faqHeading1">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
-                        Yelken yapmak için herhangi bir yeterliliğe veya belgeye ihtiyacım var mı?
-                    </button>
-                </h2>
-                <div id="faqCollapse1" class="accordion-collapse collapse show" aria-labelledby="faqHeading1"
-                     data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                        Mürettebatlı tekne kiralamalarında herhangi bir belge veya yeterlilik gerekmemektedir. Tekne seyrederken, dilerseniz oturup keyfini çıkarabilir veya kaptanın verdiği bilgiler doğrultusunda yardımcı olabilirsiniz.
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="faqHeading2">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
-                        Hangi kiralama türü bizim için en uygundur?
-                    </button>
-                </h2>
-                <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2"
-                     data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                        Özel Yat Kiralamada; tekne seçimi, tur tarihi, yiyecek menüsü ve tur programı gibi tüm detaylar isteklerinize göre belirlenir. Deneyimli ekibimiz, size ve grubunuza özel hizmet sunarak memnuniyetinizi sağlar.
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="faqHeading3">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
-                        Yunan Adalarını ziyaret edebilir miyiz?
-                    </button>
-                </h2>
-                <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3"
-                     data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                        Siesta Yachting olarak, bir veya birden fazla Yunan Adasını kapsayan tur programları hazırlayabiliriz. Yunan karasularında ödenmesi gereken ek vergiler, adalardaki marina/liman ücretleri ve diğer masraflar fiyata dahil değildir.
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="faqHeading4">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">
-                        Kiralama ücretine neler dahildir?
-                    </button>
-                </h2>
-                <div id="faqCollapse4" class="accordion-collapse collapse" aria-labelledby="faqHeading4"
-                     data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                        Gulet ve yelkenlilerde; Türk karasularındaki liman ücretleri, liman vergileri, tekne sigortası, tekne çamaşırlarının temizliği, içme suyu, tüp gaz ve transitlog fiyata dahildir. Ayrıca guletlerde; yakıt ve personel hizmeti de fiyata dahildir.
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="faqHeading5">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#faqCollapse5" aria-expanded="false" aria-controls="faqCollapse5">
-                        Teknede sigara içmek serbest midir?
-                    </button>
-                </h2>
-                <div id="faqCollapse5" class="accordion-collapse collapse" aria-labelledby="faqHeading5"
-                     data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                        Sağlık ve güvenlik nedenleriyle salon ve kabinlerde sigara içmek yasaktır. Sigara içen yolcular güvertede sigara içebilirler.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="additional-info py-5">
-    <div class="container">
-        <div class="row text-center">
-            <div class="col-12">
-                <p class="text-muted">
-                    Daha fazla sorunuz varsa veya ek yardıma ihtiyacınız olursa, lütfen bizimle iletişime geçmekten çekinmeyin.
-                </p>
-            </div>
-        </div>
-    </div>
+  </div>
 </section>
