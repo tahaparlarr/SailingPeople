@@ -132,6 +132,15 @@
   <data name="Contact" xml:space="preserve">
     <value>İletişim</value>
   </data>
+  <data name="Faq" xml:space="preserve">
+    <value>SSS</value>
+  </data>
+  <data name="FilterCabinInput" xml:space="preserve">
+    <value>Kabin sayısı giriniz</value>
+  </data>
+  <data name="FilterGuestInput" xml:space="preserve">
+    <value>Misafir sayısı giriniz</value>
+  </data>
   <data name="Guest" xml:space="preserve">
     <value>Misafir</value>
   </data>
@@ -155,11 +164,5 @@
   </data>
   <data name="Select" xml:space="preserve">
     <value>Seçiniz</value>
-  </data>
-  <data name="WpFooterSubText" xml:space="preserve">
-    <value>, Türk kıyılarında aradığınız tekneleri, size en uygun rotaları ve cazip kiralama fiyatlarını bir arada sunan tekne kiralama platformunuzdur.</value>
-  </data>
-  <data name="WpFooterText" xml:space="preserve">
-    <value>Türkiye Sahillerinde Özgürlüğe Yelken Açın</value>
   </data>
 </root>

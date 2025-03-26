@@ -106,6 +106,33 @@ namespace SailingPeople.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Faq.
+        /// </summary>
+        public static string Faq {
+            get {
+                return ResourceManager.GetString("Faq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the cabin number.
+        /// </summary>
+        public static string FilterCabinInput {
+            get {
+                return ResourceManager.GetString("FilterCabinInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the number of guests.
+        /// </summary>
+        public static string FilterGuestInput {
+            get {
+                return ResourceManager.GetString("FilterGuestInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Guest.
         /// </summary>
         public static string Guest {
@@ -174,24 +201,6 @@ namespace SailingPeople.Resources {
         public static string Select {
             get {
                 return ResourceManager.GetString("Select", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to is your ultimate boat rental platform, offering you the perfect vessels along the Turkish Coast, the ideal routes, and competitive rental prices all in one place..
-        /// </summary>
-        public static string WpFooterSubText {
-            get {
-                return ResourceManager.GetString("WpFooterSubText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sail to Freedom on the Coast of Türkiye.
-        /// </summary>
-        public static string WpFooterText {
-            get {
-                return ResourceManager.GetString("WpFooterText", resourceCulture);
             }
         }
     }

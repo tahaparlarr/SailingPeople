@@ -24,7 +24,7 @@
                 <span class="input-group-text">
                     <i class="bi bi-people"></i>
                 </span>
-                <input asp-for="Guests" class="form-control" type="number" placeholder="Enter a number!" />
+                <input asp-for="Guests" class="form-control" type="number" placeholder="@SharedResources.FilterGuestInput" />
             </div>
         </div>
 
@@ -36,13 +36,13 @@
                 <span class="input-group-text">
                     <i class="bi bi-border-all"></i>
                 </span>
-                <input asp-for="Cabin" class="form-control" type="number" placeholder="Enter a number!" />
+                <input asp-for="Cabin" class="form-control" type="number" placeholder="@SharedResources.FilterCabinInput" />
             </div>
         </div>
 
         <div class="col d-flex align-items-end justify-content-center">
             <button type="submit" class="btn btn-primary w-100">
-                <i class="me-2 bi bi-search"></i> Search
+                <i class="me-2 bi bi-search"></i> @SharedResources.Search
             </button>
         </div>
     </div>
