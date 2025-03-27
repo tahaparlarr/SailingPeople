@@ -2,47 +2,54 @@
     ViewData["Title"] = "Marmaris Rodos Routes";
 }
 
-<section class="my-5">
-    <div class="container">
+<section class="hero-section position-relative d-flex align-items-center justify-content-center text-white">
+    <div class="hero-overlay"></div>
+    <div class="container py-5">
         <div class="row align-items-center">
-
-            <div class="text-center mb-4">
-                <h2 class="fw-bold text-primary">Discover the Adventure</h2>
-                <p class="text-muted mb-0">Watch this short video to get a taste of the journey.</p>
+            
+            <div class="col-12 col-md-6 text-center text-md-start mb-4 mb-md-0">
+                <h1 class="display-4 fw-bold mb-3">Marmaris Rodos Routes</h1>
+                <p class="lead mb-4">
+                    Embark on an unforgettable journey through the Aegean, discovering hidden bays and pristine waters.
+                </p>
+                <button type="button" class="btn btn-inspect rounded-0" data-bs-toggle="modal" data-bs-target="#videoModal">
+                    Watch
+                </button>
             </div>
 
-            <div class="col-6">
-                <div class="text-center text-white position-relative py-5 hero-section">
-                    <div class="hero-overlay"></div>
-                    <h1 class="display-4 fw-bold mb-4">Marmaris Rodos Routes</h1>
-                    <p class="lead mb-4">
-                        Embark on an unforgettable journey through the Aegean, discovering hidden bays and pristine waters.
-                    </p>
-                    <div class="d-flex justify-content-center mb-3">
-                        <img src="~/images/marmaris.gif" alt="Route GIF" style="max-width: 500px;" class="img-fluid hero-gif">
-                    </div>
-                </div>
+            <div class="col-12 col-md-6 text-center">
+                <img src="~/images/marmaris.gif" alt="Route GIF" class="img-fluid hero-gif shadow-lg" />
             </div>
-
-            <div class="col-6">
-                <div class="ratio ratio-16x9 mx-auto" style="max-width: 800px;">
-                    <video controls>
-                        <source src="~/video/routes_video.m4v" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-            </div>
-
         </div>
     </div>
 </section>
+
+<div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark">
+            <div class="modal-header border-0">
+                <h5 class="modal-title text-white" id="videoModalLabel">Discover the Adventure</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0 ratio ratio-16x9">
+                <video controls>
+                    <source src="~/video/routes_video.m4v" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+</div>
 
 <section class="itinerary-section py-5">
     <div class="container">
         <div class="text-center mb-5">
             <h2 class="fw-bold text-primary">Weekly Schedule</h2>
-            <p class="text-muted mb-0">Explore each day’s highlights and activities.</p>
+            <p class="text-muted">
+                Explore each day’s highlights and activities.
+            </p>
         </div>
+        
         <div class="accordion" id="weekAccordion">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingSaturday">
@@ -52,13 +59,22 @@
                 </h2>
                 <div id="collapseSaturday" class="accordion-collapse collapse show" aria-labelledby="headingSaturday" data-bs-parent="#weekAccordion">
                     <div class="accordion-body">
-                        <p class="mb-2"><strong>10:00</strong> Meeting at Netsel Marina. Boat introduction and orientation, voyage planning, food loading.</p>
-                        <p class="mb-2"><strong>12:00</strong> Departure from the marina, sailing for an average of 2 hours.</p>
-                        <p class="mb-2"><strong>16:00</strong> Arrival at Çiftlik Bay, swimming and dinner (Azmak Restaurant).</p>
-                        <p class="mb-2">Arrival to Rodos</p>
+                        <p class="mb-2">
+                            <strong>10:00</strong> Meeting at Netsel Marina. Boat introduction and orientation, voyage planning, food loading.
+                        </p>
+                        <p class="mb-2">
+                            <strong>12:00</strong> Departure from the marina, sailing for an average of 2 hours.
+                        </p>
+                        <p class="mb-2">
+                            <strong>16:00</strong> Arrival at Çiftlik Bay, swimming and dinner (Azmak Restaurant).
+                        </p>
+                        <p class="mb-2">
+                            Arrival to Rodos
+                        </p>
                     </div>
                 </div>
             </div>
+            
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingSunday">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSunday" aria-expanded="false" aria-controls="collapseSunday">
@@ -74,6 +90,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingMonday">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMonday" aria-expanded="false" aria-controls="collapseMonday">
@@ -88,6 +105,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingTuesday">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTuesday" aria-expanded="false" aria-controls="collapseTuesday">
@@ -102,6 +120,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingWednesday">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWednesday" aria-expanded="false" aria-controls="collapseWednesday">
@@ -116,6 +135,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingThursday">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThursday" aria-expanded="false" aria-controls="collapseThursday">
@@ -129,6 +149,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingFriday">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFriday" aria-expanded="false" aria-controls="collapseFriday">

@@ -2,62 +2,54 @@
     ViewData["Title"] = "Bodrum Ege Rotaları";
 }
 
-<section class="my-5">
-    <div class="container">
+<section class="hero-section position-relative d-flex align-items-center justify-content-center text-white">
+    <div class="hero-overlay"></div>
+    <div class="container py-5">
         <div class="row align-items-center">
-
-            <div class="text-center mb-4">
-                <h2 class="fw-bold text-primary">Macerayı Keşfedin</h2>
-                <p class="text-muted mb-0">Yolculuğun tadına bakmak için bu kısa videoyu izleyin.</p>
+            
+            <div class="col-12 col-md-6 text-center text-md-start mb-4 mb-md-0">
+                <h1 class="display-4 fw-bold mb-3">Bodrum Ege Rotaları</h1>
+                <p class="lead mb-4">
+                    Ege’nin güzelliklerini keşfedeceğiniz unutulmaz bir yolculuğa çıkın, Bodrum'dan hareket edin ve gizli koyları keşfedin.
+                </p>
+                <button type="button" class="btn btn-inspect rounded-0" data-bs-toggle="modal" data-bs-target="#videoModal">
+                    İzle
+                </button>
             </div>
 
-            <div class="col-6">
-                <div class="text-center text-white position-relative py-5 hero-section">
-                    <div class="hero-overlay"></div>
-                    <h1 class="display-4 fw-bold mb-4">Marmaris Rodos Rotaları</h1>
-                    <p class="lead mb-4">
-                        Ege'de unutulmaz bir yolculuğa çıkın, saklı koyları ve tertemiz suları keşfedin.
-                    </p>
-                    <div class="d-flex justify-content-center mb-3">
-                        <img src="~/images/hisaronu.gif" alt="Rota GIF" style="max-width: 500px;" class="img-fluid hero-gif">
-                    </div>
-                </div>
+            <div class="col-12 col-md-6 text-center">
+                <img src="~/images/bodrum.gif" alt="Bodrum Rota GIF" class="img-fluid hero-gif shadow-lg" />
             </div>
-
-            <div class="col-6">
-                <div class="ratio ratio-16x9 mx-auto" style="max-width: 800px;">
-                    <video controls>
-                        <source src="~/video/routes_video.m4v" type="video/mp4">
-                        Tarayıcınız video etiketini desteklemiyor.
-                    </video>
-                </div>
-            </div>
-
         </div>
     </div>
 </section>
 
-<section class="route-video my-5">
-    <div class="container">
-        <div class="text-center mb-4">
-            <h2 class="fw-bold text-primary">Macerayı Keşfedin</h2>
-            <p class="text-muted mb-0">Yolculuğa dair kısa bir bakış için bu videoyu izleyin.</p>
-        </div>
-        <div class="ratio ratio-16x9 mx-auto" style="max-width: 600px;">
-            <video controls>
-                <source src="~/video/routes_video.m4v" type="video/mp4">
-                Tarayıcınız video etiketini desteklemiyor.
-            </video>
+<div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark">
+            <div class="modal-header border-0">
+                <h5 class="modal-title text-white" id="videoModalLabel">Macerayı Keşfedin</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Kapat"></button>
+            </div>
+            <div class="modal-body p-0 ratio ratio-16x9">
+                <video controls>
+                    <source src="~/video/bodrum_routes.m4v" type="video/mp4">
+                    Tarayıcınız video etiketini desteklemiyor.
+                </video>
+            </div>
         </div>
     </div>
-</section>
+</div>
 
 <section class="itinerary-section py-5">
     <div class="container">
         <div class="text-center mb-5">
             <h2 class="fw-bold text-primary">Haftalık Program</h2>
-            <p class="text-muted mb-0">Her günün öne çıkan etkinliklerini keşfedin.</p>
+            <p class="text-muted">
+                Bodrum'dan başlayıp Ege'nin en güzel koylarını keşfedeceğiniz haftalık programı keşfedin.
+            </p>
         </div>
+        
         <div class="accordion" id="weekAccordion">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingSaturday">
@@ -67,12 +59,19 @@
                 </h2>
                 <div id="collapseSaturday" class="accordion-collapse collapse show" aria-labelledby="headingSaturday" data-bs-parent="#weekAccordion">
                     <div class="accordion-body">
-                        <p class="mb-2"><strong>10:00</strong> Turgut Köyü'ndeki teknede buluşarak tanışma, rota planlama ve erzak yükleme.</p>
-                        <p class="mb-2"><strong>12:00</strong> Marinadan ayrılış, yaklaşık 2 saatlik seyir.</p>
-                        <p class="mb-2"><strong>16:00</strong> Kuz Bükü'ne varış, yüzme ve akşam yemeği (Neighbors Restaurant). </p>
+                        <p class="mb-2">
+                            <strong>10:00</strong> Turgut Köyü’nde teknede buluşma. Tekne tanıtımı, bilgilendirme, rota planlaması, erzak yükleme.
+                        </p>
+                        <p class="mb-2">
+                            <strong>12:00</strong> Marinalardan ayrılış, ortalama 2 saatlik seyir.
+                        </p>
+                        <p class="mb-2">
+                            <strong>16:00</strong> Kuz Bükü’ne varış, yüzme ve akşam yemeği (Komşular Restaurant).
+                        </p>
                     </div>
                 </div>
             </div>
+
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingSunday">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSunday" aria-expanded="false" aria-controls="collapseSunday">
@@ -82,12 +81,13 @@
                 <div id="collapseSunday" class="accordion-collapse collapse" aria-labelledby="headingSunday" data-bs-parent="#weekAccordion">
                     <div class="accordion-body">
                         <p class="mb-2"><strong>07:00</strong> Sabah yogası, yüzme ve teknede kahvaltı.</p>
-                        <p class="mb-2"><strong>11:00</strong> Kuz Bükü'nden ayrılış, bir sonraki koya seyir.</p>
-                        <p class="mb-2">Alarga'da öğle yemeği ve yüzme molası.</p>
-                        <p class="mb-2"><strong>16:00</strong> Dirsek Bükü'ne varış. Alarga'da demirleyip akşam yemeği teknede.</p>
+                        <p class="mb-2"><strong>11:00</strong> Kuzbükü’nden ayrılış, varış koyuna doğru seyir.</p>
+                        <p class="mb-2">Alarga’da yüzme molası ve öğle yemeği.</p>
+                        <p class="mb-2"><strong>16:00</strong> Dirsek Bükü’ne varış, Alarga’da konaklama ve teknede akşam yemeği.</p>
                     </div>
                 </div>
             </div>
+
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingMonday">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMonday" aria-expanded="false" aria-controls="collapseMonday">
@@ -97,11 +97,12 @@
                 <div id="collapseMonday" class="accordion-collapse collapse" aria-labelledby="headingMonday" data-bs-parent="#weekAccordion">
                     <div class="accordion-body">
                         <p class="mb-2"><strong>07:00</strong> Sabah yogası, yüzme ve teknede kahvaltı.</p>
-                        <p class="mb-2"><strong>13:00</strong> Dirsek Bükü'nden ayrılış. Bir sonraki koya seyir, demirleme ve teknede öğle yemeği.</p>
-                        <p class="mb-2"><strong>17:00</strong> Bozburun Yat Kulübü'ne varış. Kulüpte akşam yemeği.</p>
+                        <p class="mb-2"><strong>13:00</strong> Dirsek Bükü’nden ayrılış, seyir, alarga ve teknede öğle yemeği.</p>
+                        <p class="mb-2"><strong>17:00</strong> Bozburun Yat Kulübü’ne varış, kulüpte akşam yemeği.</p>
                     </div>
                 </div>
             </div>
+
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingTuesday">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTuesday" aria-expanded="false" aria-controls="collapseTuesday">
@@ -110,12 +111,13 @@
                 </h2>
                 <div id="collapseTuesday" class="accordion-collapse collapse" aria-labelledby="headingTuesday" data-bs-parent="#weekAccordion">
                     <div class="accordion-body">
-                        <p class="mb-2"><strong>07:00</strong> Sabah yogası, yüzme ve teknede kahvaltı, ardından yürüyüş ve Bozburun Kasabası ziyareti.</p>
-                        <p class="mb-2"><strong>13:00</strong> Bozburun'dan ayrılış, Söğüt Koyu'na seyir, demirleme ve teknede öğle yemeği.</p>
-                        <p class="mb-2"><strong>17:00</strong> Söğüt Koyu'na varış. Geceyi demirde geçirme ve akşam yemeği teknede.</p>
+                        <p class="mb-2"><strong>07:00</strong> Sabah yogası, yüzme ve teknede kahvaltı, Bozburun kasabasına yürüyüş ve ziyaret.</p>
+                        <p class="mb-2"><strong>13:00</strong> Bozburun’dan ayrılış, Söğüt Koyu’na doğru seyir, alarga ve teknede öğle yemeği.</p>
+                        <p class="mb-2"><strong>17:00</strong> Söğüt Koyu’na varış, Alarga’da konaklama ve teknede akşam yemeği.</p>
                     </div>
                 </div>
             </div>
+
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingWednesday">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWednesday" aria-expanded="false" aria-controls="collapseWednesday">
@@ -125,11 +127,12 @@
                 <div id="collapseWednesday" class="accordion-collapse collapse" aria-labelledby="headingWednesday" data-bs-parent="#weekAccordion">
                     <div class="accordion-body">
                         <p class="mb-2"><strong>07:00</strong> Sabah yogası, yüzme ve teknede kahvaltı.</p>
-                        <p class="mb-2"><strong>13:00</strong> Söğüt Koyu'ndan ayrılış. Bir sonraki koya seyir, demirleme ve teknede öğle yemeği.</p>
-                        <p class="mb-2"><strong>17:00</strong> Bozukkale'ye varış. Demirde kalma, akşam yemeği ve canlı müzik (Loryma Club).</p>
+                        <p class="mb-2"><strong>13:00</strong> Söğüt Koyu’ndan ayrılış, seyir, alarga ve teknede öğle yemeği.</p>
+                        <p class="mb-2"><strong>17:00</strong> Bozukkale’ye varış, Alarga’da konaklama, akşam yemeği ve canlı müzik (Loryma Club).</p>
                     </div>
                 </div>
             </div>
+
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingThursday">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThursday" aria-expanded="false" aria-controls="collapseThursday">
@@ -138,12 +141,13 @@
                 </h2>
                 <div id="collapseThursday" class="accordion-collapse collapse" aria-labelledby="headingThursday" data-bs-parent="#weekAccordion">
                     <div class="accordion-body">
-                        <p class="mb-2"><strong>07:00</strong> Sabah yüzmesi, teknede kahvaltı ve kısa bir yürüyüş (keçiler, eşekler, kaplumbağalar vb. yerel hayvanlar ziyaret edilebilir).</p>
-                        <p class="mb-2"><strong>13:00</strong> Bozukkale'den ayrılış. Bir sonraki koya seyir, demirleme ve teknede öğle yemeği.</p>
-                        <p class="mb-2"><strong>17:00</strong> Emel Sayın Koyu'na varış. Geceyi demirde geçirme ve akşam yemeği teknede.</p>
+                        <p class="mb-2"><strong>07:00</strong> Yüzme ve teknede kahvaltı, yürüyüş (hayvanları ziyaret etme; keçi, eşek, kaplumbağa...)</p>
+                        <p class="mb-2"><strong>13:00</strong> Bozukkale’den ayrılış, hedef koyuna doğru seyir, alarga ve teknede öğle yemeği.</p>
+                        <p class="mb-2"><strong>17:00</strong> Emel Sayın Koyu’na varış, Alarga’da konaklama ve teknede akşam yemeği.</p>
                     </div>
                 </div>
             </div>
+
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingFriday">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFriday" aria-expanded="false" aria-controls="collapseFriday">
@@ -153,22 +157,13 @@
                 <div id="collapseFriday" class="accordion-collapse collapse" aria-labelledby="headingFriday" data-bs-parent="#weekAccordion">
                     <div class="accordion-body">
                         <p class="mb-2"><strong>07:00</strong> Sabah yogası, yüzme ve teknede kahvaltı.</p>
-                        <p class="mb-2"><strong>12:00</strong> Emel Sayın Koyu'ndan ayrılış. Selimiye'ye seyir, karada serbest zaman.</p>
-                        <p class="mb-2"><strong>16:00</strong> Selimiye'den ayrılış.</p>
-                        <p class="mb-2"><strong>17:00</strong> Turgut Zakkum limanına varış. Veda kokteyli.</p>
+                        <p class="mb-2"><strong>12:00</strong> Emel Sayın Koyu’ndan ayrılış, Selimiye’ye doğru seyir, Selimiye’de serbest zaman.</p>
+                        <p class="mb-2"><strong>16:00</strong> Selimiye’den ayrılış.</p>
+                        <p class="mb-2"><strong>17:00</strong> Turgut Zakkum’a varış, veda kokteyli.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
 
-<section class="py-4">
-    <div class="container">
-        <div class="alert alert-info text-center">
-            <p class="mb-0">
-                Rotalarla ilgili tanıtım videolarını izlemek için konumlara tıklayın. <strong>GreekIsland</strong>
-            </p>
         </div>
     </div>
 </section>

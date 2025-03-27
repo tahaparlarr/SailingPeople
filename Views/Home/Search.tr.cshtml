@@ -23,11 +23,11 @@
             <div class="col">
                 <div class="boat-box position-relative shadow-sm border">
                     <div class="boat-img position-relative overflow-hidden ">
-                        <img class="object-fit-cover w-100" src="@boat.Image" alt="@boat.Name" />
+                        <img class="object-fit-cover w-100" src="@boat.Image" alt="@boat.Code" />
 
                         <div class="boat-overlay d-flex flex-column justify-content-center align-items-center">
                             <div class="overlay-content">
-                                <h5 class="overlay-title text-white text-center text-break p-4">@boat.Name</h5>
+                                <h5 class="overlay-title text-white text-center text-break p-4">@boat.Code</h5>
                             </div>
                         </div>
 
@@ -41,9 +41,8 @@
                         <div class="boat-info">
                             <span class="text-muted d-block text-ellipsis">@boat.Category.LocalizedName</span>
                             <a asp-controller="Home" asp-action="BoatDetail" asp-route-id="@boat.Id">
-                                <span class="fw-bold d-block">@boat.Name</span>
+                                <span class="fw-bold d-block">@boat.Code</span>
                             </a>
-                            <span class="fw-bold d-block">@boat.Code</span>
                         </div>
 
                         <div class="boat-icons position-absolute top-0 end-0 mt-2 me-2 text-nowrap">

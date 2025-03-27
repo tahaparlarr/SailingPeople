@@ -2,148 +2,194 @@
     ViewData["Title"] = "Marmaris Rodos Rotaları";
 }
 
-<section class="my-5">
-    <div class="container">
+<section class="hero-section position-relative d-flex align-items-center justify-content-center text-white">
+    <div class="hero-overlay"></div>
+    <div class="container py-5">
         <div class="row align-items-center">
 
-            <div class="text-center mb-4">
-                <h2 class="fw-bold text-primary">Macerayı Keşfedin</h2>
-                <p class="text-muted mb-0">Yolculuğun tadını çıkarmak için bu kısa videoyu izleyin.</p>
+            <div class="col-12 col-md-6 text-center text-md-start mb-4 mb-md-0">
+                <h1 class="display-4 fw-bold mb-3">Marmaris Rodos Rotaları</h1>
+                <p class="lead mb-4">
+                    Ege'nin masmavi sularında, saklı koyları ve bakir doğayı keşfedeceğiniz unutulmaz bir yolculuğa
+                    çıkın.
+                </p>
+                <button type="button" class="btn btn-inspect rounded-0" data-bs-toggle="modal"
+                    data-bs-target="#videoModal">
+                    İzle
+                </button>
             </div>
 
-            <div class="col-6">
-                <div class="text-center text-white position-relative py-5 hero-section">
-                    <div class="hero-overlay"></div>
-                    <h1 class="display-4 fw-bold mb-4">Marmaris Rodos Rotaları</h1>
-                    <p class="lead mb-4">
-                        Ege Denizi'nde unutulmaz bir yolculuğa çıkın, gizli koyları ve tertemiz suları keşfedin.
-                    </p>
-                    <div class="d-flex justify-content-center mb-3">
-                        <img src="~/images/marmaris.gif" alt="Rota GIF" style="max-width: 500px;" class="img-fluid hero-gif">
-                    </div>
-                </div>
+            <div class="col-12 col-md-6 text-center">
+                <img src="~/images/marmaris.gif" alt="Rota GIF" class="img-fluid hero-gif shadow-lg" />
             </div>
-
-            <div class="col-6">
-                <div class="ratio ratio-16x9 mx-auto" style="max-width: 800px;">
-                    <video controls>
-                        <source src="~/video/routes_video.m4v" type="video/mp4">
-                        Tarayıcınız video etiketini desteklemiyor.
-                    </video>
-                </div>
-            </div>
-
         </div>
     </div>
 </section>
+
+<div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark">
+            <div class="modal-header border-0">
+                <h5 class="modal-title text-white" id="videoModalLabel">Macerayı Keşfedin</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Kapat"></button>
+            </div>
+            <div class="modal-body p-0 ratio ratio-16x9">
+                <video controls>
+                    <source src="~/video/routes_video.m4v" type="video/mp4">
+                    Tarayıcınız video etiketini desteklemiyor.
+                </video>
+            </div>
+        </div>
+    </div>
+</div>
 
 <section class="itinerary-section py-5">
     <div class="container">
         <div class="text-center mb-5">
             <h2 class="fw-bold text-primary">Haftalık Program</h2>
-            <p class="text-muted mb-0">Her günün öne çıkan noktalarını ve aktivitelerini keşfedin.</p>
+            <p class="text-muted">
+                Her günün öne çıkan noktalarını ve etkinliklerini keşfedin.
+            </p>
         </div>
+
         <div class="accordion" id="weekAccordion">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingSaturday">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSaturday" aria-expanded="true" aria-controls="collapseSaturday">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseSaturday" aria-expanded="true" aria-controls="collapseSaturday">
                         <strong>Cumartesi</strong>
                     </button>
                 </h2>
-                <div id="collapseSaturday" class="accordion-collapse collapse show" aria-labelledby="headingSaturday" data-bs-parent="#weekAccordion">
+                <div id="collapseSaturday" class="accordion-collapse collapse show" aria-labelledby="headingSaturday"
+                    data-bs-parent="#weekAccordion">
                     <div class="accordion-body">
-                        <p class="mb-2"><strong>10:00</strong> Netsel Marina'da buluşma. Tekne tanıtımı ve bilgilendirme, seyir planlaması, yiyecek yükleme.</p>
-                        <p class="mb-2"><strong>12:00</strong> Marinadan ayrılış, ortalama 2 saatlik seyir.</p>
-                        <p class="mb-2"><strong>16:00</strong> Çiftlik Koyu'na varış, yüzme ve akşam yemeği (Azmak Restaurant).</p>
-                        <p class="mb-2">Rodos'a varış</p>
+                        <p class="mb-2">
+                            <strong>10:00</strong> Netsel Marina’da buluşma. Tekne tanıtımı ve bilgilendirme, rota
+                            planlaması, erzak yükleme.
+                        </p>
+                        <p class="mb-2">
+                            <strong>12:00</strong> Marinadan ayrılış, ortalama 2 saatlik seyir.
+                        </p>
+                        <p class="mb-2">
+                            <strong>16:00</strong> Çiftlik Koyu’na varış, yüzme ve akşam yemeği (Azmak Restaurant).
+                        </p>
+                        <p class="mb-2">
+                            Rodos’a varış.
+                        </p>
                     </div>
                 </div>
             </div>
+
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingSunday">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSunday" aria-expanded="false" aria-controls="collapseSunday">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseSunday" aria-expanded="false" aria-controls="collapseSunday">
                         <strong>Pazar</strong>
                     </button>
                 </h2>
-                <div id="collapseSunday" class="accordion-collapse collapse" aria-labelledby="headingSunday" data-bs-parent="#weekAccordion">
+                <div id="collapseSunday" class="accordion-collapse collapse" aria-labelledby="headingSunday"
+                    data-bs-parent="#weekAccordion">
                     <div class="accordion-body">
                         <p class="mb-2"><strong>07:00</strong> Sabah yogası, yüzme ve teknede kahvaltı.</p>
-                        <p class="mb-2"><strong>10:00</strong> Çiftlik'ten ayrılış, ortalama 3 saatlik seyir.</p>
-                        <p class="mb-2">Alarga'da yüzme molası ve öğle yemeği.</p>
-                        <p class="mb-2"><strong>16:00</strong> Ekincik'e varış, akşam yemeği (My Marina).</p>
+                        <p class="mb-2"><strong>10:00</strong> Çiftlik’ten ayrılış, ortalama 3 saatlik seyir.</p>
+                        <p class="mb-2">Alarga’da yüzme molası ve öğle yemeği.</p>
+                        <p class="mb-2"><strong>16:00</strong> Ekincik’e varış, akşam yemeği (My Marina).</p>
                     </div>
                 </div>
             </div>
+
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingMonday">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMonday" aria-expanded="false" aria-controls="collapseMonday">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseMonday" aria-expanded="false" aria-controls="collapseMonday">
                         <strong>Pazartesi</strong>
                     </button>
                 </h2>
-                <div id="collapseMonday" class="accordion-collapse collapse" aria-labelledby="headingMonday" data-bs-parent="#weekAccordion">
+                <div id="collapseMonday" class="accordion-collapse collapse" aria-labelledby="headingMonday"
+                    data-bs-parent="#weekAccordion">
                     <div class="accordion-body">
-                        <p class="mb-2"><strong>09:00</strong> Ekincik'ten ayrılış. Dalyan Kaunos turu (isteğe bağlı).</p>
-                        <p class="mb-2">16:00'da Dalyan'dan ayrılış, ortalama 2 saatlik seyir.</p>
-                        <p class="mb-2"><strong>18:00</strong> Baba Adası'na varış / Alarga'da akşam yemeği.</p>
+                        <p class="mb-2"><strong>09:00</strong> Ekincik’ten ayrılış. (Dalyan Kaunos turu - isteğe bağlı).
+                        </p>
+                        <p class="mb-2">16:00’da Dalyan’dan ayrılış, ortalama 2 saatlik seyir.</p>
+                        <p class="mb-2"><strong>18:00</strong> Baba Adası’na varış / Alarga’da akşam yemeği.</p>
                     </div>
                 </div>
             </div>
+
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingTuesday">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTuesday" aria-expanded="false" aria-controls="collapseTuesday">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTuesday" aria-expanded="false" aria-controls="collapseTuesday">
                         <strong>Salı</strong>
                     </button>
                 </h2>
-                <div id="collapseTuesday" class="accordion-collapse collapse" aria-labelledby="headingTuesday" data-bs-parent="#weekAccordion">
+                <div id="collapseTuesday" class="accordion-collapse collapse" aria-labelledby="headingTuesday"
+                    data-bs-parent="#weekAccordion">
                     <div class="accordion-body">
-                        <p class="mb-2"><strong>10:00</strong> Baba Adası'ndan ayrılış, ortalama 3 saatlik seyir.</p>
-                        <p class="mb-2"><strong>13:00</strong> Göcek Göbün Koyu'nda öğle arası; dinlenme, yüzme.</p>
-                        <p class="mb-2"><strong>17:00</strong> Gobun'da teknede konaklama.</p>
+                        <p class="mb-2"><strong>10:00</strong> Baba Adası’ndan ayrılış, ortalama 3 saatlik seyir.</p>
+                        <p class="mb-2"><strong>13:00</strong> Göcek Göbün Koyu’na varış; öğle yemeği, dinlenme ve
+                            yüzme.</p>
+                        <p class="mb-2"><strong>17:00</strong> Gecelik konaklama tekne üzerinde (Göbün).</p>
                     </div>
                 </div>
             </div>
+
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingWednesday">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWednesday" aria-expanded="false" aria-controls="collapseWednesday">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseWednesday" aria-expanded="false" aria-controls="collapseWednesday">
                         <strong>Çarşamba</strong>
                     </button>
                 </h2>
-                <div id="collapseWednesday" class="accordion-collapse collapse" aria-labelledby="headingWednesday" data-bs-parent="#weekAccordion">
+                <div id="collapseWednesday" class="accordion-collapse collapse" aria-labelledby="headingWednesday"
+                    data-bs-parent="#weekAccordion">
                     <div class="accordion-body">
-                        <p class="mb-2"><strong>10:00</strong> Fethiye Turunç Pınarı'ndan ayrılış, 1.5 saatlik seyir.</p>
-                        <p class="mb-2"><strong>12:00</strong> Alarga/öğle yemeği (Olive restoran), Bedri Rahmi Koyu'nda yüzme molası.</p>
-                        <p class="mb-2"><strong>16:00</strong> Hamam Koyu Adaia tesisi, akşam yemeği ve eğlence (DJ).</p>
+                        <p class="mb-2"><strong>10:00</strong> Fethiye Turunç Pınarı’ndan ayrılış, 1.5 saatlik seyir.
+                        </p>
+                        <p class="mb-2"><strong>12:00</strong> Alarga/öğle yemeği (Olive Restaurant mevcut), Bedri-Rahmi
+                            koyunda yüzme molası.</p>
+                        <p class="mb-2"><strong>16:00</strong> Hamam Koyu Adaia tesisi / akşam yemeği, eğlence (DJ).
+                        </p>
                     </div>
                 </div>
             </div>
+
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingThursday">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThursday" aria-expanded="false" aria-controls="collapseThursday">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThursday" aria-expanded="false" aria-controls="collapseThursday">
                         <strong>Perşembe</strong>
                     </button>
                 </h2>
-                <div id="collapseThursday" class="accordion-collapse collapse" aria-labelledby="headingThursday" data-bs-parent="#weekAccordion">
+                <div id="collapseThursday" class="accordion-collapse collapse" aria-labelledby="headingThursday"
+                    data-bs-parent="#weekAccordion">
                     <div class="accordion-body">
-                        <p class="mb-2"><strong>10:00</strong> Adaia'dan ayrılış, yaklaşık 6 saatlik uzun bir seyir.</p>
-                        <p class="mb-2"><strong>15:00</strong> Ekincik Koyu'na/alarga varış, yüzme, dinlenme, akşam yemeği.</p>
+                        <p class="mb-2"><strong>10:00</strong> Adaia’dan ayrılış, ortalama 6 saatlik uzun bir seyir.</p>
+                        <p class="mb-2"><strong>15:00</strong> Ekincik Koyu’na varış (alarga), yüzme, dinlenme, akşam
+                            yemeği.</p>
                     </div>
                 </div>
             </div>
+
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingFriday">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFriday" aria-expanded="false" aria-controls="collapseFriday">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFriday" aria-expanded="false" aria-controls="collapseFriday">
                         <strong>Cuma</strong>
                     </button>
                 </h2>
-                <div id="collapseFriday" class="accordion-collapse collapse" aria-labelledby="headingFriday" data-bs-parent="#weekAccordion">
+                <div id="collapseFriday" class="accordion-collapse collapse" aria-labelledby="headingFriday"
+                    data-bs-parent="#weekAccordion">
                     <div class="accordion-body">
-                        <p class="mb-2"><strong>09:00</strong> Ekincik'ten ayrılış, seyir.</p>
-                        <p class="mb-2"><strong>12:00</strong> Kumlubük'te öğle yemeği, yüzme.</p>
-                        <p class="mb-2"><strong>14:00</strong> Kumlubük'ten Marmaris'e hareket.</p>
-                        <p class="mb-2"><strong>17:00</strong> Netsel Marina'ya varış, veda kokteyli.</p>
+                        <p class="mb-2"><strong>09:00</strong> Ekincik’ten ayrılış, seyir.</p>
+                        <p class="mb-2"><strong>12:00</strong> Kumlubük’te öğle yemeği, yüzme.</p>
+                        <p class="mb-2"><strong>14:00</strong> Kumlubük’ten Marmaris’e hareket.</p>
+                        <p class="mb-2"><strong>17:00</strong> Netsel Marina’ya varış, veda kokteyli.</p>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </section>

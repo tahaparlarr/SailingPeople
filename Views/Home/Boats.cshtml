@@ -1,5 +1,9 @@
 ﻿@model BoatDto
 
+@{
+    ViewData["Title"] = "Boats";
+}
+
 <section class="py-5">
     <div class="text-center mb-4">
         <h5 class="display-6 text-primary fw-bold f-calvino">Boats</h5>
@@ -35,9 +39,8 @@
                             <div class="boat-info">
                                 <span class="text-muted d-block text-ellipsis">@boat.Category.LocalizedName</span>
                                 <a asp-controller="Home" asp-action="BoatDetail" asp-route-id="@boat.Id">
-                                    <span class="fw-bold d-block">@boat.Name</span>
-                                </a>
                                 <span class="fw-bold d-block">@boat.Code</span>
+                                </a>
                             </div>
 
                             <div class="boat-icons position-absolute top-0 end-0 mt-2 me-2 text-nowrap">
