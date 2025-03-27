@@ -4,39 +4,41 @@
     <div class="row row-cols-1 text-dark text-start row-cols-sm-2 row-cols-md-4 g-3 p-1">
         <div class="col d-flex flex-column">
             <label asp-for="CategoryId" class="form-label">
-                Category
+                @SharedResources.Category
             </label>
             <div class="input-group">
                 <span class="input-group-text">
                     <i class="bi bi-binoculars"></i>
                 </span>
                 <select asp-for="CategoryId" asp-items="@(ViewBag.CategoriesSelectList)" class="form-select">
-                    <option value="" selected>Select...</option>
+                    <option value="" disabled selected>@SharedResources.Select</option>
                 </select>
             </div>
         </div>
 
         <div class="col d-flex flex-column">
             <label asp-for="Guests" class="form-label">
-                Guests
+                @SharedResources.Guest
             </label>
             <div class="input-group">
                 <span class="input-group-text">
                     <i class="bi bi-people"></i>
                 </span>
-                <input asp-for="Guests" class="form-control" type="number" placeholder="@SharedResources.FilterGuestInput" />
+                <input asp-for="Guests" class="form-control" type="number"
+                    placeholder="@SharedResources.FilterGuestInput" />
             </div>
         </div>
 
         <div class="col d-flex flex-column">
             <label asp-for="Cabin" class="form-label">
-                Cabin
+                @SharedResources.Cabin
             </label>
             <div class="input-group">
                 <span class="input-group-text">
                     <i class="bi bi-border-all"></i>
                 </span>
-                <input asp-for="Cabin" class="form-control" type="number" placeholder="@SharedResources.FilterCabinInput" />
+                <input asp-for="Cabin" class="form-control" type="number"
+                    placeholder="@SharedResources.FilterCabinInput" />
             </div>
         </div>
 

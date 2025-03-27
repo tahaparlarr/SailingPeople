@@ -51,12 +51,12 @@
                         <div class="category-img position-relative f-calvino">
                             <a asp-controller="Home" asp-action="Category" asp-route-id="@category.Id">
                                 <img class="object-fit-cover w-100" src="~/images/categories/@(category.Id).jpg"
-                                     alt="@category.LocalizedName" />
+                                    alt="@category.LocalizedName" />
                             </a>
 
                             <div class="position-absolute start-50 translate-middle-x bottom-0 mb-3" style="z-index: 10;">
                                 <a asp-controller="Home" asp-action="Category" asp-route-id="@category.Id"
-                                   class="btn btn-inspect rounded-0 display-7">
+                                    class="btn btn-inspect rounded-0 display-7">
                                     İncele
                                 </a>
                             </div>
@@ -103,12 +103,12 @@
 
                             <div class="boat-overlay d-flex flex-column justify-content-center align-items-center">
                                 <div class="overlay-content">
-                                    <h5 class="overlay-title text-white text-center text-break p-4">@boat.Name</h5>
+                                    <h5 class="overlay-title text-white text-center text-break p-4">@boat.Code</h5>
                                 </div>
                             </div>
 
                             <a asp-controller="Home" asp-action="BoatDetail" asp-route-id="@boat.Id"
-                               class="btn btn-inspect position-absolute display-7">
+                                class="btn btn-inspect position-absolute display-7">
                                 Detayları Gör
                             </a>
                         </div>
@@ -117,9 +117,8 @@
                             <div class="boat-info">
                                 <span class="text-muted d-block text-ellipsis">@boat.Category.LocalizedName</span>
                                 <a asp-controller="Home" asp-action="BoatDetail" asp-route-id="@boat.Id">
-                                    <span class="fw-bold d-block text-break">@boat.Name</span>
+                                    <span class="fw-bold d-block">@boat.Code</span>
                                 </a>
-                                <span class="fw-bold d-block">@boat.Code</span>
                             </div>
 
                             <div class="boat-icons position-absolute top-0 end-0 mt-2 me-2 text-nowrap">
@@ -189,7 +188,8 @@
                     </div>
                     <h5 class="f-calvino">Önce Güvenlik</h5>
                     <p class="text-muted">
-                        Son teknoloji güvenlik önlemleri ve eğitimli mürettebatımızla rahatlığınızı her şeyden önde tutuyoruz.
+                        Son teknoloji güvenlik önlemleri ve eğitimli mürettebatımızla rahatlığınızı her şeyden önde
+                        tutuyoruz.
                     </p>
                 </div>
             </div>
