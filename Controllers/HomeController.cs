@@ -84,6 +84,31 @@ public class HomeController(AppDbContext dbContext, IMapper mapper) : Controller
         return View(filteredBoat);
     }
 
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> SearchByBoatCode(CodeFilterViewModel model)
+    {
+        var code = (model.BoatCode ?? string.Empty).Trim().ToLower();
+
+        if (string.IsNullOrWhiteSpace(code))
+        {
+            return RedirectToAction("Index");
+        }
+
+        var boats = await dbContext.Boats
+                        //.Where(p => p.Code == model.BoatCode)
+                        .Where(p => p.Code.ToLower().Contains(code))
+            .ToListAsync();
+
+        ViewBag.Categories = (await dbContext.Categories.ToListAsync())
+                                      .Select(p => mapper.Map<CategoryDto>(p));
+
+
+        var filteredBoat = boats.Select(boat => mapper.Map<BoatDto>(boat)).ToList();
+
+        return View("CodeSearch", filteredBoat);
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

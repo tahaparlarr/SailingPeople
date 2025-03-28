@@ -1,0 +1,11 @@
+﻿@if (ViewBag.Categories != null)
+{
+    @foreach (var category in ViewBag.Categories as IEnumerable<CategoryDto>)
+    {
+        <li class="mb-2">
+            <a asp-action="Category" asp-route-id="@category.Id" class="text-decoration-none">
+                @category.LocalizedName
+            </a>
+        </li>
+    }
+}
