@@ -17,8 +17,8 @@ public class HomeController(AppDbContext dbContext, IMapper mapper) : Controller
         ViewBag.CategoriesSelectList = new SelectList(categories, "Id", "LocalizedName");
         ViewBag.Categories = categories;
 
-        var boats = await dbContext.Boats.ToListAsync();
-        ViewBag.Boats = boats.Select(p => mapper.Map<BoatDto>(p)).Take(20);
+        var boats = await dbContext.Boats.Take(20).ToListAsync();
+        ViewBag.Boats = boats.Select(p => mapper.Map<BoatDto>(p));
 
         ViewBag.BoatsGroupedByCategory = boats
             .Where(p => categories.Any(c => c.Id == p.CategoryId))
@@ -67,21 +67,43 @@ public class HomeController(AppDbContext dbContext, IMapper mapper) : Controller
         return View(mapper.Map<BoatDto>(boat));
     }
 
+    [HttpGet]
+    public async Task<IActionResult> FilterFromPartial()
+    {
+        ViewBag.CategoriesSelectList = new SelectList(
+            await dbContext.Categories.ToListAsync(),
+            "Id",
+            "LocalizedName"
+        );
+
+        return PartialView("_FilterFormPartial", new FilterViewModel());
+    }
+
     [HttpPost]
     public async Task<IActionResult> Search(FilterViewModel model)
     {
-        ViewBag.Categories = (await dbContext.Categories.ToListAsync())
-                                      .Select(p => mapper.Map<CategoryDto>(p));
+        ViewBag.CategoriesSelectList = new SelectList(
+            await dbContext.Categories.ToListAsync(),
+            "Id",
+            "LocalizedName"
+        );
 
-        var boats = await dbContext.Boats.Where(p =>
-            (p.CategoryId == model.CategoryId || model.CategoryId == null) &&
-            (p.Guest == model.Guests) &&
-            p.Cabin == model.Cabin
-        ).ToListAsync();
+        var query = dbContext.Boats.AsQueryable();
 
-        var filteredBoat = boats.Select(boat => mapper.Map<BoatDto>(boat)).ToList();
+        if (model.CategoryId.HasValue)
+            query = query.Where(p => p.CategoryId == model.CategoryId.Value);
 
-        return View(filteredBoat);
+        if (model.Guests.HasValue)
+            query = query.Where(p => p.Guest == model.Guests.Value);
+
+        if (model.Cabin.HasValue)
+            query = query.Where(p => p.Cabin == model.Cabin.Value);
+
+        var result = await query
+            .Select(p => mapper.Map<BoatDto>(p))
+            .ToListAsync();
+
+        return View(result);
     }
 
     [HttpPost]

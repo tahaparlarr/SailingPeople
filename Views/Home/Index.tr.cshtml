@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<BoatDto>
 
 @{
-    ViewData["Title"] = "Anasayfa";
+    ViewData["Title"] = "Sailing & People";
 }
 
 <section class="custom-header">
@@ -57,7 +57,7 @@
                             <div class="position-absolute start-50 translate-middle-x bottom-0 mb-3" style="z-index: 10;">
                                 <a asp-controller="Home" asp-action="Category" asp-route-id="@category.Id"
                                     class="btn btn-inspect rounded-0 display-7">
-                                    İncele
+                                    @SharedResources.Inspect
                                 </a>
                             </div>
 
@@ -94,47 +94,44 @@
 
     <div class="container">
         <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
-            @foreach (var boat in (ViewBag.Boats as IEnumerable<BoatDto>).Take(20))
+            @foreach (var boat in (ViewBag.Boats as IEnumerable<BoatDto>))
             {
                 <div class="col">
-                    <div class="boat-box position-relative shadow-sm border">
-                        <div class="boat-img position-relative overflow-hidden ">
-                            <img class="object-fit-cover w-100" src="@boat.Image" alt="@boat.Code" />
+                    <div class="boat-card">
+                        <div class="card card-custom">
+                            <a asp-controller="Home" asp-action="BoatDetail" asp-route-id="@boat.Id">
+                                <img src="@boat.Image" class="card-img-top" alt="@boat.Code" />
+                            </a>
+                            <div class="card-body">
+                                <div class="card-top-text">
+                                    <p class="text-uppercase">@boat.Category.LocalizedName</p>
+                                    <h5 class="card-title text-dark">@boat.Code</h5>
+                                </div>
 
-                            <div class="boat-overlay d-flex flex-column justify-content-center align-items-center">
-                                <div class="overlay-content">
-                                    <h5 class="overlay-title text-white text-center text-break p-4">@boat.Code</h5>
+                                <hr />
+
+                                <div class="card-property">
+                                    <div class="d-flex nowrap display-7">
+                                        <div class="me-3 d-flex align-items-center">
+                                            <i class="bi bi-door-closed-fill me-1"></i>@boat.Cabin @SharedResources.Cabin
+                                        </div>
+                                        <div><i class="bi bi-people-fill me-1"></i>@boat.Guest @SharedResources.Guest</div>
+                                    </div>
+                                </div>
+
+                                <div class="card-bottom-text my-2 text-muted">
+                                    <p>Fiyat haftalık € @(boat.MayToOctoberPrice)'dan başlıyor</p>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <a asp-controller="Home" asp-action="BoatDetail" asp-route-id="@boat.Id"
+                                        class="btn bg-dark rounded-0 text-white px-4 py-2">@SharedResources.Inspect</a>
                                 </div>
                             </div>
-
-                            <a asp-controller="Home" asp-action="BoatDetail" asp-route-id="@boat.Id"
-                                class="btn btn-inspect position-absolute display-7">
-                                Detayları Gör
-                            </a>
                         </div>
-
-                        <div class="card-footer boat-footer position-relative p-2">
-                            <div class="boat-info">
-                                <span class="text-muted d-block text-ellipsis">@boat.Category.LocalizedName</span>
-                                <a asp-controller="Home" asp-action="BoatDetail" asp-route-id="@boat.Id">
-                                    <span class="fw-bold d-block">@boat.Code</span>
-                                </a>
-                            </div>
-
-                            <div class="boat-icons position-absolute top-0 end-0 mt-2 me-2 text-nowrap">
-                                <i class="bi bi-people me-1"></i>@boat.Guest
-                                <i class="bi bi-door-closed ms-3 me-1"></i>@boat.Cabin
-                            </div>
-
-                            <div class="boat-price mt-4">
-                                Fiyat haftalık €@(boat.MayToOctoberPrice)'dan başlıyor
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             }
-
         </div>
     </div>
 </section>

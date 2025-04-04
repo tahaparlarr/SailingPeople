@@ -17,19 +17,6 @@
         </div>
 
         <div class="col d-flex flex-column">
-            <label asp-for="Guests" class="form-label">
-                @SharedResources.Guest
-            </label>
-            <div class="input-group">
-                <span class="input-group-text">
-                    <i class="bi bi-people"></i>
-                </span>
-                <input asp-for="Guests" class="form-control" type="number"
-                    placeholder="@SharedResources.FilterGuestInput" />
-            </div>
-        </div>
-
-        <div class="col d-flex flex-column">
             <label asp-for="Cabin" class="form-label">
                 @SharedResources.Cabin
             </label>
@@ -39,6 +26,19 @@
                 </span>
                 <input asp-for="Cabin" class="form-control" type="number"
                     placeholder="@SharedResources.FilterCabinInput" />
+            </div>
+        </div>
+
+        <div class="col d-flex flex-column">
+            <label asp-for="Guests" class="form-label">
+                @SharedResources.Guest
+            </label>
+            <div class="input-group">
+                <span class="input-group-text">
+                    <i class="bi bi-people"></i>
+                </span>
+                <input asp-for="Guests" class="form-control" type="number"
+                    placeholder="@SharedResources.FilterGuestInput" />
             </div>
         </div>
 

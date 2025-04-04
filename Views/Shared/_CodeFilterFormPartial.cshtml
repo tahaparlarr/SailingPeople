@@ -1,10 +1,11 @@
 ﻿@model CodeFilterViewModel
 
-<form method="post" asp-action="SearchByBoatCode" asp-controller="Home">
+<form method="post" asp-action="SearchByBoatCode" asp-controller="Home" class="custom-code-search-form">
     @Html.AntiForgeryToken()
-    <div class="input-group">
-        <input asp-for="BoatCode" class="form-control" type="text"
-               placeholder="@SharedResources.FilterCodeInput" />
+    <div class="input-group-code">
+
+        <input asp-for="BoatCode" class="form-control" type="text" placeholder="@SharedResources.FilterCodeInput" />
+
         <button class="btn btn-primary" type="submit">
             <i class="bi bi-search"></i>
         </button>

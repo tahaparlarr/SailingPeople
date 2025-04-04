@@ -24,7 +24,7 @@ builder
     .AddDbContext<AppDbContext>(option =>
     {
         option.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
-        option.UseLazyLoadingProxies();
+        // option.UseLazyLoadingProxies();
     });
 
 builder
@@ -48,11 +48,9 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseRouting();
-
-app.UseAuthorization();
-
 app.UseStaticFiles();
+app.UseRouting();
+app.UseAuthorization();
 
 var supportedCultures = new[] { "en", "tr", };
 var localizationOptions = new RequestLocalizationOptions()
