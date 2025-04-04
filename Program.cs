@@ -32,7 +32,7 @@ builder.Services.AddAuthorization();
 builder.Services.AddDbContext<AppDbContext>(option =>
 {
     option.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
-    option.UseLazyLoadingProxies();
+    // option.UseLazyLoadingProxies();
 
 });
 
