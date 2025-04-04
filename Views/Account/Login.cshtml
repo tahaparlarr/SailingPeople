@@ -1,0 +1,56 @@
+@model SailingPeople.Models.LoginViewModel
+@{
+       Layout = null;
+       ViewData["Title"] = "Login";
+}
+
+<head>
+       <meta charset="utf-8" />
+       <title>@ViewData["Title"]</title>
+       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+       <link rel="icon" href="~/images/logo.svg">
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+       <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+
+<div class="container-fluid p-0 m-0">
+       <div class="row g-0 vh-100">
+              <div class="col-md-5 p-0 d-none d-md-block">
+                     <img src="/images/login.jpg" alt="Login" class="img-fluid h-100 w-100" style="object-fit: cover;">
+              </div>
+              <div class="col-12 col-md-7 p-4 d-flex align-items-center justify-content-center bg-secondary">
+                     <div class="custom-search-form w-100" style="max-width: 400px;">
+                            <h1 class="text-start mb-3 f-calvino">Giriş Yap</h1>
+                            <p class="text-start f-calvino mb-4">
+                                   Kullanıcı adı ve şifrenizi girerek panele erişim sağlayınız.
+                            </p>
+
+                            <form method="post" asp-controller="Account" asp-action="Login">
+                                   <div class="mb-3 input-group">
+                                          <span class="input-group-text">
+                                                 <i class="bi bi-person"></i>
+                                          </span>
+                                          <input asp-for="Username" class="form-control" type="text"
+                                                 placeholder="Kullanıcı Adı" required />
+                                   </div>
+
+                                   <div class="mb-3 input-group">
+                                          <span class="input-group-text">
+                                                 <i class="bi bi-lock"></i>
+                                          </span>
+                                          <input asp-for="Password" class="form-control" type="password"
+                                                 placeholder="Şifre" required />
+                                   </div>
+
+                                   <button type="submit" class="btn btn-primary w-100">
+                                          Giriş
+                                   </button>
+                            </form>
+                     </div>
+              </div>
+       </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>

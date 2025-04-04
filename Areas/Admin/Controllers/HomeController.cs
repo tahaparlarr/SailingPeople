@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using SixLabors.ImageSharp.Formats.Webp;
 namespace SailingPeople.Areas.Admin.Controllers;
 
 [Area("Admin")]
+[Authorize]
 public class HomeController(AppDbContext dbContext, IMapper mapper) : Controller
 {
     public async Task<IActionResult> Index()
@@ -105,7 +107,6 @@ public class HomeController(AppDbContext dbContext, IMapper mapper) : Controller
 
         return RedirectToAction("Index");
     }
-
 
     [HttpGet]
     public async Task<IActionResult> Edit(Guid Id)
@@ -244,7 +245,6 @@ public class HomeController(AppDbContext dbContext, IMapper mapper) : Controller
 
         return RedirectToAction("Index");
     }
-
 }
 
 

@@ -21,5 +21,6 @@ public class AppDbContext : DbContext
     public required virtual DbSet<Spec> Specs { get; set; }
     public required virtual DbSet<Facility> Facilities { get; set; }
     public required virtual DbSet<BoatSpec> BoatSpecs { get; set; }
+    public required virtual DbSet<User> Users { get; set; }
 
 }

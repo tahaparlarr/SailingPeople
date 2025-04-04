@@ -1,14 +1,11 @@
 using System.Diagnostics;
-using System.Linq;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using SailingPeople.Domain;
 using SailingPeople.Models;
 
 namespace SailingPeople.Controllers;
-
 public class HomeController(AppDbContext dbContext, IMapper mapper) : Controller
 {
     public async Task<IActionResult> Index()
@@ -41,13 +38,11 @@ public class HomeController(AppDbContext dbContext, IMapper mapper) : Controller
 
         return View(boats);
     }
-
     public IActionResult Faq()
     {
 
         return View();
     }
-
     public async Task<IActionResult> Boats()
     {
         var boats = (await dbContext.Boats.ToListAsync());
@@ -136,17 +131,14 @@ public class HomeController(AppDbContext dbContext, IMapper mapper) : Controller
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
-
     public IActionResult Contact()
     {
         return View();
     }
-
     public IActionResult Gocek()
     {
         return View();
     }
-
     public IActionResult Hisaronu()
     {
         return View();
