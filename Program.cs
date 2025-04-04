@@ -33,7 +33,6 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 {
     option.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
     option.UseLazyLoadingProxies();
-
 });
 
 builder.Services.AddAutoMapper(config =>
