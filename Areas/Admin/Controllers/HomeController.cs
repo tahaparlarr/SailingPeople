@@ -27,11 +27,13 @@ namespace SailingPeople.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var boats = await _dbContext.Boats
-                .Include(b => b.Category)
-                .ToListAsync();
+            // Lazy loading açıkken Category otomatik yüklenecektir (view veya dto aşamasında erişildiğinde).
+            // Burada .Include() kaldırıldı:
+            var boats = await _dbContext.Boats.ToListAsync();
 
-            var boatDtos = boats.Select(b => _mapper.Map<BoatDto>(b)).ToList();
+            var boatDtos = boats
+                .Select(b => _mapper.Map<BoatDto>(b))
+                .ToList();
 
             return View(boatDtos);
         }
@@ -40,16 +42,13 @@ namespace SailingPeople.Areas.Admin.Controllers
         public IActionResult Create()
         {
             ViewBag.Categories = new SelectList(
-                _dbContext.Categories
-                    .AsNoTracking()
-                    .ToList()
-                    .Select(c => _mapper.Map<CategoryDto>(c)),
+                _dbContext.Categories.ToList(),
                 "Id",
                 "LocalizedName"
             );
 
-            ViewBag.Specs = _dbContext.Specs.AsNoTracking().ToList();
-            ViewBag.Facility = _dbContext.Facilities.AsNoTracking().ToList();
+            ViewBag.Specs = _dbContext.Specs.ToList();
+            ViewBag.Facility = _dbContext.Facilities.ToList();
 
             return View(new BoatDto());
         }
@@ -60,15 +59,12 @@ namespace SailingPeople.Areas.Admin.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.Categories = new SelectList(
-                    _dbContext.Categories
-                        .AsNoTracking()
-                        .ToList()
-                        .Select(c => _mapper.Map<CategoryDto>(c)),
+                    _dbContext.Categories.ToList(),
                     "Id",
                     "LocalizedName"
                 );
-                ViewBag.Specs = _dbContext.Specs.AsNoTracking().ToList();
-                ViewBag.Facility = _dbContext.Facilities.AsNoTracking().ToList();
+                ViewBag.Specs = _dbContext.Specs.ToList();
+                ViewBag.Facility = _dbContext.Facilities.ToList();
 
                 return View(model);
             }
@@ -151,6 +147,7 @@ namespace SailingPeople.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(Guid id)
         {
+            // ExecuteDeleteAsync, EF Core 7+ sürümünde
             await _dbContext.Boats
                 .Where(b => b.Id == id)
                 .ExecuteDeleteAsync();
@@ -161,12 +158,8 @@ namespace SailingPeople.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
         {
+
             var boat = await _dbContext.Boats
-                .Include(b => b.BoatSpecs)
-                .ThenInclude(bs => bs.Spec)
-                .Include(b => b.Facilities)
-                .Include(b => b.BoatImages)
-                .AsNoTracking()
                 .FirstOrDefaultAsync(b => b.Id == id);
 
             if (boat == null)
@@ -200,16 +193,13 @@ namespace SailingPeople.Areas.Admin.Controllers
             };
 
             ViewBag.Categories = new SelectList(
-                _dbContext.Categories
-                    .AsNoTracking()
-                    .ToList()
-                    .Select(c => _mapper.Map<CategoryDto>(c)),
+                _dbContext.Categories.ToList(),
                 "Id",
                 "LocalizedName",
                 boat.CategoryId
             );
-            ViewBag.AllFacilities = _dbContext.Facilities.AsNoTracking().ToList();
-            ViewBag.AllSpecs = _dbContext.Specs.AsNoTracking().ToList();
+            ViewBag.AllFacilities = _dbContext.Facilities.ToList();
+            ViewBag.AllSpecs = _dbContext.Specs.ToList();
 
             return View(model);
         }
@@ -220,28 +210,26 @@ namespace SailingPeople.Areas.Admin.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.Categories = new SelectList(
-                    _dbContext.Categories
-                        .AsNoTracking()
-                        .ToList()
-                        .Select(c => _mapper.Map<CategoryDto>(c)),
+                    _dbContext.Categories.ToList(),
                     "Id",
                     "LocalizedName",
                     model.CategoryId
                 );
-                ViewBag.AllFacilities = _dbContext.Facilities.AsNoTracking().ToList();
-                ViewBag.AllSpecs = _dbContext.Specs.AsNoTracking().ToList();
+                ViewBag.AllFacilities = _dbContext.Facilities.ToList();
+                ViewBag.AllSpecs = _dbContext.Specs.ToList();
 
                 return View(model);
             }
 
             var boat = await _dbContext.Boats
-                .Include(b => b.BoatSpecs)
-                .Include(b => b.Facilities)
-                .Include(b => b.BoatImages)
                 .FirstOrDefaultAsync(b => b.Id == model.Id);
 
             if (boat == null)
                 return NotFound();
+
+            var specsInBoat = boat.BoatSpecs;
+            var facilitiesInBoat = boat.Facilities;
+            var imagesInBoat = boat.BoatImages;
 
             boat.Name = model.Name ?? "";
             boat.CategoryId = model.CategoryId;
@@ -313,6 +301,7 @@ namespace SailingPeople.Areas.Admin.Controllers
                     .Where(x => removeIds.Contains(x.Id));
                 _dbContext.BoatImages.RemoveRange(imagesToRemove);
             }
+
             if (model.AdditionalImages != null && model.AdditionalImages.Any())
             {
                 foreach (var file in model.AdditionalImages)
