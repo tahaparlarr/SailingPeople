@@ -11863,13 +11863,13 @@ textarea.form-control-lg {
 
 .navbar .navbar-brand,
 .navbar .nav-link {
-  color: black;
+  color: #000;
   transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .navbar.bg-dark .navbar-brand,
 .navbar.bg-dark .nav-link {
-  color: white;
+  color: #fff;
 }
 
 .navbar .nav-link.active {
@@ -11921,7 +11921,7 @@ textarea.form-control-lg {
 .content-wrap {
   position: relative;
   z-index: 1;
-  color: white;
+  color: #fff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
@@ -11967,9 +11967,9 @@ textarea.form-control-lg {
   font-size: 1.2rem;
 }
 .custom-code-search-form .input-group-code .btn-primary:hover {
-  color: black;
+  color: #000;
   transition: 0.3s all ease-in-out;
-  background-color: white;
+  background-color: #fff;
 }
 .custom-code-search-form .input-group-code .btn-primary:active {
   transform: translateY(1px);
@@ -12039,14 +12039,14 @@ textarea.form-control-lg {
   transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.5s ease;
 }
 .custom-search-form button.btn-primary:hover {
-  color: black;
+  color: #000;
   transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.5s ease;
-  background-color: white;
+  background-color: #fff;
 }
 .custom-search-form button.btn-primary:active {
-  color: black;
+  color: #000;
   transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.5s ease;
-  background-color: white;
+  background-color: #fff;
 }
 
 .category-box {
@@ -12104,15 +12104,15 @@ textarea.form-control-lg {
 
 .btn-inspect {
   transition: 0.2s ease-in-out all;
-  color: white;
-  border: 1px solid white;
+  color: #fff;
+  border: 1px solid #fff;
 }
 
 .btn-inspect:hover {
   transition: 0.5s ease-in-out all;
-  color: black;
-  border: 1px solid white;
-  background-color: white;
+  color: #000;
+  border: 1px solid #fff;
+  background-color: #fff;
 }
 
 .footer-section .footer {
@@ -12168,10 +12168,8 @@ textarea.form-control-lg {
 }
 
 .faq-section {
-  background-color: #f9f9f9; /* Arka plan rengi */
+  background-color: #f9f9f9;
   padding: 80px 0;
-  /* Başlık Alanı */
-  /* Accordion Alanı */
 }
 .faq-section .faq-title {
   text-align: center;
@@ -12212,13 +12210,13 @@ textarea.form-control-lg {
   align-items: center;
   width: 100%;
   padding: 1.25rem 1.5rem;
-  background-color: #fff; /* Arka plan */
-  font-size: 1.1rem; /* Soru yazı boyutu */
-  font-weight: 600; /* Soru yazı kalınlığı */
-  color: #333; /* Soru yazı rengi */
-  border: none; /* Varsayılan border kalksın */
-  text-align: left; /* Metin sola yaslı */
-  box-shadow: none; /* Bootstrap varsayılan gölgesini kaldır */
+  background-color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  border: none;
+  text-align: left;
+  box-shadow: none;
   transition: background 0.3s ease, color 0.3s ease;
 }
 .faq-section .accordion .accordion-item .accordion-button::after {
@@ -12230,19 +12228,19 @@ textarea.form-control-lg {
   box-shadow: none;
 }
 .faq-section .accordion .accordion-item .accordion-button:hover {
-  background-color: #f4f4f4; /* Hover efekti arka plan */
+  background-color: #f4f4f4;
   cursor: pointer;
 }
 .faq-section .accordion .accordion-item .accordion-button::before {
-  content: "➕"; /* Plus işareti (\2795), dilerseniz "\2192" (→) kullanabilirsiniz */
+  content: "➕";
   font-size: 1.2rem;
   color: #2980b9;
-  margin-right: 10px; /* Yazı ile ikon arası boşluk */
+  margin-right: 10px;
   transition: transform 0.3s ease;
 }
 .faq-section .accordion .accordion-item .accordion-button[aria-expanded=true]::before {
-  content: "➖"; /* Minus işareti (\2796) */
-  transform: rotate(180deg); /* Dilerseniz başka bir efekt kullanabilirsiniz */
+  content: "➖";
+  transform: rotate(180deg);
 }
 .faq-section .accordion .accordion-item .accordion-collapse .accordion-body {
   padding: 1.5rem;
@@ -12282,7 +12280,7 @@ textarea.form-control-lg {
   position: relative;
   height: 60vh;
   background-size: cover;
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
 }
 .hero-new-design .overlay {
@@ -12349,8 +12347,63 @@ textarea.form-control-lg {
   margin-right: 0.4rem;
 }
 .details-container .facilities .facility-item:hover {
-  background-color: #f1f2f6;
+  background-color: #f1f1f1;
   cursor: pointer;
+}
+
+.splide {
+  margin-bottom: 2rem;
+}
+.splide .splide__track {
+  padding: 0.5rem;
+}
+.splide .splide__track .splide__list .splide__slide img {
+  display: block;
+  width: 100%;
+  height: 500px;
+  border-radius: 4px;
+  object-fit: contain;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.splide .splide__arrow {
+  color: #fff;
+  opacity: 0.85;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+}
+.splide .splide__arrow:hover {
+  opacity: 1;
+}
+.splide .splide__pagination__page {
+  background-color: #ecf0f1;
+  transition: 0.3s ease;
+}
+.splide .splide__pagination__page.is-active {
+  background-color: #00648d;
+}
+.splide .splide__pagination__page:hover {
+  background-color: #0eb9ff;
+}
+
+.boat-specs-all .card {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.boat-specs-all .card:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+}
+.boat-specs-all .card .card-header {
+  border-radius: 0px;
+  background-color: #00648d;
+  color: #fff;
+  font-weight: 500;
+  padding: 0.75rem 0.75rem;
+}
+.boat-specs-all .card .card-body {
+  border-radius: 0px;
+  background-color: #f8f9fa;
+  padding: 1rem 1rem;
+  font-size: 1rem;
 }
 
 hr {
@@ -12361,7 +12414,7 @@ hr {
   border: 0.5px solid #92b9e0 !important;
   border-radius: 0;
 }
-.boat-card .card-img-top {
+.card-img-top .boat-card .card-img-top {
   border-radius: 0;
   height: 250px;
   object-fit: cover;
@@ -12424,7 +12477,7 @@ hr {
   margin-bottom: 1rem;
 }
 .itinerary-section .accordion .accordion-button {
-  background-color: #ffffff;
+  background-color: #fff;
   color: #00648d;
 }
 .itinerary-section .accordion .accordion-button:focus {
@@ -12434,7 +12487,7 @@ hr {
   color: #212529;
 }
 .itinerary-section .accordion .accordion-body {
-  background-color: #ffffff;
+  background-color: #fff;
   color: #6c757d;
 }
 

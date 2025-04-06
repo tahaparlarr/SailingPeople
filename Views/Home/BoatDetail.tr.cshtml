@@ -1,7 +1,7 @@
 ﻿@model BoatDto
 
 @{
-    ViewData["Title"] = "Tekne Detayı";
+    ViewData["Title"] = "Tekne Detayları - " + Model.Code;
 }
 
 <section class="hero-new-design d-flex align-items-center text-white" style="background-image: url('@Model.Image')">
@@ -9,52 +9,57 @@
     <div class="container text-center">
         <h1 class="display-4">@Model.Code</h1>
         <p class="lead mb-4">
-            Hayalinizdeki mavi yolculuğa <strong>@Model.Code</strong> ile çıkmaya hazır mısınız?
+            Rüya gibi bir mavi yolculuğa <strong>@Model.Code</strong> ile çıkmaya hazır mısınız?
         </p>
-        <a href="#details-section" class="btn btn-hero">Detaylara Göz At</a>
+        <a href="#details-section" class="btn btn-primary">Detayları Gör</a>
     </div>
 </section>
 
-<section id="details-section" class="details-container py-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 mb-4">
-                <div class="image-gallery card shadow-sm">
-                    <div class="card-body p-0">
-                        <section id="image-carousel" class="splide" aria-label="Tekne Resimleri">
-                            <div class="splide__track">
-                                <ul class="splide__list">
-                                    <li class="splide__slide">
-                                        <img src="@Model.Image" class="img-fluid" alt="Kapak Resmi" />
-                                    </li>
-                                    @foreach (var image in Model.BoatImages)
-                                    {
-                                        <li class="splide__slide">
-                                            <img src="@image.Image" class="img-fluid" alt="Tekne Resmi" />
-                                        </li>
-                                    }
-                                </ul>
-                            </div>
-                        </section>
-                    </div>
+<div class="container py-4" id="details-section">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 mb-4">
+            <div id="primary-slider" class="splide mb-3" aria-label="Ana Tekne Görselleri">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+                            <img src="@Model.Image" class="img-fluid mx-auto d-block" alt="Kapak Görseli" />
+                        </li>
+                        @foreach (var image in Model.BoatImages)
+                        {
+                            <li class="splide__slide">
+                                <img src="@image.Image" class="img-fluid mx-auto d-block" alt="Tekne Görseli" />
+                            </li>
+                        }
+                    </ul>
                 </div>
             </div>
-            
-            <div class="col-lg-6 mb-4">
-                <div class="boat-specs card shadow-sm">
-                    <div class="card-header bg-dark text-white d-flex align-items-center">
-                        <h5 class="mb-0 flex-grow-1">Tekne Özellikleri</h5>
-                        <i class="bi bi-boat fs-5"></i>
+        </div>
+    </div>
+
+    <div class="boat-specs-all">
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-header f-calvino">
+                        <h5>Genel Özellikler</h5>
                     </div>
                     <div class="card-body">
                         <ul class="list-unstyled mb-0">
-                            <li><strong>En (Metre):</strong> @Model.Width Metre</li>
-                            <li><strong>Boy (Metre):</strong> @Model.Length Metre</li>
-                            <li><strong>Kabin Sayısı:</strong> @Model.Cabin Oda </li>
-                            <li><strong>Misafir Kapasitesi:</strong> @Model.Guest Kişi</li>
+                            <li><strong>Genişlik (Metre):</strong> @Model.Width</li>
+                            <li><strong>Uzunluk (Metre):</strong> @Model.Length</li>
+                            <li><strong>Kabin Sayısı:</strong> @Model.Cabin</li>
+                            <li><strong>Misafir Kapasitesi:</strong> @Model.Guest</li>
                         </ul>
-                        <hr />
-                        <h6 class="text-dark">Teknik Özellikler</h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-header f-calvino">
+                        <h5>Teknik Özellikler</h5>
+                    </div>
+                    <div class="card-body">
                         <ul class="list-unstyled mb-0">
                             @foreach (var spec in Model.BoatSpecs)
                             {
@@ -69,54 +74,28 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row mt-4">
-            <div class="col-lg-6 mb-4">
-                <div class="price-info card shadow-sm">
-                    <div class="card-header bg-dark text-white d-flex align-items-center">
-                        <h5 class="mb-0 flex-grow-1">Fiyat Bilgileri</h5>
-                        <i class="bi bi-cash-coin fs-5"></i>
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-header f-calvino">
+                        <h5>Fiyatlar</h5>
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered text-center mb-3">
-                            <thead class="table-light">
-                                <tr>
-                                    <th scope="col">Dönem</th>
-                                    <th scope="col">Fiyat</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Mayıs - Ekim</td>
-                                    <td>@Model.MayToOctoberPrice €</td>
-                                </tr>
-                                <tr>
-                                    <td>Haziran</td>
-                                    <td>@Model.JunePrice €</td>
-                                </tr>
-                                <tr>
-                                    <td>Temmuz - Ağustos</td>
-                                    <td>@Model.JulyToAugustPrice €</td>
-                                </tr>
-                                <tr>
-                                    <td>Eylül</td>
-                                    <td>@Model.SeptemberPrice €</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <p><strong>Mayıs - Ekim:</strong> @Model.MayToOctoberPrice €</p>
+                        <p><strong>Haziran:</strong> @Model.JunePrice €</p>
+                        <p><strong>Temmuz - Ağustos:</strong> @Model.JulyToAugustPrice €</p>
+                        <p><strong>Eylül:</strong> @Model.SeptemberPrice €</p>
+
                         <small class="text-muted d-block">
-                            * Belirtilen fiyatlar <strong>haftalık</strong> kiralama ücretidir.
+                            * Belirtilen fiyatlar <strong>haftalık</strong> kiralama ücretleridir.
                         </small>
                     </div>
                 </div>
             </div>
-
-            <div class="col-lg-6 mb-4">
-                <div class="facilities card shadow-sm">
-                    <div class="card-header bg-dark text-white d-flex align-items-center">
-                        <h5 class="mb-0 flex-grow-1">Tekne Donanımları</h5>
-                        <i class="bi bi-tools fs-5"></i>
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-header f-calvino">
+                        <h5>Olanaklar</h5>
                     </div>
                     <div class="card-body">
                         @if (Model.Facilities != null && Model.Facilities.Any())
@@ -124,8 +103,8 @@
                             <div class="facility-list">
                                 @foreach (var facility in Model.Facilities)
                                 {
-                                    <span class="facility-item">
-                                        <i class="bi bi-check2-circle"></i> 
+                                    <span class="facility-item d-block mb-1">
+                                        <i class="bi bi-check2-circle"></i>
                                         @facility.NameEn
                                     </span>
                                 }
@@ -133,21 +112,21 @@
                         }
                         else
                         {
-                            <p class="text-muted">Donanım bilgisi bulunmamaktadır.</p>
+                            <p class="text-muted">Ekipman bilgisi mevcut değil.</p>
                         }
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="row mt-5">
-            <div class="col-12 text-center">
-                <a href="@Url.Action("Index", "Home")" class="btn btn-outline-dark btn-lg">
-                    Anasayfa'ya Dön
-                </a>
-            </div>
+    <div class="row mt-5">
+        <div class="col-12 text-center">
+            <a href="@Url.Action("Index", "Home")" class="btn btn-primary">
+                Ana Sayfaya Dön
+            </a>
         </div>
     </div>
-</section>
+</div>
 
 <partial name="_SplideScriptsPartial" />

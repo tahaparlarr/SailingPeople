@@ -1,7 +1,7 @@
 ﻿@model BoatDto
 
 @{
-    ViewData["Title"] = "Boat Details";
+    ViewData["Title"] = "Boat Details - " + Model.Code;
 }
 
 <section class="hero-new-design d-flex align-items-center text-white" style="background-image: url('@Model.Image')">
@@ -9,52 +9,57 @@
     <div class="container text-center">
         <h1 class="display-4">@Model.Code</h1>
         <p class="lead mb-4">
-            Are you ready to embark on your dream blue voyage with <strong>@Model.Code</strong>?
+            Are you ready to embark on a dreamy blue voyage with <strong>@Model.Code</strong>?
         </p>
-        <a href="#details-section" class="btn btn-hero">View Details</a>
+        <a href="#details-section" class="btn btn-primary">View Details</a>
     </div>
 </section>
 
-<section id="details-section" class="details-container py-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 mb-4">
-                <div class="image-gallery card shadow-sm">
-                    <div class="card-body p-0">
-                        <section id="image-carousel" class="splide" aria-label="Boat Images">
-                            <div class="splide__track">
-                                <ul class="splide__list">
-                                    <li class="splide__slide">
-                                        <img src="@Model.Image" class="img-fluid" alt="Cover Image" />
-                                    </li>
-                                    @foreach (var image in Model.BoatImages)
-                                    {
-                                        <li class="splide__slide">
-                                            <img src="@image.Image" class="img-fluid" alt="Boat Image" />
-                                        </li>
-                                    }
-                                </ul>
-                            </div>
-                        </section>
-                    </div>
+<div class="container py-4" id="details-section">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 mb-4">
+            <div id="primary-slider" class="splide mb-3" aria-label="Main Boat Images">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+                            <img src="@Model.Image" class="img-fluid mx-auto d-block" alt="Cover Image" />
+                        </li>
+                        @foreach (var image in Model.BoatImages)
+                        {
+                            <li class="splide__slide">
+                                <img src="@image.Image" class="img-fluid mx-auto d-block" alt="Boat Image" />
+                            </li>
+                        }
+                    </ul>
                 </div>
             </div>
-            
-            <div class="col-lg-6 mb-4">
-                <div class="boat-specs card shadow-sm">
-                    <div class="card-header bg-dark text-white d-flex align-items-center">
-                        <h5 class="mb-0 flex-grow-1">Boat Specifications</h5>
-                        <i class="bi bi-boat fs-5"></i>
+        </div>
+    </div>
+
+    <div class="boat-specs-all">
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-header f-calvino">
+                        <h5>General Features</h5>
                     </div>
                     <div class="card-body">
                         <ul class="list-unstyled mb-0">
-                            <li><strong>Width (Meter):</strong> @Model.Width Meter</li>
-                            <li><strong>Length (Meter):</strong> @Model.Length Meter</li>
-                            <li><strong>Number of Cabins:</strong> @Model.Cabin Room</li>
-                            <li><strong>Guest Capacity:</strong> @Model.Guest Person</li>
+                            <li><strong>Width (Meters):</strong> @Model.Width</li>
+                            <li><strong>Length (Meters):</strong> @Model.Length</li>
+                            <li><strong>Number of Cabins:</strong> @Model.Cabin</li>
+                            <li><strong>Guest Capacity:</strong> @Model.Guest</li>
                         </ul>
-                        <hr />
-                        <h6 class="text-dark">Technical Specifications</h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-header f-calvino">
+                        <h5>Technical Specifications</h5>
+                    </div>
+                    <div class="card-body">
                         <ul class="list-unstyled mb-0">
                             @foreach (var spec in Model.BoatSpecs)
                             {
@@ -69,54 +74,28 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row mt-4">
-            <div class="col-lg-6 mb-4">
-                <div class="price-info card shadow-sm">
-                    <div class="card-header bg-dark text-white d-flex align-items-center">
-                        <h5 class="mb-0 flex-grow-1">Price Information</h5>
-                        <i class="bi bi-cash-coin fs-5"></i>
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-header f-calvino">
+                        <h5>Prices</h5>
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered text-center mb-3">
-                            <thead class="table-light">
-                                <tr>
-                                    <th scope="col">Period</th>
-                                    <th scope="col">Price</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>May - October</td>
-                                    <td>@Model.MayToOctoberPrice €</td>
-                                </tr>
-                                <tr>
-                                    <td>June</td>
-                                    <td>@Model.JunePrice €</td>
-                                </tr>
-                                <tr>
-                                    <td>July - August</td>
-                                    <td>@Model.JulyToAugustPrice €</td>
-                                </tr>
-                                <tr>
-                                    <td>September</td>
-                                    <td>@Model.SeptemberPrice €</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <p><strong>May - October:</strong> @Model.MayToOctoberPrice €</p>
+                        <p><strong>June:</strong> @Model.JunePrice €</p>
+                        <p><strong>July - August:</strong> @Model.JulyToAugustPrice €</p>
+                        <p><strong>September:</strong> @Model.SeptemberPrice €</p>
+
                         <small class="text-muted d-block">
-                            * The stated prices are the <strong>weekly</strong> charter fees.
+                            * The listed prices are the <strong>weekly</strong> charter fees.
                         </small>
                     </div>
                 </div>
             </div>
-
-            <div class="col-lg-6 mb-4">
-                <div class="facilities card shadow-sm">
-                    <div class="card-header bg-dark text-white d-flex align-items-center">
-                        <h5 class="mb-0 flex-grow-1">Boat Equipment</h5>
-                        <i class="bi bi-tools fs-5"></i>
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-header f-calvino">
+                        <h5>Facilities</h5>
                     </div>
                     <div class="card-body">
                         @if (Model.Facilities != null && Model.Facilities.Any())
@@ -124,8 +103,8 @@
                             <div class="facility-list">
                                 @foreach (var facility in Model.Facilities)
                                 {
-                                    <span class="facility-item">
-                                        <i class="bi bi-check2-circle"></i> 
+                                    <span class="facility-item d-block mb-1">
+                                        <i class="bi bi-check2-circle"></i>
                                         @facility.NameEn
                                     </span>
                                 }
@@ -139,15 +118,15 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="row mt-5">
-            <div class="col-12 text-center">
-                <a href="@Url.Action("Index", "Home")" class="btn btn-outline-dark btn-lg">
-                    Back to Home
-                </a>
-            </div>
+    <div class="row mt-5">
+        <div class="col-12 text-center">
+            <a href="@Url.Action("Index", "Home")" class="btn btn-primary">
+                Back to Home
+            </a>
         </div>
     </div>
-</section>
+</div>
 
 <partial name="_SplideScriptsPartial" />

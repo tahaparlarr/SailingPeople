@@ -4,9 +4,14 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    new Splide('#image-carousel', {
-      type      : 'loop',
-      autoHeight: true
-    }).mount();
+    var primarySlider = new Splide('#primary-slider', {
+      type: 'fade',
+      rewind: true,
+      pagination: false,
+      arrows: true,
+    });
+
+    primarySlider.mount();
+    thumbnailSlider.mount();
   });
 </script>

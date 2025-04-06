@@ -5,248 +5,338 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SailingPeople.Domain;
 using SailingPeople.Models;
+using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Webp;
+using SixLabors.ImageSharp.Processing;
 
-namespace SailingPeople.Areas.Admin.Controllers;
-
-[Area("Admin")]
-[Authorize]
-public class HomeController(AppDbContext dbContext, IMapper mapper) : Controller
+namespace SailingPeople.Areas.Admin.Controllers
 {
-    public async Task<IActionResult> Index()
+    [Area("Admin")]
+    [Authorize]
+    public class HomeController : Controller
     {
-        var boats = (await dbContext.Boats.ToListAsync()).Select(p => mapper.Map<BoatDto>(p));
+        private readonly AppDbContext _dbContext;
+        private readonly IMapper _mapper;
 
-        return View(boats);
-    }
-
-    [HttpGet]
-    public IActionResult Create()
-    {
-        var specs = dbContext.Specs.ToList();
-        ViewBag.Specs = specs;
-
-        var facility = dbContext.Facilities.ToList();
-        ViewBag.Facility = facility;
-
-        ViewBag.Categories = new SelectList(dbContext.Categories.ToList().Select(p => mapper.Map<CategoryDto>(p)), "Id", "LocalizedName");
-        return View(new BoatDto());
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> Create(BoatDto model)
-    {
-        if (!ModelState.IsValid)
+        public HomeController(AppDbContext dbContext, IMapper mapper)
         {
-            return View(model);
+            _dbContext = dbContext;
+            _mapper = mapper;
         }
 
-        var boat = new Boat
+        [HttpGet]
+        public async Task<IActionResult> Index()
         {
-            Id = model.Id,
-            Name = model.Name!,
-            CategoryId = model.CategoryId,
-            Width = model.Width ?? 0,
-            Length = model.Length ?? 0,
-            Cabin = model.Cabin ?? 0,
-            Guest = model.Guest ?? 0,
-            Code = model.Code,
-            MayToOctoberPrice = model.MayToOctoberPrice,
-            JunePrice = model.JunePrice,
-            JulyToAugustPrice = model.JulyToAugustPrice,
-            SeptemberPrice = model.SeptemberPrice,
-        };
+            var boats = await _dbContext.Boats
+                .Include(b => b.Category)
+                .ToListAsync();
 
-        for (int i = 0; i < model.SpecId.Count(); i++)
-            boat.BoatSpecs.Add(new BoatSpec
-            {
-                SpecId = model.SpecId[i],
-                ValueTr = model.SpecValue[i],
-                ValueEn = model.SpecValue[i]
-            });
+            var boatDtos = boats.Select(b => _mapper.Map<BoatDto>(b)).ToList();
 
-        if (model.FacilityId != null && model.FacilityId.Any())
-        {
-            var selectedFacilities = dbContext.Facilities
-                .Where(p => model.FacilityId.Contains(p.Id))
-                .ToList();
-
-            foreach (var facility in selectedFacilities)
-            {
-                boat.Facilities.Add(facility);
-            }
+            return View(boatDtos);
         }
 
-        if (model.ImageFile != null && model.ImageFile.Length > 0)
+        [HttpGet]
+        public IActionResult Create()
         {
-            using var image = await Image.LoadAsync(model.ImageFile!.OpenReadStream());
-            image.Mutate(p => p.Resize(new ResizeOptions { Mode = ResizeMode.Crop, Size = new Size(1024, 1024) }));
-            boat.Image = image.ToBase64String(WebpFormat.Instance);
-        }
-
-        if (model.Images != null && model.Images.Count > 0)
-        {
-            foreach (var item in model.Images)
-            {
-                using var image = await Image.LoadAsync(item.OpenReadStream());
-                image.Mutate(p => p.Resize(new ResizeOptions { Mode = ResizeMode.Crop, Size = new Size(800, 800) }));
-                boat.BoatImages.Add(new BoatImage { Image = image.ToBase64String(WebpFormat.Instance) });
-            }
-        }
-
-        dbContext.Boats.Add(boat);
-        dbContext.SaveChanges();
-
-        return RedirectToAction("Index");
-    }
-
-    [HttpGet]
-    public async Task<IActionResult> Delete(Guid Id)
-    {
-        await dbContext.Boats.Where(p => p.Id == Id).ExecuteDeleteAsync();
-
-        return RedirectToAction("Index");
-    }
-
-    [HttpGet]
-    public async Task<IActionResult> Edit(Guid Id)
-    {
-        var boat = await dbContext.Boats
-            .Include(b => b.Facilities)
-            .Include(b => b.BoatSpecs)
-            .Include(b => b.BoatImages)
-            .FirstOrDefaultAsync(b => b.Id == Id);
-
-        if (boat == null)
-            return NotFound();
-
-        var model = new BoatDto
-        {
-            Id = boat.Id,
-            Name = boat.Name,
-            CategoryId = boat.CategoryId,
-            Width = boat.Width,
-            Length = boat.Length,
-            Cabin = boat.Cabin,
-            Guest = boat.Guest,
-            Code = boat.Code,
-            MayToOctoberPrice = boat.MayToOctoberPrice,
-            JunePrice = boat.JunePrice,
-            JulyToAugustPrice = boat.JulyToAugustPrice,
-            SeptemberPrice = boat.SeptemberPrice,
-            FacilityId = boat.Facilities.Select(f => f.Id).ToList()
-        };
-
-        ViewBag.Specs = dbContext.Specs.ToList();
-        ViewBag.Facility = dbContext.Facilities.ToList();
-        ViewBag.Categories = new SelectList(
-            dbContext.Categories.ToList().Select(p => mapper.Map<CategoryDto>(p)),
-            "Id",
-            "LocalizedName"
-        );
-
-        return View(model);
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> Edit(BoatDto model)
-    {
-        if (!ModelState.IsValid)
-        {
-            ViewBag.Specs = dbContext.Specs.ToList();
-            ViewBag.Facility = dbContext.Facilities.ToList();
             ViewBag.Categories = new SelectList(
-                dbContext.Categories.ToList().Select(p => mapper.Map<CategoryDto>(p)),
+                _dbContext.Categories
+                    .AsNoTracking()
+                    .ToList()
+                    .Select(c => _mapper.Map<CategoryDto>(c)),
                 "Id",
                 "LocalizedName"
             );
 
+            ViewBag.Specs = _dbContext.Specs.AsNoTracking().ToList();
+            ViewBag.Facility = _dbContext.Facilities.AsNoTracking().ToList();
+
+            return View(new BoatDto());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(BoatDto model)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Categories = new SelectList(
+                    _dbContext.Categories
+                        .AsNoTracking()
+                        .ToList()
+                        .Select(c => _mapper.Map<CategoryDto>(c)),
+                    "Id",
+                    "LocalizedName"
+                );
+                ViewBag.Specs = _dbContext.Specs.AsNoTracking().ToList();
+                ViewBag.Facility = _dbContext.Facilities.AsNoTracking().ToList();
+
+                return View(model);
+            }
+
+            var boat = new Boat
+            {
+                Id = model.Id,
+                Name = model.Name!,
+                CategoryId = model.CategoryId,
+                Width = model.Width ?? 0,
+                Length = model.Length ?? 0,
+                Cabin = model.Cabin ?? 0,
+                Guest = model.Guest ?? 0,
+                Code = model.Code,
+                MayToOctoberPrice = model.MayToOctoberPrice,
+                JunePrice = model.JunePrice,
+                JulyToAugustPrice = model.JulyToAugustPrice,
+                SeptemberPrice = model.SeptemberPrice
+            };
+
+            if (model.SpecId != null && model.SpecValue != null)
+            {
+                for (int i = 0; i < model.SpecId.Count; i++)
+                {
+                    boat.BoatSpecs.Add(new BoatSpec
+                    {
+                        SpecId = model.SpecId[i],
+                        ValueTr = model.SpecValue[i],
+                        ValueEn = model.SpecValue[i]
+                    });
+                }
+            }
+
+            if (model.FacilityId != null && model.FacilityId.Any())
+            {
+                var selectedFacilities = await _dbContext.Facilities
+                    .Where(f => model.FacilityId.Contains(f.Id))
+                    .ToListAsync();
+
+                foreach (var facility in selectedFacilities)
+                {
+                    boat.Facilities.Add(facility);
+                }
+            }
+
+            if (model.ImageFile != null && model.ImageFile.Length > 0)
+            {
+                using var coverImage = await Image.LoadAsync(model.ImageFile.OpenReadStream());
+                coverImage.Mutate(p => p.Resize(new ResizeOptions
+                {
+                    Mode = ResizeMode.Crop,
+                    Size = new Size(1024, 1024)
+                }));
+                boat.Image = coverImage.ToBase64String(WebpFormat.Instance);
+            }
+
+            if (model.Images != null && model.Images.Count > 0)
+            {
+                foreach (var file in model.Images)
+                {
+                    using var additionalImage = await Image.LoadAsync(file.OpenReadStream());
+                    additionalImage.Mutate(p => p.Resize(new ResizeOptions
+                    {
+                        Mode = ResizeMode.Crop,
+                        Size = new Size(800, 800)
+                    }));
+                    boat.BoatImages.Add(new BoatImage
+                    {
+                        Image = additionalImage.ToBase64String(WebpFormat.Instance)
+                    });
+                }
+            }
+
+            _dbContext.Boats.Add(boat);
+            await _dbContext.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            await _dbContext.Boats
+                .Where(b => b.Id == id)
+                .ExecuteDeleteAsync();
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            var boat = await _dbContext.Boats
+                .Include(b => b.BoatSpecs)
+                .ThenInclude(bs => bs.Spec)
+                .Include(b => b.Facilities)
+                .Include(b => b.BoatImages)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(b => b.Id == id);
+
+            if (boat == null)
+                return NotFound();
+
+            var model = new BoatEditViewModel
+            {
+                Id = boat.Id,
+                Name = boat.Name,
+                CategoryId = boat.CategoryId,
+                Code = boat.Code,
+                MayToOctoberPrice = boat.MayToOctoberPrice,
+                JunePrice = boat.JunePrice,
+                JulyToAugustPrice = boat.JulyToAugustPrice,
+                SeptemberPrice = boat.SeptemberPrice,
+                Width = boat.Width,
+                Length = boat.Length,
+                Guest = boat.Guest,
+                Cabin = boat.Cabin,
+                SelectedFacilities = boat.Facilities.Select(f => f.Id).ToList(),
+                Specs = boat.BoatSpecs.Select(s => new BoatSpecInputModel
+                {
+                    SpecId = s.SpecId,
+                    ValueTr = s.ValueTr
+                }).ToList(),
+                ExistingImages = boat.BoatImages.Select(i => new BoatImageViewModel
+                {
+                    Id = i.Id,
+                    Base64Data = i.Image
+                }).ToList()
+            };
+
+            ViewBag.Categories = new SelectList(
+                _dbContext.Categories
+                    .AsNoTracking()
+                    .ToList()
+                    .Select(c => _mapper.Map<CategoryDto>(c)),
+                "Id",
+                "LocalizedName",
+                boat.CategoryId
+            );
+            ViewBag.AllFacilities = _dbContext.Facilities.AsNoTracking().ToList();
+            ViewBag.AllSpecs = _dbContext.Specs.AsNoTracking().ToList();
+
             return View(model);
         }
 
-        var boat = await dbContext.Boats
-            .Include(b => b.BoatSpecs)
-            .Include(b => b.Facilities)
-            .Include(b => b.BoatImages)
-            .FirstOrDefaultAsync(b => b.Id == model.Id);
-
-        if (boat == null)
-            return NotFound();
-
-        boat.Name = model.Name!;
-        boat.CategoryId = model.CategoryId;
-        boat.Width = model.Width ?? 0;
-        boat.Length = model.Length ?? 0;
-        boat.Cabin = model.Cabin ?? 0;
-        boat.Guest = model.Guest ?? 0;
-        boat.Code = model.Code;
-        boat.MayToOctoberPrice = model.MayToOctoberPrice;
-        boat.JunePrice = model.JunePrice;
-        boat.JulyToAugustPrice = model.JulyToAugustPrice;
-        boat.SeptemberPrice = model.SeptemberPrice;
-
-        boat.BoatSpecs.Clear();
-
-        if (model.SpecId != null && model.SpecValue != null)
+        [HttpPost]
+        public async Task<IActionResult> Edit(BoatEditViewModel model)
         {
-            for (int i = 0; i < model.SpecId.Count(); i++)
+            if (!ModelState.IsValid)
             {
-                boat.BoatSpecs.Add(new BoatSpec
+                ViewBag.Categories = new SelectList(
+                    _dbContext.Categories
+                        .AsNoTracking()
+                        .ToList()
+                        .Select(c => _mapper.Map<CategoryDto>(c)),
+                    "Id",
+                    "LocalizedName",
+                    model.CategoryId
+                );
+                ViewBag.AllFacilities = _dbContext.Facilities.AsNoTracking().ToList();
+                ViewBag.AllSpecs = _dbContext.Specs.AsNoTracking().ToList();
+
+                return View(model);
+            }
+
+            var boat = await _dbContext.Boats
+                .Include(b => b.BoatSpecs)
+                .Include(b => b.Facilities)
+                .Include(b => b.BoatImages)
+                .FirstOrDefaultAsync(b => b.Id == model.Id);
+
+            if (boat == null)
+                return NotFound();
+
+            boat.Name = model.Name ?? "";
+            boat.CategoryId = model.CategoryId;
+            boat.Code = model.Code;
+            boat.MayToOctoberPrice = model.MayToOctoberPrice;
+            boat.JunePrice = model.JunePrice;
+            boat.JulyToAugustPrice = model.JulyToAugustPrice;
+            boat.SeptemberPrice = model.SeptemberPrice;
+            boat.Width = model.Width;
+            boat.Length = model.Length;
+            boat.Guest = model.Guest;
+            boat.Cabin = model.Cabin;
+
+            boat.BoatSpecs.Clear();
+            if (model.Specs != null)
+            {
+                foreach (var specInput in model.Specs)
                 {
-                    SpecId = model.SpecId[i],
-                    ValueTr = model.SpecValue[i],
-                    ValueEn = model.SpecValue[i]
-                });
+                    boat.BoatSpecs.Add(new BoatSpec
+                    {
+                        SpecId = specInput.SpecId,
+                        ValueTr = specInput.ValueTr,
+                        ValueEn = specInput.ValueTr
+                    });
+                }
             }
-        }
 
-        boat.Facilities.Clear();
-        if (model.FacilityId != null && model.FacilityId.Any())
-        {
-            var selectedFacilities = dbContext.Facilities
-                .Where(f => model.FacilityId.Contains(f.Id))
-                .ToList();
-
-            foreach (var facility in selectedFacilities)
+            boat.Facilities.Clear();
+            if (model.SelectedFacilities != null && model.SelectedFacilities.Any())
             {
-                boat.Facilities.Add(facility);
+                var facilitiesInDb = await _dbContext.Facilities
+                    .Where(f => model.SelectedFacilities.Contains(f.Id))
+                    .ToListAsync();
+
+                foreach (var facility in facilitiesInDb)
+                {
+                    boat.Facilities.Add(facility);
+                }
             }
-        }
 
-        if (model.ImageFile != null && model.ImageFile.Length > 0)
-        {
-            using var image = await Image.LoadAsync(model.ImageFile.OpenReadStream());
-            image.Mutate(p => p.Resize(new ResizeOptions
+            if (model.ImageFile != null && model.ImageFile.Length > 0)
             {
-                Mode = ResizeMode.Crop,
-                Size = new Size(1024, 1024)
-            }));
-            boat.Image = image.ToBase64String(WebpFormat.Instance);
-        }
-
-        if (model.Images != null && model.Images.Count > 0)
-        {
-            foreach (var file in model.Images)
-            {
-                using var image = await Image.LoadAsync(file.OpenReadStream());
-                image.Mutate(p => p.Resize(new ResizeOptions
+                using var coverImage = await Image.LoadAsync(model.ImageFile.OpenReadStream());
+                coverImage.Mutate(p => p.Resize(new ResizeOptions
                 {
                     Mode = ResizeMode.Crop,
-                    Size = new Size(800, 800)
+                    Size = new Size(1024, 1024)
                 }));
-                boat.BoatImages.Add(new BoatImage
-                {
-                    Image = image.ToBase64String(WebpFormat.Instance)
-                });
+                boat.Image = coverImage.ToBase64String(WebpFormat.Instance);
             }
+
+            if (model.ExistingImages != null && model.ExistingImages.Any())
+            {
+                var removeIds = model.ExistingImages
+                    .Where(x => x.Remove)
+                    .Select(x => x.Id)
+                    .ToList();
+
+                var imagesToRemoveInBoat = boat.BoatImages
+                    .Where(bi => removeIds.Contains(bi.Id))
+                    .ToList();
+
+                foreach (var image in imagesToRemoveInBoat)
+                {
+                    boat.BoatImages.Remove(image);
+                }
+
+                var imagesToRemove = _dbContext.BoatImages
+                    .Where(x => removeIds.Contains(x.Id));
+                _dbContext.BoatImages.RemoveRange(imagesToRemove);
+            }
+            if (model.AdditionalImages != null && model.AdditionalImages.Any())
+            {
+                foreach (var file in model.AdditionalImages)
+                {
+                    if (file.Length <= 0)
+                        continue;
+
+                    using var additionalImage = await Image.LoadAsync(file.OpenReadStream());
+                    additionalImage.Mutate(p => p.Resize(new ResizeOptions
+                    {
+                        Mode = ResizeMode.Crop,
+                        Size = new Size(800, 800)
+                    }));
+
+                    boat.BoatImages.Add(new BoatImage
+                    {
+                        Image = additionalImage.ToBase64String(WebpFormat.Instance)
+                    });
+                }
+            }
+
+            await _dbContext.SaveChangesAsync();
+
+            return RedirectToAction("Index");
         }
-
-        await dbContext.SaveChangesAsync();
-
-        return RedirectToAction("Index");
     }
 }
-
-
-
-
