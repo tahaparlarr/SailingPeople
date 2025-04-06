@@ -27,29 +27,17 @@ namespace SailingPeople.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            // Lazy loading açıkken Category otomatik yüklenecektir (view veya dto aşamasında erişildiğinde).
-            // Burada .Include() kaldırıldı:
             var boats = await _dbContext.Boats.ToListAsync();
-
-            var boatDtos = boats
-                .Select(b => _mapper.Map<BoatDto>(b))
-                .ToList();
-
+            var boatDtos = boats.Select(b => _mapper.Map<BoatDto>(b)).ToList();
             return View(boatDtos);
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.Categories = new SelectList(
-                _dbContext.Categories.ToList(),
-                "Id",
-                "LocalizedName"
-            );
-
+            ViewBag.Categories = new SelectList(_dbContext.Categories.ToList(), "Id", "LocalizedName");
             ViewBag.Specs = _dbContext.Specs.ToList();
             ViewBag.Facility = _dbContext.Facilities.ToList();
-
             return View(new BoatDto());
         }
 
@@ -58,14 +46,9 @@ namespace SailingPeople.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.Categories = new SelectList(
-                    _dbContext.Categories.ToList(),
-                    "Id",
-                    "LocalizedName"
-                );
+                ViewBag.Categories = new SelectList(_dbContext.Categories.ToList(), "Id", "LocalizedName");
                 ViewBag.Specs = _dbContext.Specs.ToList();
                 ViewBag.Facility = _dbContext.Facilities.ToList();
-
                 return View(model);
             }
 
@@ -103,7 +86,6 @@ namespace SailingPeople.Areas.Admin.Controllers
                 var selectedFacilities = await _dbContext.Facilities
                     .Where(f => model.FacilityId.Contains(f.Id))
                     .ToListAsync();
-
                 foreach (var facility in selectedFacilities)
                 {
                     boat.Facilities.Add(facility);
@@ -140,31 +122,23 @@ namespace SailingPeople.Areas.Admin.Controllers
 
             _dbContext.Boats.Add(boat);
             await _dbContext.SaveChangesAsync();
-
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         public async Task<IActionResult> Delete(Guid id)
         {
-            // ExecuteDeleteAsync, EF Core 7+ sürümünde
             await _dbContext.Boats
                 .Where(b => b.Id == id)
                 .ExecuteDeleteAsync();
-
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
         {
-
-            var boat = await _dbContext.Boats
-                .FirstOrDefaultAsync(b => b.Id == id);
-
-            if (boat == null)
-                return NotFound();
-
+            var boat = await _dbContext.Boats.FirstOrDefaultAsync(b => b.Id == id);
+            if (boat == null) return NotFound();
             var model = new BoatEditViewModel
             {
                 Id = boat.Id,
@@ -191,16 +165,9 @@ namespace SailingPeople.Areas.Admin.Controllers
                     Base64Data = i.Image
                 }).ToList()
             };
-
-            ViewBag.Categories = new SelectList(
-                _dbContext.Categories.ToList(),
-                "Id",
-                "LocalizedName",
-                boat.CategoryId
-            );
+            ViewBag.Categories = new SelectList(_dbContext.Categories.ToList(), "Id", "LocalizedName", boat.CategoryId);
             ViewBag.AllFacilities = _dbContext.Facilities.ToList();
             ViewBag.AllSpecs = _dbContext.Specs.ToList();
-
             return View(model);
         }
 
@@ -209,28 +176,16 @@ namespace SailingPeople.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.Categories = new SelectList(
-                    _dbContext.Categories.ToList(),
-                    "Id",
-                    "LocalizedName",
-                    model.CategoryId
-                );
+                ViewBag.Categories = new SelectList(_dbContext.Categories.ToList(), "Id", "LocalizedName", model.CategoryId);
                 ViewBag.AllFacilities = _dbContext.Facilities.ToList();
                 ViewBag.AllSpecs = _dbContext.Specs.ToList();
-
                 return View(model);
             }
-
-            var boat = await _dbContext.Boats
-                .FirstOrDefaultAsync(b => b.Id == model.Id);
-
-            if (boat == null)
-                return NotFound();
-
+            var boat = await _dbContext.Boats.FirstOrDefaultAsync(b => b.Id == model.Id);
+            if (boat == null) return NotFound();
             var specsInBoat = boat.BoatSpecs;
             var facilitiesInBoat = boat.Facilities;
             var imagesInBoat = boat.BoatImages;
-
             boat.Name = model.Name ?? "";
             boat.CategoryId = model.CategoryId;
             boat.Code = model.Code;
@@ -242,7 +197,6 @@ namespace SailingPeople.Areas.Admin.Controllers
             boat.Length = model.Length;
             boat.Guest = model.Guest;
             boat.Cabin = model.Cabin;
-
             boat.BoatSpecs.Clear();
             if (model.Specs != null)
             {
@@ -256,20 +210,17 @@ namespace SailingPeople.Areas.Admin.Controllers
                     });
                 }
             }
-
             boat.Facilities.Clear();
             if (model.SelectedFacilities != null && model.SelectedFacilities.Any())
             {
                 var facilitiesInDb = await _dbContext.Facilities
                     .Where(f => model.SelectedFacilities.Contains(f.Id))
                     .ToListAsync();
-
                 foreach (var facility in facilitiesInDb)
                 {
                     boat.Facilities.Add(facility);
                 }
             }
-
             if (model.ImageFile != null && model.ImageFile.Length > 0)
             {
                 using var coverImage = await Image.LoadAsync(model.ImageFile.OpenReadStream());
@@ -280,51 +231,35 @@ namespace SailingPeople.Areas.Admin.Controllers
                 }));
                 boat.Image = coverImage.ToBase64String(WebpFormat.Instance);
             }
-
             if (model.ExistingImages != null && model.ExistingImages.Any())
             {
-                var removeIds = model.ExistingImages
-                    .Where(x => x.Remove)
-                    .Select(x => x.Id)
-                    .ToList();
-
-                var imagesToRemoveInBoat = boat.BoatImages
-                    .Where(bi => removeIds.Contains(bi.Id))
-                    .ToList();
-
+                var removeIds = model.ExistingImages.Where(x => x.Remove).Select(x => x.Id).ToList();
+                var imagesToRemoveInBoat = boat.BoatImages.Where(bi => removeIds.Contains(bi.Id)).ToList();
                 foreach (var image in imagesToRemoveInBoat)
                 {
                     boat.BoatImages.Remove(image);
                 }
-
-                var imagesToRemove = _dbContext.BoatImages
-                    .Where(x => removeIds.Contains(x.Id));
+                var imagesToRemove = _dbContext.BoatImages.Where(x => removeIds.Contains(x.Id));
                 _dbContext.BoatImages.RemoveRange(imagesToRemove);
             }
-
             if (model.AdditionalImages != null && model.AdditionalImages.Any())
             {
                 foreach (var file in model.AdditionalImages)
                 {
-                    if (file.Length <= 0)
-                        continue;
-
+                    if (file.Length <= 0) continue;
                     using var additionalImage = await Image.LoadAsync(file.OpenReadStream());
                     additionalImage.Mutate(p => p.Resize(new ResizeOptions
                     {
                         Mode = ResizeMode.Crop,
                         Size = new Size(800, 800)
                     }));
-
                     boat.BoatImages.Add(new BoatImage
                     {
                         Image = additionalImage.ToBase64String(WebpFormat.Instance)
                     });
                 }
             }
-
             await _dbContext.SaveChangesAsync();
-
             return RedirectToAction("Index");
         }
     }
