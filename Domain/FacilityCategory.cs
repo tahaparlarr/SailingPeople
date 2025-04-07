@@ -24,7 +24,6 @@ new FacilityCategory { Id = Guid.Parse("{A1E93A3D-6F42-4A15-A0C8-ABF80693F9BC}")
     new FacilityCategory { Id = Guid.Parse("{E00C8365-914D-4874-99B5-6C43D6A96717}"), NameTr = "Güvenlik", NameEn = "Security" },
     new FacilityCategory { Id = Guid.Parse("{B2F7E13B-001A-48BB-B4EF-B387C5D90A4C}"), NameTr = "Yacht Konforu", NameEn = "Comfort on Board" },
     new FacilityCategory { Id = Guid.Parse("{C1C48A44-6B02-4E6A-95C5-1D262788B7F0}"), NameTr = "Ekstra Ekipmanlar", NameEn = "Additional Equipment" }
-
         );
     }
 }

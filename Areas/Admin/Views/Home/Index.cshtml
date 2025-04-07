@@ -27,7 +27,6 @@
             <table class="table table-bordered table-hover text-center align-middle">
                 <thead class="table-light">
                     <tr>
-                        <th>ID</th>
                         <th>Code</th>
                         <th>Category Name</th>
                         <th></th>
@@ -40,7 +39,6 @@
                         foreach (var boat in Model)
                         {
                             <tr>
-                                <td>@boat.Id</td>
                                 <td>@boat.Code</td>
                                 <td>@(boat.Category?.LocalizedName ?? "Kategori yok")</td>
                                 <td>

@@ -348,7 +348,162 @@ new Facility
     NameTr = "Navigasyon",
     NameEn = "Navigation",
     FacilityCategoryId = Guid.Parse("{E00C8365-914D-4874-99B5-6C43D6A96717}")
+},
+new Facility
+{
+    Id = Guid.Parse("{6F91253D-9F4D-475A-8F4A-8F29C27DB56A}"),
+    NameTr = "Ocak",
+    NameEn = "Stove",
+    FacilityCategoryId = Guid.Parse("{1DB7A378-5E4E-4C61-B0A2-F7DAB56F6D51}") // Kitchen Equipment
+},
+new Facility
+{
+    Id = Guid.Parse("{B7C347B2-0F5D-48DC-A432-34E0D56B0972}"),
+    NameTr = "Dondurucu",
+    NameEn = "Freezer",
+    FacilityCategoryId = Guid.Parse("{1DB7A378-5E4E-4C61-B0A2-F7DAB56F6D51}") // Kitchen Equipment
+},
+new Facility
+{
+    Id = Guid.Parse("{3C61755B-6A85-4A35-BD67-2E6A3A161E97}"),
+    NameTr = "Isıtıcı",
+    NameEn = "Heater",
+    FacilityCategoryId = Guid.Parse("{1DB7A378-5E4E-4C61-B0A2-F7DAB56F6D51}") // Kitchen Equipment
+},
+new Facility
+{
+    Id = Guid.Parse("{4E41E85A-7FB3-45E7-832D-51A63F06034E}"),
+    NameTr = "Mutfak Malzemeleri",
+    NameEn = "Kitchen Utensils",
+    FacilityCategoryId = Guid.Parse("{1DB7A378-5E4E-4C61-B0A2-F7DAB56F6D51}") // Kitchen Equipment
+},
+new Facility
+{
+    Id = Guid.Parse("{A0338A12-ADA7-4B99-BEC5-8B1A0D9FB9A9}"),
+    NameTr = "Mikrodalga Fırın",
+    NameEn = "Microwave Oven",
+    FacilityCategoryId = Guid.Parse("{1DB7A378-5E4E-4C61-B0A2-F7DAB56F6D51}") // Kitchen Equipment
+},
+new Facility
+{
+    Id = Guid.Parse("{1B2A1D64-87D3-49DC-927D-0C44E8D42E9C}"),
+    NameTr = "Fırın",
+    NameEn = "Oven",
+    FacilityCategoryId = Guid.Parse("{1DB7A378-5E4E-4C61-B0A2-F7DAB56F6D51}") // Kitchen Equipment
+},
+new Facility
+{
+    Id = Guid.Parse("{DE11F0F5-4E9B-4E5F-A7FB-15B370B0F929}"),
+    NameTr = "Buzdolabı",
+    NameEn = "Refrigerator",
+    FacilityCategoryId = Guid.Parse("{1DB7A378-5E4E-4C61-B0A2-F7DAB56F6D51}") // Kitchen Equipment
+},
+new Facility
+{
+    Id = Guid.Parse("{6D962A0B-9231-49E5-82B7-03516E3B48D7}"),
+    NameTr = "Atık Tankı",
+    NameEn = "Waste Tank",
+    FacilityCategoryId = Guid.Parse("{A1E93A3D-6F42-4A15-A0C8-ABF80693F9BC}") // Sanitary Facilities
+},
+new Facility
+{
+    Id = Guid.Parse("{9E671BAF-3D9E-4C2D-9196-8B694E22787A}"),
+    NameTr = "Mangal",
+    NameEn = "Grill",
+    FacilityCategoryId = Guid.Parse("{1DB7A378-5E4E-4C61-B0A2-F7DAB56F6D51}") // Kitchen Equipment
+},
+new Facility
+{
+    Id = Guid.Parse("{26A6D23E-8D6B-4C50-9D8F-08BB9A388FF8}"),
+    NameTr = "Güneşlenme Yatakları",
+    NameEn = "Sunbathing Beds",
+    FacilityCategoryId = Guid.Parse("{A3F47C0E-30A6-4C89-A4A0-5AC20551D595}") // Exterior Equipment
+},
+new Facility
+{
+    Id = Guid.Parse("{4EFA6FF3-7984-4E59-B23F-7F3F3873D687}"),
+    NameTr = "Crew Kabin",
+    NameEn = "Crew Cabin",
+    FacilityCategoryId = Guid.Parse("{B2F7E13B-001A-48BB-B4EF-B387C5D90A4C}") // Comfort on Board
+},
+new Facility
+{
+    Id = Guid.Parse("{F97F6D36-8100-4721-917F-0F5716FDF8A9}"),
+    NameTr = "Yastıklar ve Battaniyeler",
+    NameEn = "Pillows and Blankets",
+    FacilityCategoryId = Guid.Parse("{B2F7E13B-001A-48BB-B4EF-B387C5D90A4C}") // Comfort on Board
+},
+new Facility
+{
+    Id = Guid.Parse("{F2E6F7F3-A056-4552-8FC7-72AA11D23E3E}"),
+    NameTr = "Lavabo",
+    NameEn = "Sink",
+    FacilityCategoryId = Guid.Parse("{A1E93A3D-6F42-4A15-A0C8-ABF80693F9BC}") // Sanitary Facilities
+},
+new Facility
+{
+    Id = Guid.Parse("{8D2A1E78-1A79-4F39-92C5-B4F26519BCB1}"),
+    NameTr = "Havlu",
+    NameEn = "Towel",
+    FacilityCategoryId = Guid.Parse("{B2F7E13B-001A-48BB-B4EF-B387C5D90A4C}") // Comfort on Board
+},
+new Facility
+{
+    Id = Guid.Parse("{C3F93F88-5E5D-4635-9149-17EE18A0140C}"),
+    NameTr = "Salon GPS Plotter",
+    NameEn = "Salon GPS Plotter",
+    FacilityCategoryId = Guid.Parse("{C1C48A44-6B02-4E6A-95C5-1D262788B7F0}") // Additional Equipment
+},
+new Facility
+{
+    Id = Guid.Parse("{A67F8E7F-A53A-43E3-90B9-D88DDE8C9D28}"),
+    NameTr = "Dingi",
+    NameEn = "Dinghy",
+    FacilityCategoryId = Guid.Parse("{A3F47C0E-30A6-4C89-A4A0-5AC20551D595}") // Exterior Equipment
+},
+new Facility
+{
+    Id = Guid.Parse("{548506FE-B619-4F76-B0AD-2F33D5102D85}"),
+    NameTr = "Jeneratör",
+    NameEn = "Generator",
+    FacilityCategoryId = Guid.Parse("{C1C48A44-6B02-4E6A-95C5-1D262788B7F0}") // Additional Equipment
+},
+new Facility
+{
+    Id = Guid.Parse("{A1B45A2B-9C31-4D53-9009-7416DA5E1B0D}"),
+    NameTr = "Güneş Panelleri",
+    NameEn = "Solar Panels",
+    FacilityCategoryId = Guid.Parse("{C1C48A44-6B02-4E6A-95C5-1D262788B7F0}") // Additional Equipment
+},
+new Facility
+{
+    Id = Guid.Parse("{DCC1A4EC-3208-48F9-9F67-917FD0802C09}"),
+    NameTr = "Electric Winches",
+    NameEn = "Electric Winches",
+    FacilityCategoryId = Guid.Parse("{C1C48A44-6B02-4E6A-95C5-1D262788B7F0}") // Additional Equipment
+},
+new Facility
+{
+    Id = Guid.Parse("{4A489577-9462-46B2-925C-CE21153C1730}"),
+    NameTr = "Inverter",
+    NameEn = "Inverter",
+    FacilityCategoryId = Guid.Parse("{C1C48A44-6B02-4E6A-95C5-1D262788B7F0}") // Additional Equipment
+},
+new Facility
+{
+    Id = Guid.Parse("{F5B1467C-BD30-4D28-A9E0-B5B4E42DB3DB}"),
+    NameTr = "Kokpit Hoparlörleri",
+    NameEn = "Cockpit Speakers",
+    FacilityCategoryId = Guid.Parse("{C1C48A44-6B02-4E6A-95C5-1D262788B7F0}") // Additional Equipment
+},
+new Facility
+{
+    Id = Guid.Parse("{C983405D-9A7E-49FB-B5B3-4B06B04F1A44}"),
+    NameTr = "Ses Sistemi",
+    NameEn = "Sound System",
+    FacilityCategoryId = Guid.Parse("{C1C48A44-6B02-4E6A-95C5-1D262788B7F0}") // Additional Equipment
 }
+
 
         );
     }
