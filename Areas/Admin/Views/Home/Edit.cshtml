@@ -1,233 +1,147 @@
-﻿@model SailingPeople.Models.BoatEditViewModel
+﻿@model BoatDto
 
 @{
     ViewData["Title"] = "Edit Boat";
-
-    var allFacilities = ViewBag.AllFacilities as List<SailingPeople.Domain.Facility>;
-    var allSpecs = ViewBag.AllSpecs as List<SailingPeople.Domain.Spec>;
 }
 
-<div class="container my-4">
-    <h2 class="mb-4">Edit Boat</h2>
-
-    <form method="post" enctype="multipart/form-data">
-        <div class="row">
-            <!-- Sol Kolon: Boat Info, Pricing, Facilities, Specs -->
-            <div class="col-md-8">
-                <!-- Boat Info Card -->
-                <div class="card mb-3">
-                    <div class="card-header bg-primary text-white">
-                        Boat Info
-                    </div>
-                    <div class="card-body">
+<div class="container-fluid py-5" style="background: linear-gradient(to bottom, #dfe9f3, #ffffff);">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Create Boat</h4>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post" asp-action="Create" enctype="multipart/form-data">
+                        <input type="hidden" asp-for="Image" />
                         <div class="mb-3">
-                            <label asp-for="Name" class="form-label"></label>
-                            <input asp-for="Name" class="form-control" />
+                            <label asp-for="CategoryId" class="form-label fw-bold"></label>
+                            <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.Categories">
+                                <option value="">Select...</option>
+                            </select>
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label fw-bold"></label>
+                            <input asp-for="Name" class="form-control" placeholder="Boat Name" />
                             <span asp-validation-for="Name" class="text-danger"></span>
                         </div>
 
-                        <div class="row g-3 mb-3">
-                            <div class="col-md-6">
-                                <label asp-for="CategoryId" class="form-label">Category</label>
-                                <select asp-for="CategoryId" class="form-select" asp-items="ViewBag.Categories">
-                                    <option value="">Select...</option>
-                                </select>
-                                <span asp-validation-for="CategoryId" class="text-danger"></span>
-                            </div>
-                            <div class="col-md-6">
-                                <label asp-for="Code" class="form-label">Code</label>
-                                <input asp-for="Code" class="form-control" />
-                                <span asp-validation-for="Code" class="text-danger"></span>
-                            </div>
+                        <div class="mb-3">
+                            <label asp-for="Code" class="form-label fw-bold"></label>
+                            <input asp-for="Code" class="form-control" placeholder="Boat Code" />
+                            <span asp-validation-for="Code" class="text-danger"></span>
                         </div>
 
-                        <div class="row g-3 mb-3">
-                            <div class="col-md-6">
-                                <label asp-for="Width" class="form-label">Width (m)</label>
-                                <input asp-for="Width" class="form-control" />
-                            </div>
-                            <div class="col-md-6">
-                                <label asp-for="Length" class="form-label">Length (m)</label>
-                                <input asp-for="Length" class="form-control" />
-                            </div>
+                        <div class="mb-3">
+                            <label asp-for="MayToOctoberPrice" class="form-label fw-bold"></label>
+                            <input asp-for="MayToOctoberPrice" class="form-control" placeholder="Boat May To October Price" />
+                            <span asp-validation-for="MayToOctoberPrice" class="text-danger"></span>
                         </div>
 
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label asp-for="Guest" class="form-label">Guest</label>
-                                <input asp-for="Guest" class="form-control" />
-                            </div>
-                            <div class="col-md-6">
-                                <label asp-for="Cabin" class="form-label">Cabin</label>
-                                <input asp-for="Cabin" class="form-control" />
-                            </div>
+                        <div class="mb-3">
+                            <label asp-for="JunePrice" class="form-label fw-bold"></label>
+                            <input asp-for="JunePrice" class="form-control" placeholder="Boat June Price" />
+                            <span asp-validation-for="JunePrice" class="text-danger"></span>
                         </div>
-                    </div>
-                </div>
 
-                <!-- Pricing Card -->
-                <div class="card mb-3">
-                    <div class="card-header bg-secondary text-white">
-                        Pricing
-                    </div>
-                    <div class="card-body">
-                        <div class="row g-3 mb-3">
-                            <div class="col-md-6 col-lg-3">
-                                <label asp-for="MayToOctoberPrice" class="form-label">May-Oct Price</label>
-                                <input asp-for="MayToOctoberPrice" class="form-control" />
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <label asp-for="JunePrice" class="form-label">June Price</label>
-                                <input asp-for="JunePrice" class="form-control" />
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <label asp-for="JulyToAugustPrice" class="form-label">July-Aug Price</label>
-                                <input asp-for="JulyToAugustPrice" class="form-control" />
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <label asp-for="SeptemberPrice" class="form-label">September Price</label>
-                                <input asp-for="SeptemberPrice" class="form-control" />
-                            </div>
+                        <div class="mb-3">
+                            <label asp-for="JulyToAugustPrice" class="form-label fw-bold"></label>
+                            <input asp-for="JulyToAugustPrice" class="form-control" placeholder="Boat July To August Price" />
+                            <span asp-validation-for="JulyToAugustPrice" class="text-danger"></span>
                         </div>
-                    </div>
-                </div>
 
-                <!-- Facilities Card -->
-                <div class="card mb-3">
-                    <div class="card-header bg-success text-white">
-                        Facilities
-                    </div>
-                    <div class="card-body">
-                        @if (allFacilities != null)
-                        {
-                            foreach (var facility in allFacilities)
-                            {
-                                var isChecked = Model.SelectedFacilities.Contains(facility.Id);
-                                <div class="form-check form-check-inline mb-2">
-                                    <input class="form-check-input" type="checkbox"
-                                           name="SelectedFacilities"
-                                           value="@facility.Id"
-                                           @(isChecked ? "checked" : "") />
-                                    <label class="form-check-label">
-                                        @facility.LocalizedName
-                                    </label>
-                                </div>
-                            }
-                        }
-                    </div>
-                </div>
+                        <div class="mb-3">
+                            <label asp-for="SeptemberPrice" class="form-label fw-bold"></label>
+                            <input asp-for="SeptemberPrice" class="form-control" placeholder="Boat September Price" />
+                            <span asp-validation-for="SeptemberPrice" class="text-danger"></span>
+                        </div>
 
-                <!-- Specs Card -->
-                <div class="card mb-3">
-                    <div class="card-header bg-info text-white">
-                        Specs
-                    </div>
-                    <div class="card-body">
-                        @if (Model.Specs != null && allSpecs != null)
-                        {
-                            for (int i = 0; i < Model.Specs.Count; i++)
-                            {
-                                var specId = Model.Specs[i].SpecId;
-                                var specName = allSpecs
-                                    .FirstOrDefault(s => s.Id == specId)?.LocalizedName ?? "Unknown Spec";
+                        <div class="mb-3">
+                            <label asp-for="Width" class="form-label fw-bold"></label>
+                            <input asp-for="Width" class="form-control" placeholder="Width (meters)" />
+                            <span asp-validation-for="Width" class="text-danger"></span>
+                        </div>
 
-                                <div class="row mb-2">
-                                    <div class="col-md-4 fw-bold">
-                                        @specName
-                                    </div>
-                                    <div class="col-md-8">
-                                        <input type="hidden" name="Specs[@i].SpecId" value="@specId" />
-                                        <input type="text"
-                                               name="Specs[@i].ValueTr"
-                                               value="@Model.Specs[i].ValueTr"
-                                               class="form-control" />
-                                    </div>
-                                </div>
-                            }
-                        }
-                    </div>
-                </div>
-            </div>
+                        <div class="mb-3">
+                            <label asp-for="Length" class="form-label fw-bold"></label>
+                            <input asp-for="Length" class="form-control" placeholder="Length (meters)" />
+                            <span asp-validation-for="Length" class="text-danger"></span>
+                        </div>
 
-            <!-- Sağ Kolon: Cover Image, Existing Images, Additional Images -->
-            <div class="col-md-4">
-                <!-- Main Cover Image Card -->
-                <div class="card mb-3">
-                    <div class="card-header bg-dark text-white">
-                        Cover Image
-                    </div>
-                    <div class="card-body">
-                        <!-- Mevcut cover resmi göstermek isterseniz: 
-                             <img src="data:image/webp;base64,@Model.CoverImage" class="img-fluid mb-3" /> -->
-                        <label asp-for="ImageFile" class="form-label fw-bold">Change / Upload Main Image</label>
-                        <input asp-for="ImageFile" class="form-control" type="file" />
-                        <span asp-validation-for="ImageFile" class="text-danger"></span>
-                    </div>
-                </div>
+                        <div class="mb-3">
+                            <label asp-for="Guest" class="form-label fw-bold"></label>
+                            <input asp-for="Guest" class="form-control" placeholder="Number of Guests" />
+                            <span asp-validation-for="Guest" class="text-danger"></span>
+                        </div>
 
-                <!-- Existing Additional Images -->
-                <div class="card mb-3">
-                    <div class="card-header bg-warning">
-                        Existing Images
-                    </div>
-                    <div class="card-body">
-                        @if (Model.ExistingImages != null && Model.ExistingImages.Count > 0)
-                        {
+                        <div class="mb-3">
+                            <label asp-for="Cabin" class="form-label fw-bold"></label>
+                            <input asp-for="Cabin" class="form-control" placeholder="Number of Cabins" />
+                            <span asp-validation-for="Cabin" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <img src="@Model.Image" width="400" height="400" />
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="ImageFile" class="form-label fw-bold">Main Image</label>
+                            <input asp-for="ImageFile" class="form-control" type="file" />
+                            <span asp-validation-for="ImageFile" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Images" class="form-label fw-bold">Additional Images</label>
+                            <input asp-for="Images" class="form-control" type="file" multiple />
+                            <span asp-validation-for="Images" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
                             <div class="row">
-                                @for (int i = 0; i < Model.ExistingImages.Count; i++)
+                                @foreach (var boatImage in Model.BoatImages)
                                 {
-                                    var img = Model.ExistingImages[i];
-                                    <div class="col-6 col-lg-6 mb-3">
-                                        <div class="card">
-                                            <img src="data:image/webp;base64,@img.Base64Data" class="card-img-top" />
-                                            <div class="card-body p-2">
-                                                <input type="hidden" name="ExistingImages[@i].Id" value="@img.Id" />
-                                                <div class="form-check">
-                                                    <input class="form-check-input"
-                                                           type="checkbox"
-                                                           name="ExistingImages[@i].Remove"
-                                                           value="true" />
-                                                    <label class="form-check-label small">
-                                                        Remove this image
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="col-12 col-md-3 d-flex flex-column gap-3">
+                                        <img src="@boatImage.Image" width="240" height="240" />
+                                        <input type="number" name="SortOrders" value="@boatImage.SortOrder" />
+
                                     </div>
                                 }
                             </div>
-                        }
-                        else
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <h5 class="fw-bold">Specifications</h5>
+                            </div>
+                            @foreach (var spec in ViewBag.Specs as IEnumerable<Spec>)
+                            {
+                                <div class="col-md-3 mb-3">
+                                    <label class="form-label">@spec.LocalizedName</label>
+                                    <input type="hidden" name="SpecId" value="@spec.Id" />
+                                    <input type="text" name="SpecValue" class="form-control" />
+                                </div>
+                            }
+                        </div>
+
+                        @foreach (var facility in ViewBag.Facility as IEnumerable<Facility>)
                         {
-                            <div class="text-muted">No additional images found.</div>
+                            <div class="col-md-3 mb-3">
+                                <div class="form-check">
+                                    <input type="checkbox" name="FacilityId" value="@facility.Id" class="form-check-input" />
+                                    <label class="form-check-label">@facility.LocalizedName</label>
+                                </div>
+                            </div>
                         }
-                    </div>
-                </div>
 
-                <!-- Add More Images -->
-                <div class="card mb-3">
-                    <div class="card-header bg-light">
-                        Add More Images
-                    </div>
-                    <div class="card-body">
-                        <label asp-for="AdditionalImages" class="form-label">Select Files</label>
-                        <input asp-for="AdditionalImages" class="form-control" type="file" multiple />
-                    </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary fw-bold">
+                                Create Boat
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-
-        <!-- Save Button -->
-        <div class="row mt-4">
-            <div class="col text-end">
-                <button type="submit" class="btn btn-primary px-5">
-                    <i class="bi bi-save"></i> Save Changes
-                </button>
-            </div>
-        </div>
-    </form>
+    </div>
 </div>
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}

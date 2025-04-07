@@ -10,7 +10,6 @@ public class BoatDto
     [Display(Name = "Name")]
     [Required()]
     public string? Name { get; set; }
-    public string? ShortName { get; set; }
 
     [Display(Name = "Category")]
     [Required(ErrorMessage = "Lütfen bir kategori seçiniz")]
@@ -60,7 +59,7 @@ public class BoatDto
     [Display(Name = "Cabin")]
     [Required()]
     public int? Cabin { get; set; }
-
+    public List<int> SortOrders { get; set; }
     public List<SpecDto> Specs { get; set; } = new List<SpecDto>(); 
     public List<BoatSpecDto> BoatSpecs { get; set; } = new List<BoatSpecDto>();
 

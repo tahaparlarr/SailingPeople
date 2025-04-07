@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using SailingPeople.Domain;
-using SailingPeople.Models; // LoginViewModel'in olduğu namespace
+using SailingPeople.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 

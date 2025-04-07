@@ -1,5 +1,4 @@
-﻿@using SailingPeople.Domain
-@model BoatDto
+﻿@model BoatDto
 
 @{
     ViewData["Title"] = "Create Boat";
@@ -13,7 +12,7 @@
                     <h4 class="mb-0">Create Boat</h4>
                 </div>
                 <div class="card-body p-4">
-                    <form method="post" enctype="multipart/form-data">
+                    <form method="post" asp-action="Create" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label asp-for="CategoryId" class="form-label fw-bold"></label>
                             <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.Categories">
@@ -94,7 +93,6 @@
                             <span asp-validation-for="Images" class="text-danger"></span>
                         </div>
 
-                        @* Sepcs *@
                         <div class="row mb-3">
                             <div class="col-12">
                                 <h5 class="fw-bold">Specifications</h5>
@@ -109,7 +107,6 @@
                             }
                         </div>
 
-                        @* Facilitys *@
                         @foreach (var facility in ViewBag.Facility as IEnumerable<Facility>)
                         {
                             <div class="col-md-3 mb-3">

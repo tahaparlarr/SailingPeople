@@ -8,11 +8,23 @@ namespace SailingPeople.Domain;
 public class Category
 {
     public Guid Id { get; set; }
-
     public required string NameTr { get; set; }
-
     public required string NameEn { get; set; }
     public virtual ICollection<Boat> Boats { get; set; } = [];
+    public string LocalizedName
+    {
+        get
+        {
+            var culture = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
+
+            if (culture == "tr")
+            {
+                return NameTr;
+            }
+            return NameEn;
+        }
+
+    }
 }
 
 public class CategoryEntityTypeConfiguration : IEntityTypeConfiguration<Category>

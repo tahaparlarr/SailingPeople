@@ -1,77 +1,69 @@
 ﻿@model IEnumerable<BoatDto>
 
 @{
-	ViewData["Title"] = "Admin Panel";
+    ViewData["Title"] = "Admin Panel";
 }
 
 <div class="container mt-5">
-	<div class="row">
-		<div class="col-12">
-			<h1 class="mb-4 text-center f-calvino">Admin Panel</h1>
-		</div>
-	</div>
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mb-4 text-center f-calvino">Admin Panel</h1>
+        </div>
+    </div>
 
-	<div class="p-4 mb-4 rounded shadow" style="background-color: #f8f9fa;">
-		<div class="row mb-2">
-			<div class="col-12 col-md-6">
-				<h4 class="mb-3">Transactions</h4>
-			</div>
-			<div class="col-12 col-md-6 text-md-end">
-				<a class="btn btn-primary" asp-area="Admin" asp-controller="Home" asp-action="Create">
-					Add New Boat
-				</a>
-			</div>
-		</div>
+    <div class="p-4 mb-4 rounded shadow" style="background-color: #f8f9fa;">
+        <div class="row mb-2">
+            <div class="col-12 col-md-6">
+                <h4 class="mb-3">Transactions</h4>
+            </div>
+            <div class="col-12 col-md-6 text-md-end">
+                <a class="btn btn-primary" asp-area="Admin" asp-controller="Home" asp-action="Create">
+                    Add New Boat
+                </a>
+            </div>
+        </div>
 
-		<div class="table-responsive">
-			<table class="table table-bordered table-hover text-center align-middle">
-				<thead class="table-light">
-					<tr>
-						<th>Image</th>
-						<th>ID</th>
-						<th>Name</th>
-						<th>Code</th>
-						<th>Category Name</th>
-						<th>Edit</th>
-						<th>Delete</th>
-					</tr>
-				</thead>
-				<tbody>
-					@if (Model != null && Model.Any())
-					{
-						foreach (var boat in Model)
-						{
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover text-center align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Code</th>
+                        <th>Category Name</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var boat in Model)
+                        {
                             <tr>
-                                <td><img src="@boat.Image" width="100" /></td>
                                 <td>@boat.Id</td>
-                                <td>@boat.Name</td>
                                 <td>@boat.Code</td>
-                                <td>@boat.Category.LocalizedName</td>
+                                <td>@(boat.Category?.LocalizedName ?? "Kategori yok")</td>
                                 <td>
-                                    <form asp-action="Edit">
-                                        <a asp-action="Edit" asp-route-id="@boat.Id" class="btn btn-warning" onclick="">
-                                            Edit
-                                        </a>
-                                    </form>
+                                    <a asp-action="Edit" asp-route-id="@boat.Id" class="btn btn-warning">
+                                        Edit
+                                    </a>
                                 </td>
                                 <td>
-                                    <form asp-action="Delete">
-                                        <a asp-action="Delete" asp-route-id="@boat.Id" class="btn btn-danger" onclick="">
-                                            Delete
-                                        </a>
-                                    </form>
+                                    <a asp-action="Delete" asp-route-id="@boat.Id" class="btn btn-danger">
+                                        Delete
+                                    </a>
                                 </td>
                             </tr>
-						}
-					}
-					else
-					{
-						<tr>
-							<td colspan="3" class="text-center">Kayıtlı tekne bulunamadı.</td>
-						</tr>
-					}
-				</tbody>
-			</table>
-		</div>
-	</div>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center">Kayıtlı tekne bulunamadı.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
