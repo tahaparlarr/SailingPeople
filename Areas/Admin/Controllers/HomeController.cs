@@ -156,25 +156,9 @@ namespace SailingPeople.Areas.Admin.Controllers
                 .ThenInclude(bs => bs.Spec)
                 .SingleOrDefaultAsync(b => b.Id == id);
 
-            if (boat == null)
-            {
-                return NotFound();
-            }
-
             var model = mapper.Map<BoatDto>(boat);
 
-            foreach (var spec in boat.BoatSpecs)
-            {
-                model.SpecId.Add(spec.SpecId);
-                model.SpecValue.Add(spec.ValueTr);
-            }
-
-            foreach (var facility in boat.Facilities)
-            {
-                model.FacilityId.Add(facility.Id);
-            }
-
-            return View(model);
+            return View(model); // Edit.cshtml
         }
 
         [HttpPost]
@@ -191,11 +175,6 @@ namespace SailingPeople.Areas.Admin.Controllers
                 .Include(p => p.Facilities)
                 .Include(p => p.BoatSpecs)
                 .SingleOrDefaultAsync(b => b.Id == model.Id);
-
-            if (boat == null)
-            {
-                return NotFound();
-            }
 
             boat.Name = model.Name!;
             boat.CategoryId = model.CategoryId;
@@ -237,10 +216,13 @@ namespace SailingPeople.Areas.Admin.Controllers
                 }
             }
 
+            // Specifications güncelleme
             if (model.SpecId != null && model.SpecValue != null)
             {
+                // Mevcut BoatSpecs kayıtlarını siliyoruz
                 dbContext.BoatSpecs.RemoveRange(boat.BoatSpecs);
 
+                // DTO’dan gelen değerler ile yeniden ekliyoruz
                 for (int i = 0; i < model.SpecId.Count; i++)
                 {
                     boat.BoatSpecs.Add(new BoatSpec
@@ -252,13 +234,17 @@ namespace SailingPeople.Areas.Admin.Controllers
                 }
             }
 
+            // Facilities güncelleme
             if (model.FacilityId != null)
             {
+                // Tüm eski Facilities kaydı sıfırlayalım
                 boat.Facilities.Clear();
 
+                // Yeni seçilenleri ekleyelim
                 var selectedFacilities = await dbContext.Facilities
                     .Where(f => model.FacilityId.Contains(f.Id))
                     .ToListAsync();
+
                 foreach (var facility in selectedFacilities)
                 {
                     boat.Facilities.Add(facility);
