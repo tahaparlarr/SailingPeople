@@ -9,11 +9,12 @@
         <div class="col-lg-8">
             <div class="card border-0 shadow-sm">
                 <div class="card-header bg-primary text-white">
-                    <h4 class="mb-0">Create Boat</h4>
+                    <h4 class="mb-0">Edit Boat</h4>
                 </div>
                 <div class="card-body p-4">
-                    <form method="post" asp-action="Create" enctype="multipart/form-data">
-                        <input type="hidden" asp-for="Image" />
+                    <form method="post" asp-action="Edit" enctype="multipart/form-data">
+                        <input type="hidden" asp-for="Id" />
+
                         <div class="mb-3">
                             <label asp-for="CategoryId" class="form-label fw-bold"></label>
                             <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.Categories">
@@ -83,31 +84,32 @@
                         </div>
 
                         <div class="mb-3">
-                            <img src="@Model.Image" width="400" height="400" />
-                        </div>
-                        <div class="mb-3">
-                            <label asp-for="ImageFile" class="form-label fw-bold">Main Image</label>
+                            <label class="form-label fw-bold">Current Main Image</label>
+                            @if (!string.IsNullOrEmpty(Model.Image))
+                            {
+                                <div>
+                                    <img src="data:image/webp;base64,@Model.Image" class="img-thumbnail" style="max-height: 200px;" />
+                                </div>
+                            }
+                            <label asp-for="ImageFile" class="form-label fw-bold mt-2">Change Main Image</label>
                             <input asp-for="ImageFile" class="form-control" type="file" />
                             <span asp-validation-for="ImageFile" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="Images" class="form-label fw-bold">Additional Images</label>
-                            <input asp-for="Images" class="form-control" type="file" multiple />
-                            <span asp-validation-for="Images" class="text-danger"></span>
-                        </div>
-
-                        <div class="mb-3">
+                            <label class="form-label fw-bold">Current Additional Images</label>
                             <div class="row">
-                                @foreach (var boatImage in Model.BoatImages)
+                                @foreach (var image in Model.BoatImages)
                                 {
-                                    <div class="col-12 col-md-3 d-flex flex-column gap-3">
-                                        <img src="@boatImage.Image" width="240" height="240" />
-                                        <input type="number" name="SortOrders" value="@boatImage.SortOrder" />
-
+                                    <div class="col-md-3 mb-3">
+                                        <img src="data:image/webp;base64,@image.Image" class="img-thumbnail" />
+                                        <a asp-action="DeleteImage" asp-route-id="@image.Id" class="btn btn-sm btn-danger mt-2">Delete</a>
                                     </div>
                                 }
                             </div>
+                            <label asp-for="Images" class="form-label fw-bold">Add More Images</label>
+                            <input asp-for="Images" class="form-control" type="file" multiple />
+                            <span asp-validation-for="Images" class="text-danger"></span>
                         </div>
 
                         <div class="row mb-3">
@@ -116,27 +118,36 @@
                             </div>
                             @foreach (var spec in ViewBag.Specs as IEnumerable<Spec>)
                             {
+                                var boatSpec = Model.BoatSpecs.FirstOrDefault(bs => bs.SpecId == spec.Id);
                                 <div class="col-md-3 mb-3">
                                     <label class="form-label">@spec.LocalizedName</label>
                                     <input type="hidden" name="SpecId" value="@spec.Id" />
-                                    <input type="text" name="SpecValue" class="form-control" />
+                                    <input type="text" name="SpecValue" class="form-control"
+                                           value="@(boatSpec?.ValueTr ?? "")" />
                                 </div>
                             }
                         </div>
 
-                        @foreach (var facility in ViewBag.Facility as IEnumerable<Facility>)
-                        {
-                            <div class="col-md-3 mb-3">
-                                <div class="form-check">
-                                    <input type="checkbox" name="FacilityId" value="@facility.Id" class="form-check-input" />
-                                    <label class="form-check-label">@facility.LocalizedName</label>
-                                </div>
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <h5 class="fw-bold">Facilities</h5>
                             </div>
-                        }
+                            @foreach (var facility in ViewBag.Facility as IEnumerable<Facility>)
+                            {
+                                <div class="col-md-3 mb-3">
+                                    <div class="form-check">
+                                        <input type="checkbox" name="FacilityId" value="@facility.Id"
+                                               class="form-check-input"
+                                               @(Model.Facilities.Any(f => f.Id == facility.Id) ? "checked" : "") />
+                                        <label class="form-check-label">@facility.LocalizedName</label>
+                                    </div>
+                                </div>
+                            }
+                        </div>
 
                         <div>
                             <button type="submit" class="btn btn-primary fw-bold">
-                                Create Boat
+                                Update Boat
                             </button>
                         </div>
                     </form>
