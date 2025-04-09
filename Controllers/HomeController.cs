@@ -75,7 +75,7 @@ namespace SailingPeople.Controllers
             var boat = await dbContext.Boats
                 .AsNoTracking()
                 .Where(b => b.Id == Id)
-                .Include(b => b.BoatImages)
+                // .Include(b => b.BoatImages)
                 .Include(b => b.BoatSpecs)
                     .ThenInclude(bs => bs.Spec)
                 .Include(b => b.Facilities)
@@ -169,16 +169,16 @@ namespace SailingPeople.Controllers
             try
             {
                 await emailService.SendAsync(
-                    "taha.parlar@cmosteknoloji.com", // Admin E-Postasý
-                    "Sailing & People Ziyaretçi Mesajý",
-                    $@"Gönderen: {model.Name}
+                    "taha.parlar@cmosteknoloji.com", // Admin E-Postasï¿½
+                    "Sailing & People Ziyaretï¿½i Mesajï¿½",
+                    $@"Gï¿½nderen: {model.Name}
             E-Posta: {model.Email}
             Konu: {model.Subject}
             Mesaj: {model.Message}",
                     isHtml: true);
 
                 ViewBag.IsSuccess = true;
-                ViewBag.Message = "Mesajýnýz baþarýyla gönderildi!";
+                ViewBag.Message = "Mesajï¿½nï¿½z baï¿½arï¿½yla gï¿½nderildi!";
                 return View("MessageSent");
             }
             catch (Exception ex)

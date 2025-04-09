@@ -8,10 +8,10 @@
     <div class="overlay"></div>
     <div class="container text-center">
         <h1 class="display-4">@Model.Code</h1>
-        <p class="lead mb-4">
-            Rüya gibi bir mavi yolculuğa <strong>@Model.Code</strong> ile çıkmaya hazır mısınız?
+        <p class="subtext">
+            <strong>@Model.Code</strong> ile hayalini kurduğunuz mavi yolculuğa çıkmaya hazır mısınız?
         </p>
-        <a href="#details-section" class="btn btn-primary">Detayları Gör</a>
+        <a href="#details-section" class="boat-detail-btn">Detayları Görüntüle</a>
     </div>
 </section>
 
@@ -35,84 +35,158 @@
             </div>
         </div>
     </div>
-
-    <div class="boat-specs-all">
-        <div class="row">
-            <div class="col-md-3 mb-4">
-                <div class="card h-100">
-                    <div class="card-header f-calvino">
-                        <h5>Genel Özellikler</h5>
+    <div class="boat-specs-container">
+        <div class="row g-4">
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                <div class="spec-card feature-card">
+                    <div class="card-icon">
+                        <i class="bi bi-box-seam"></i>
                     </div>
-                    <div class="card-body">
-                        <ul class="list-unstyled mb-0">
-                            <li><strong>Genişlik (Metre):</strong> @Model.Width</li>
-                            <li><strong>Uzunluk (Metre):</strong> @Model.Length</li>
-                            <li><strong>Kabin Sayısı:</strong> @Model.Cabin</li>
-                            <li><strong>Misafir Kapasitesi:</strong> @Model.Guest</li>
-                        </ul>
+                    <div class="card-content">
+                        <h3 class="card-title">Genel Özellikler</h3>
+                        <div class="spec-item">
+                            <i class="bi bi-arrows-angle-contract"></i>
+                            <div>
+                                <span class="spec-label">Genişlik</span>
+                                <span class="spec-value">
+                                    @{
+                                        if (decimal.TryParse(Model.Width?.ToString(), out var width))
+                                        {
+                                            var correctedWidth = width / 100;
+                                            @correctedWidth.ToString("N2")
+                                        }
+                                        else
+                                        {
+                                            @:"Geçersiz"
+                                        }
+                                    }
+                                    metre
+                                </span>
+                            </div>
+                        </div>
+                        <div class="spec-item">
+                            <i class="bi bi-arrows-angle-expand"></i>
+                            <div>
+                                <span class="spec-label">Uzunluk</span>
+                                <span class="spec-value">
+                                    @{
+                                        if (decimal.TryParse(Model.Length?.ToString(), out var length))
+                                        {
+                                            var correctedLength = length / 100;
+                                            @correctedLength.ToString("0.00")
+                                        }
+                                        else
+                                        {
+                                            @:"Geçersiz"
+                                        }
+                                    }
+                                    metre
+                                </span>
+                            </div>
+                        </div>
+                        <div class="spec-item">
+                            <i class="bi bi-door-closed"></i>
+                            <div>
+                                <span class="spec-label">Kabin</span>
+                                <span class="spec-value">@Model.Cabin</span>
+                            </div>
+                        </div>
+                        <div class="spec-item">
+                            <i class="bi bi-people"></i>
+                            <div>
+                                <span class="spec-label">Misafir</span>
+                                <span class="spec-value">@Model.Guest</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-3 mb-4">
-                <div class="card h-100">
-                    <div class="card-header f-calvino">
-                        <h5>Teknik Özellikler</h5>
+            <!-- Teknik Özellikler Kartı -->
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                <div class="spec-card tech-card">
+                    <div class="card-icon">
+                        <i class="bi bi-gear"></i>
                     </div>
-                    <div class="card-body">
-                        <ul class="list-unstyled mb-0">
+                    <div class="card-content">
+                        <h3 class="card-title">Teknik Özellikler</h3>
+                        <div class="spec-scroll">
                             @foreach (var spec in Model.BoatSpecs)
                             {
                                 if (!string.IsNullOrWhiteSpace(spec.LocalizedValue))
                                 {
-                                    <li>
-                                        <strong>@spec.Spec.LocalizedName:</strong> @spec.LocalizedValue
-                                    </li>
+                                    <div class="spec-item">
+                                        <i class="bi bi-tools"></i>
+                                        <div>
+                                            <span class="spec-label">@spec.Spec.LocalizedName</span>
+                                            <span class="spec-value">@spec.LocalizedValue</span>
+                                        </div>
+                                    </div>
                                 }
                             }
-                        </ul>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-3 mb-4">
-                <div class="card h-100">
-                    <div class="card-header f-calvino">
-                        <h5>Fiyatlar</h5>
+            <!-- Fiyatlar Kartı -->
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                <div class="spec-card price-card">
+                    <div class="card-icon">
+                        <i class="bi bi-tags"></i>
                     </div>
-                    <div class="card-body">
-                        <p><strong>Mayıs - Ekim:</strong> @Model.MayToOctoberPrice €</p>
-                        <p><strong>Haziran:</strong> @Model.JunePrice €</p>
-                        <p><strong>Temmuz - Ağustos:</strong> @Model.JulyToAugustPrice €</p>
-                        <p><strong>Eylül:</strong> @Model.SeptemberPrice €</p>
-
-                        <small class="text-muted d-block">
-                            * Belirtilen fiyatlar <strong>haftalık</strong> kiralama ücretleridir.
-                        </small>
+                    <div class="card-content">
+                        <h3 class="card-title">Kiralama Fiyatları</h3>
+                        <div class="price-item highlight">
+                            <span class="price-period">Temmuz - Ağustos</span>
+                            <span class="price-value">@Model.JulyToAugustPrice €</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-period">Haziran</span>
+                            <span class="price-value">@Model.JunePrice €</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-period">Eylül</span>
+                            <span class="price-value">@Model.SeptemberPrice €</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-period">Mayıs - Ekim</span>
+                            <span class="price-value">@Model.MayToOctoberPrice €</span>
+                        </div>
+                        <div class="price-note">
+                            <i class="bi bi-info-circle"></i>
+                            Haftalık kiralama ücretleri
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 mb-4">
-                <div class="card h-100">
-                    <div class="card-header f-calvino">
-                        <h5>Olanaklar</h5>
+
+            <!-- Donanım Kartı -->
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                <div class="spec-card facility-card">
+                    <div class="card-icon">
+                        <i class="bi bi-star"></i>
                     </div>
-                    <div class="card-body">
+                    <div class="card-content">
+                        <h3 class="card-title">Donanım</h3>
                         @if (Model.Facilities != null && Model.Facilities.Any())
                         {
-                            <div class="facility-list">
+                            <div class="facility-grid">
                                 @foreach (var facility in Model.Facilities)
                                 {
-                                    <span class="facility-item d-block mb-1">
-                                        <i class="bi bi-check2-circle"></i>
-                                        @facility.LocalizedName
-                                    </span>
+                                    <div class="facility-item">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>@facility.LocalizedName</span>
+                                    </div>
                                 }
                             </div>
                         }
                         else
                         {
-                            <p class="text-muted">Ekipman bilgisi mevcut değil.</p>
+                            <div class="no-facilities">
+                                <i class="bi bi-slash-circle"></i>
+                                <span>Donanım bilgisi mevcut değil</span>
+                            </div>
                         }
                     </div>
                 </div>
@@ -122,7 +196,7 @@
 
     <div class="row mt-5">
         <div class="col-12 text-center">
-            <a href="@Url.Action("Index", "Home")" class="btn btn-primary">
+            <a href="@Url.Action("Index", "Home")" class="btn boat-detail-btn">
                 Ana Sayfaya Dön
             </a>
         </div>
