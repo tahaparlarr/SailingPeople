@@ -8074,7 +8074,7 @@ textarea.form-control-lg {
   padding-left: 1rem !important;
 }
 
-.px-4 {
+.px-4, .boat-card-btn {
   padding-right: 1.5rem !important;
   padding-left: 1.5rem !important;
 }
@@ -8094,7 +8094,7 @@ textarea.form-control-lg {
   padding-bottom: 0.25rem !important;
 }
 
-.py-2 {
+.py-2, .boat-card-btn {
   padding-top: 0.5rem !important;
   padding-bottom: 0.5rem !important;
 }
@@ -8458,7 +8458,7 @@ textarea.form-control-lg {
   color: rgba(var(--bs-black-rgb), var(--bs-text-opacity)) !important;
 }
 
-.text-white {
+.text-white, .boat-card-btn {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-white-rgb), var(--bs-text-opacity)) !important;
 }
@@ -8743,7 +8743,7 @@ textarea.form-control-lg {
   background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
 }
 
-.bg-dark {
+.bg-dark, .boat-card-btn {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
 }
@@ -8858,7 +8858,7 @@ textarea.form-control-lg {
   border-radius: var(--bs-border-radius) !important;
 }
 
-.rounded-0 {
+.rounded-0, .boat-card-btn {
   border-radius: 0 !important;
 }
 
@@ -11897,6 +11897,10 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+body {
+  padding-top: 82px;
+}
+
 .f-calvino {
   font-family: "Calvino Grande Trial", sans-serif;
   font-weight: 300;
@@ -11917,8 +11921,9 @@ textarea.form-control-lg {
   transition: color 0.3s ease, transform 0.2s ease;
 }
 
-.navbar.bg-dark .navbar-brand,
-.navbar.bg-dark .nav-link {
+.navbar.bg-dark .navbar-brand, .navbar.boat-card-btn .navbar-brand,
+.navbar.bg-dark .nav-link,
+.navbar.boat-card-btn .nav-link {
   color: #fff;
 }
 
@@ -12605,4 +12610,146 @@ hr {
   to {
     opacity: 1;
   }
+}
+.boat-card-btn {
+  transition: all 0.3s ease, opacity 0.3s ease;
+}
+.boat-card-btn:hover {
+  background-color: #010b13;
+  opacity: 0.8;
+  margin-left: 3px;
+  transition: all 0.3s ease, opacity 0.3s ease;
+}
+
+/* Contact Form */
+.contact-form-container {
+  max-width: 600px;
+  margin-top: 30px;
+  padding: 15px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-form-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to right, #00648d, #a5c5e5);
+}
+
+.contact-form-title {
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 20px;
+}
+
+.contact-form-wrapper {
+  padding: 0 8px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form .form-label {
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+  display: block;
+  color: #555;
+  font-size: 14px;
+}
+
+.form-group {
+  margin-bottom: 0.8rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 13px;
+  transition: border-color 0.3s ease;
+}
+
+.form-control:hover {
+  border-color: #00648d;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #00648d;
+  box-shadow: 0 0 0 2px rgba(0, 100, 141, 0.2);
+}
+
+.contact-form-button {
+  width: 100%;
+  padding: 10px 16px;
+  font-size: 14px;
+  border-radius: 5px;
+  background: linear-gradient(to right, #00648d, #a5c5e5);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.contact-form-button:hover {
+  transition: all 0.3s ease;
+  background: linear-gradient(to right, #00557a, #8fb3d9);
+  transform: translateY(-1px);
+}
+
+.contact-form-button:active {
+  transform: translateY(1px);
+}
+
+.message-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 40px;
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: sans-serif;
+}
+
+.message-container h2, .message-container .h2 {
+  color: #28a745;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.message-container p {
+  font-size: 1.2rem;
+  color: #6c757d;
+  margin-bottom: 30px;
+}
+
+.cta-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: #007BFF;
+  color: #ffffff;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.cta-btn:hover {
+  transition: background-color 0.3s;
+  background-color: #0056b3;
 }

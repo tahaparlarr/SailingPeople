@@ -1,0 +1,46 @@
+﻿@model SailingPeople.Models.ContactViewModel
+
+<div class="contact-form-container">
+    <h3 class="contact-form-title">Ask Us A Question</h3>
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert @(ViewBag.IsSuccess == true ? "alert-success" : "alert-danger") fade show">
+            @ViewBag.Message
+        </div>
+    }
+
+    <div class="contact-form-wrapper">
+        <form asp-action="Message" method="post" class="contact-form">
+            <div class="form-group">
+                <label asp-for="Name" class="form-label">Username</label>
+                <input asp-for="Name" class="form-control" placeholder="Username" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email" class="form-label">E-Mail</label>
+                <input asp-for="Email" class="form-control" placeholder="E-Mail Address" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Subject" class="form-label">Subject</label>
+                <input asp-for="Subject" class="form-control" placeholder="Subject" />
+                <span asp-validation-for="Subject" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Message" class="form-label">Messages</label>
+                <textarea asp-for="Message" class="form-control" rows="4" placeholder="Messages..."></textarea>
+                <span asp-validation-for="Message" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary contact-form-button">Gönder</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

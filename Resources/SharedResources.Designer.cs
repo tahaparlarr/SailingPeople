@@ -124,6 +124,15 @@ namespace SailingPeople.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E-mail Address.
+        /// </summary>
+        public static string EmailAddress {
+            get {
+                return ResourceManager.GetString("EmailAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Faq.
         /// </summary>
         public static string Faq {
@@ -178,6 +187,15 @@ namespace SailingPeople.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please correct any errors in the form..
+        /// </summary>
+        public static string FormEx {
+            get {
+                return ResourceManager.GetString("FormEx", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Guest.
         /// </summary>
         public static string Guest {
@@ -223,6 +241,24 @@ namespace SailingPeople.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Messages.
+        /// </summary>
+        public static string Messages {
+            get {
+                return ResourceManager.GetString("Messages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pages.
         /// </summary>
         public static string Pages {
@@ -255,6 +291,24 @@ namespace SailingPeople.Resources {
         public static string Select {
             get {
                 return ResourceManager.GetString("Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subject.
+        /// </summary>
+        public static string Subject {
+            get {
+                return ResourceManager.GetString("Subject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technology.
+        /// </summary>
+        public static string Technology {
+            get {
+                return ResourceManager.GetString("Technology", resourceCulture);
             }
         }
     }

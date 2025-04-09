@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SailingPeople;
@@ -11,9 +12,11 @@ using SailingPeople;
 namespace SailingPeople.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250409082647_Email")]
+    partial class Email
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -530,6 +533,13 @@ namespace SailingPeople.Migrations
                             FacilityCategoryId = new Guid("1db7a378-5e4e-4c61-b0a2-f7dab56f6d51"),
                             NameEn = "Oven",
                             NameTr = "Fırın"
+                        },
+                        new
+                        {
+                            Id = new Guid("de11f0f5-4e9b-4e5f-a7fb-15b370b0f929"),
+                            FacilityCategoryId = new Guid("1db7a378-5e4e-4c61-b0a2-f7dab56f6d51"),
+                            NameEn = "Refrigerator",
+                            NameTr = "Buzdolabı"
                         },
                         new
                         {

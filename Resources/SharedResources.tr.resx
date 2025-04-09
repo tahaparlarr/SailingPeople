@@ -183,4 +183,22 @@
   <data name="FilterCodeInput" xml:space="preserve">
     <value>Tekne Kodu</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Adınız</value>
+  </data>
+  <data name="EmailAddress" xml:space="preserve">
+    <value>E-posta Adresi</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Konu</value>
+  </data>
+  <data name="Messages" xml:space="preserve">
+    <value>Mesajınız</value>
+  </data>
+  <data name="FormEx" xml:space="preserve">
+    <value>Lütfen formdaki hataları düzeltin.</value>
+  </data>
+  <data name="Technology" xml:space="preserve">
+    <value>Teknoloji</value>
+  </data>
 </root>

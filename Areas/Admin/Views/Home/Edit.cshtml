@@ -4,7 +4,7 @@
     ViewData["Title"] = "Edit Boat";
 }
 
-<div class="container-fluid py-5" style="background: linear-gradient(to bottom, #dfe9f3, #ffffff);">
+<div class="container-fluid py-5">
     <div class="row justify-content-center">
         <div class="col-lg-8">
             <div class="card border-0 shadow-sm">
@@ -12,8 +12,8 @@
                     <h4 class="mb-0">Edit Boat</h4>
                 </div>
                 <div class="card-body p-4">
-                    <!-- Kaydın Id'sini saklamak için gizli input -->
-                    <form method="post" asp-action="Edit" enctype="multipart/form-data">
+                    <form method="post" asp-action="Edit">
+                        @*enctype="multipart/form-data*@
                         <input type="hidden" asp-for="Id" />
 
                         <div class="mb-3">
@@ -34,68 +34,6 @@
                             <label asp-for="Code" class="form-label fw-bold"></label>
                             <input asp-for="Code" class="form-control" placeholder="Boat Code" />
                             <span asp-validation-for="Code" class="text-danger"></span>
-                        </div>
-
-                        <div class="mb-3">
-                            <label asp-for="MayToOctoberPrice" class="form-label fw-bold"></label>
-                            <input asp-for="MayToOctoberPrice" class="form-control" placeholder="Boat May To October Price" />
-                            <span asp-validation-for="MayToOctoberPrice" class="text-danger"></span>
-                        </div>
-
-                        <div class="mb-3">
-                            <label asp-for="JunePrice" class="form-label fw-bold"></label>
-                            <input asp-for="JunePrice" class="form-control" placeholder="Boat June Price" />
-                            <span asp-validation-for="JunePrice" class="text-danger"></span>
-                        </div>
-
-                        <div class="mb-3">
-                            <label asp-for="JulyToAugustPrice" class="form-label fw-bold"></label>
-                            <input asp-for="JulyToAugustPrice" class="form-control" placeholder="Boat July To August Price" />
-                            <span asp-validation-for="JulyToAugustPrice" class="text-danger"></span>
-                        </div>
-
-                        <div class="mb-3">
-                            <label asp-for="SeptemberPrice" class="form-label fw-bold"></label>
-                            <input asp-for="SeptemberPrice" class="form-control" placeholder="Boat September Price" />
-                            <span asp-validation-for="SeptemberPrice" class="text-danger"></span>
-                        </div>
-
-                        <div class="mb-3">
-                            <label asp-for="Width" class="form-label fw-bold"></label>
-                            <input asp-for="Width" class="form-control" placeholder="Width (meters)" />
-                            <span asp-validation-for="Width" class="text-danger"></span>
-                        </div>
-
-                        <div class="mb-3">
-                            <label asp-for="Length" class="form-label fw-bold"></label>
-                            <input asp-for="Length" class="form-control" placeholder="Length (meters)" />
-                            <span asp-validation-for="Length" class="text-danger"></span>
-                        </div>
-
-                        <div class="mb-3">
-                            <label asp-for="Guest" class="form-label fw-bold"></label>
-                            <input asp-for="Guest" class="form-control" placeholder="Number of Guests" />
-                            <span asp-validation-for="Guest" class="text-danger"></span>
-                        </div>
-
-                        <div class="mb-3">
-                            <label asp-for="Cabin" class="form-label fw-bold"></label>
-                            <input asp-for="Cabin" class="form-control" placeholder="Number of Cabins" />
-                            <span asp-validation-for="Cabin" class="text-danger"></span>
-                        </div>
-
-                        <!-- Mevcut ana görsel varsa, önizleme alanı eklemek isteyebilirsiniz -->
-                        <div class="mb-3">
-                            <label asp-for="ImageFile" class="form-label fw-bold">Main Image</label>
-                            <input asp-for="ImageFile" class="form-control" type="file" />
-                            <span asp-validation-for="ImageFile" class="text-danger"></span>
-                        </div>
-
-                        <!-- Mevcut ek görseller varsa, onları gösterip güncelleme imkânı sunabilirsiniz -->
-                        <div class="mb-3">
-                            <label asp-for="Images" class="form-label fw-bold">Additional Images</label>
-                            <input asp-for="Images" class="form-control" type="file" multiple />
-                            <span asp-validation-for="Images" class="text-danger"></span>
                         </div>
 
                         <div>

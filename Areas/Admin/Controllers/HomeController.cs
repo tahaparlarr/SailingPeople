@@ -5,9 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SailingPeople.Domain;
 using SailingPeople.Models;
-using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Webp;
-using SixLabors.ImageSharp.Processing;
 
 namespace SailingPeople.Areas.Admin.Controllers
 {
@@ -142,23 +140,22 @@ namespace SailingPeople.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        [ResponseCache(Duration = 60)]
         [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
         {
             PopulateDropdowns();
 
             var boat = await dbContext.Boats
-                .Include(p => p.BoatImages)
-                .Include(p => p.Facilities)
                 .Include(p => p.Category)
-                .Include(p => p.BoatSpecs)
-                .ThenInclude(bs => bs.Spec)
                 .SingleOrDefaultAsync(b => b.Id == id);
 
-            var model = mapper.Map<BoatDto>(boat);
+            if (boat == null)
+            {
+                return NotFound();
+            }
 
-            return View(model); // Edit.cshtml
+            var model = mapper.Map<BoatDto>(boat);
+            return View(model);
         }
 
         [HttpPost]
@@ -171,87 +168,17 @@ namespace SailingPeople.Areas.Admin.Controllers
             }
 
             var boat = await dbContext.Boats
-                .Include(p => p.BoatImages)
-                .Include(p => p.Facilities)
-                .Include(p => p.BoatSpecs)
                 .SingleOrDefaultAsync(b => b.Id == model.Id);
 
-            boat.Name = model.Name!;
+            if (boat == null)
+            {
+                return NotFound();
+            }
+
+            boat.Name = model.Name;
             boat.CategoryId = model.CategoryId;
             boat.Code = model.Code;
-            boat.MayToOctoberPrice = model.MayToOctoberPrice;
-            boat.JunePrice = model.JunePrice;
-            boat.JulyToAugustPrice = model.JulyToAugustPrice;
-            boat.SeptemberPrice = model.SeptemberPrice;
-            boat.Width = model.Width ?? 0;
-            boat.Length = model.Length ?? 0;
-            boat.Guest = model.Guest ?? 0;
-            boat.Cabin = model.Cabin ?? 0;
 
-            if (model.ImageFile != null && model.ImageFile.Length > 0)
-            {
-                using var coverImage = await Image.LoadAsync(model.ImageFile.OpenReadStream());
-                coverImage.Mutate(p => p.Resize(new ResizeOptions
-                {
-                    Mode = ResizeMode.Crop,
-                    Size = new Size(1024, 1024)
-                }));
-                boat.Image = coverImage.ToBase64String(WebpFormat.Instance);
-            }
-
-            if (model.Images != null && model.Images.Count > 0)
-            {
-                foreach (var file in model.Images)
-                {
-                    using var additionalImage = await Image.LoadAsync(file.OpenReadStream());
-                    additionalImage.Mutate(p => p.Resize(new ResizeOptions
-                    {
-                        Mode = ResizeMode.Crop,
-                        Size = new Size(800, 800)
-                    }));
-                    boat.BoatImages.Add(new BoatImage
-                    {
-                        Image = additionalImage.ToBase64String(WebpFormat.Instance)
-                    });
-                }
-            }
-
-            // Specifications güncelleme
-            if (model.SpecId != null && model.SpecValue != null)
-            {
-                // Mevcut BoatSpecs kayıtlarını siliyoruz
-                dbContext.BoatSpecs.RemoveRange(boat.BoatSpecs);
-
-                // DTO’dan gelen değerler ile yeniden ekliyoruz
-                for (int i = 0; i < model.SpecId.Count; i++)
-                {
-                    boat.BoatSpecs.Add(new BoatSpec
-                    {
-                        SpecId = model.SpecId[i],
-                        ValueTr = model.SpecValue[i],
-                        ValueEn = model.SpecValue[i]
-                    });
-                }
-            }
-
-            // Facilities güncelleme
-            if (model.FacilityId != null)
-            {
-                // Tüm eski Facilities kaydı sıfırlayalım
-                boat.Facilities.Clear();
-
-                // Yeni seçilenleri ekleyelim
-                var selectedFacilities = await dbContext.Facilities
-                    .Where(f => model.FacilityId.Contains(f.Id))
-                    .ToListAsync();
-
-                foreach (var facility in selectedFacilities)
-                {
-                    boat.Facilities.Add(facility);
-                }
-            }
-
-            dbContext.Boats.Update(boat);
             await dbContext.SaveChangesAsync();
 
             return RedirectToAction("Index");

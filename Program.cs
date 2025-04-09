@@ -4,6 +4,8 @@ using SailingPeople;
 using SailingPeople.Domain;
 using SailingPeople.Models;
 using SailingPeople.Resources;
+using NETCore.MailKit.Extensions;
+using NETCore.MailKit.Infrastructure.Internal;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +26,9 @@ builder.Services
     })
     .AddCookie(options =>
     {
+        options.Cookie.Name = "SailingPeople";
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+        options.SlidingExpiration = true;
         options.LoginPath = "/Account/Login";
     });
 
@@ -42,6 +47,20 @@ builder.Services.AddAutoMapper(config =>
     config.CreateMap<BoatSpec, BoatSpecDto>().ReverseMap();
     config.CreateMap<Spec, SpecDto>().ReverseMap();
     config.CreateMap<Category, CategoryDto>().ReverseMap();
+});
+
+builder.Services.AddMailKit(optionBuilder =>
+{
+    optionBuilder.UseMailKit(new MailKitOptions()
+    {
+        Server = builder.Configuration.GetValue<string>("EMail:Server"),
+        Port = builder.Configuration.GetValue<int>("EMail:Port"),
+        SenderName = builder.Configuration.GetValue<string>("EMail:SenderName"),
+        SenderEmail = builder.Configuration.GetValue<string>("EMail:SenderEmail"),
+        Account = builder.Configuration.GetValue<string>("EMail:Account"),
+        Password = builder.Configuration.GetValue<string>("EMail:Password"),
+        Security = builder.Configuration.GetValue<bool>("EMail:SslEnabled")
+    });
 });
 
 var app = builder.Build();

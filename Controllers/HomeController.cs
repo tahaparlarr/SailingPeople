@@ -1,9 +1,12 @@
-using System.Diagnostics;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NETCore.MailKit.Core;
 using SailingPeople.Models;
+using SailingPeople.Resources;
+using System.Diagnostics;
 
 namespace SailingPeople.Controllers
 {
@@ -11,11 +14,13 @@ namespace SailingPeople.Controllers
     {
         private readonly AppDbContext dbContext;
         private readonly IMapper mapper;
+        private readonly IEmailService emailService;
 
-        public HomeController(AppDbContext dbContext, IMapper mapper)
+        public HomeController(AppDbContext dbContext, IMapper mapper, IEmailService emailService)
         {
             this.dbContext = dbContext;
             this.mapper = mapper;
+            this.emailService = emailService;
         }
 
         public async Task<IActionResult> Index()
@@ -64,19 +69,17 @@ namespace SailingPeople.Controllers
             return View(boatDtos);
         }
 
+        [HttpGet]
         public async Task<IActionResult> BoatDetail(Guid Id)
         {
             var boat = await dbContext.Boats
+                .AsNoTracking()
+                .Where(b => b.Id == Id)
                 .Include(b => b.BoatImages)
                 .Include(b => b.BoatSpecs)
                     .ThenInclude(bs => bs.Spec)
                 .Include(b => b.Facilities)
                 .FirstOrDefaultAsync(b => b.Id == Id);
-
-            if (boat == null)
-            {
-                return NotFound();
-            }
 
             return View(mapper.Map<BoatDto>(boat));
         }
@@ -150,6 +153,38 @@ namespace SailingPeople.Controllers
         public IActionResult Contact()
         {
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Message(ContactViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.IsSuccess = false;
+                ViewBag.Message = SharedResources.FormEx;
+                return View("Contact", model);
+            }
+
+            try
+            {
+                await emailService.SendAsync(
+                    "taha.parlar@cmosteknoloji.com", // Admin E-Postasý
+                    "Sailing & People Ziyaretçi Mesajý",
+                    $@"Gönderen: {model.Name}
+            E-Posta: {model.Email}
+            Konu: {model.Subject}
+            Mesaj: {model.Message}",
+                    isHtml: true);
+
+                ViewBag.IsSuccess = true;
+                ViewBag.Message = "Mesajýnýz baþarýyla gönderildi!";
+                return View("MessageSent");
+            }
+            catch (Exception ex)
+            {
+                return View(model);
+            }
         }
 
         public IActionResult Gocek()

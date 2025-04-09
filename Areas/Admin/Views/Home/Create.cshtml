@@ -4,7 +4,7 @@
     ViewData["Title"] = "Create Boat";
 }
 
-<div class="container-fluid py-5" style="background: linear-gradient(to bottom, #dfe9f3, #ffffff);">
+<div class="container-fluid py-5">
     <div class="row justify-content-center">
         <div class="col-lg-8">
             <div class="card border-0 shadow-sm">
@@ -107,15 +107,20 @@
                             }
                         </div>
 
-                        @foreach (var facility in ViewBag.Facility as IEnumerable<Facility>)
-                        {
-                            <div class="col-md-3 mb-3">
-                                <div class="form-check">
-                                    <input type="checkbox" name="FacilityId" value="@facility.Id" class="form-check-input" />
-                                    <label class="form-check-label">@facility.LocalizedName</label>
-                                </div>
+                        <div class="row row-cols-1 row-cols-md-3 g-3">
+                                @foreach (var facility in ViewBag.Facility as IEnumerable<Facility>)
+                                {
+                            <div class="col">
+                                    <div class="mb-3">
+                                        <div class="form-check">
+                                            <input type="checkbox" name="FacilityId" value="@facility.Id" class="form-check-input" />
+                                            <label class="form-check-label">@facility.LocalizedName</label>
+                                        </div>
+                                    </div>
                             </div>
-                        }
+
+                                }
+                        </div>
 
                         <div>
                             <button type="submit" class="btn btn-primary fw-bold">

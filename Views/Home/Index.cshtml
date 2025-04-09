@@ -13,7 +13,7 @@
             <p class="mb-4 fs-4 f-calvino text-white">
                 Embark on an unforgettable sea voyage with comfortable boats and unique routes.
             </p>
-            <video class="background-video" autoplay muted loop>
+            <video class="background-video" autoplay muted loop playsinline>
                 <source src="/video/hvideo.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -31,7 +31,7 @@
     </div>
 </section>
 
-<section>
+<section class="p-1>
     <div class="container-fluid p-0">
         <div class="text-center m-4">
             <h5 class="display-6 text-primary fw-bold f-calvino">
@@ -51,12 +51,12 @@
                         <div class="category-img position-relative f-calvino">
                             <a asp-controller="Home" asp-action="Category" asp-route-id="@category.Id">
                                 <img class="object-fit-cover w-100" src="~/images/categories/@(category.Id).jpg"
-                                    alt="@category.LocalizedName" />
+                                     alt="@category.LocalizedName" />
                             </a>
 
                             <div class="position-absolute start-50 translate-middle-x bottom-0 mb-3" style="z-index: 10;">
                                 <a asp-controller="Home" asp-action="Category" asp-route-id="@category.Id"
-                                    class="btn btn-inspect rounded-0 display-7">
+                                   class="btn btn-inspect rounded-0 display-7">
                                     @SharedResources.Inspect
                                 </a>
                             </div>
@@ -75,8 +75,8 @@
     </div>
 </section>
 
-<section class="py-5">
-    <div class="text-center mb-4">
+<section class="p-1">
+    <div class="text-center m-4">
         <h5 class="display-6 text-primary fw-bold f-calvino">Boats</h5>
         <div class="d-flex justify-content-center align-items-center">
             <p class="text-muted mb-0 f-calvino">
@@ -125,7 +125,7 @@
 
                                 <div class="d-flex justify-content-between align-items-center">
                                     <a asp-controller="Home" asp-action="BoatDetail" asp-route-id="@boat.Id"
-                                        class="btn bg-dark rounded-0 text-white px-4 py-2">@SharedResources.Inspect</a>
+                                       class="btn boat-card-btn">@SharedResources.Inspect</a>
                                 </div>
                             </div>
                         </div>
@@ -227,3 +227,7 @@
         </div>
     </div>
 </div>
+
+@*<div>
+        <partial name="_ContactFormPartial" model="Model" />
+    </div>*@
