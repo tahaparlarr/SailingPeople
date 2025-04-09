@@ -21,7 +21,7 @@
             <div id="primary-slider" class="splide mb-3" aria-label="Main Boat Images">
                 <div class="splide__track">
                     <ul class="splide__list">
-                        @* <li class="splide__slide">
+                        <li class="splide__slide">
                             <img src="@Model.Image" class="img-fluid mx-auto d-block" alt="Cover Image" />
                         </li>
                         @foreach (var image in Model.BoatImages)
@@ -29,7 +29,7 @@
                             <li class="splide__slide">
                                 <img src="@image.Image" class="img-fluid mx-auto d-block" alt="Boat Image" />
                             </li>
-                        } *@
+                        }
                     </ul>
                 </div>
             </div>
@@ -37,7 +37,6 @@
     </div>
     <div class="boat-specs-container">
         <div class="row g-4">
-            <!-- General Features Card -->
             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
                 <div class="spec-card feature-card">
                     <div class="card-icon">
@@ -103,7 +102,6 @@
                 </div>
             </div>
 
-            <!-- Technical Specifications Card -->
             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
                 <div class="spec-card tech-card">
                     <div class="card-icon">
@@ -130,7 +128,6 @@
                 </div>
             </div>
 
-            <!-- Prices Card -->
             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
                 <div class="spec-card price-card">
                     <div class="card-icon">
@@ -162,7 +159,6 @@
                 </div>
             </div>
 
-            <!-- Facilities Card -->
             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
                 <div class="spec-card facility-card">
                     <div class="card-icon">
