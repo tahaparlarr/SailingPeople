@@ -6,13 +6,19 @@
 
 <section class="custom-header">
     <div class="container-fluid p-0 m-0">
-        <div class="content-wrap text-center p-3">
-            <h1 class="mb-4 display-1 f-calvino text-white">
-                <strong>Discover Freedom in the Blue</strong>
-            </h1>
-            <p class="mb-4 fs-4 f-calvino text-white">
-                Embark on an unforgettable sea voyage with comfortable boats and unique routes.
-            </p>
+        <div class="content-wrap text-center p-3 position-relative">
+            <div class="video-overlay"></div>
+            <div class="position-relative" style="z-index: 2;">
+                <h1 class="mb-4 display-1 f-calvino text-white">
+                    <strong>Discover Freedom in the Blue</strong>
+                </h1>
+                <p class="mb-4 fs-4 f-calvino text-white">
+                    Embark on an unforgettable sea voyage with comfortable boats and unique routes.
+                </p>
+                <div class="scroll-down-arrow">
+                    <i class="bi bi-chevron-down"></i>
+                </div>
+            </div>
             <video class="background-video" autoplay muted loop playsinline>
                 <source src="/video/hvideo.mp4" type="video/mp4">
                 Your browser does not support the video tag.
@@ -21,57 +27,55 @@
     </div>
 </section>
 
-<section class="p-0 m-3 bg-transparent">
+<section class="p-0 m-3">
     <div class="row justify-content-center">
-        <div class="col-md-10 col-lg-8 bg-white rounded-5">
-            <div class="p-2">
-                <partial name="_FilterFormPartial" />
-            </div>
+        <div class="col-md-10 col-lg-8">
+            <partial name="_FilterFormPartial" />
         </div>
     </div>
 </section>
 
 <section class="p-1>
-    <div class="container-fluid p-0">
-        <div class="text-center m-4">
-            <h5 class="display-6 text-primary fw-bold f-calvino">
-                Boats Category
-            </h5>
-            <p class="text-muted mb-0 f-calvino">
-                Explore our collection of amazing boats
-            </p>
-        </div>
+    <div class=" container-fluid p-0">
+    <div class="text-center m-4">
+        <h5 class="display-6 text-primary fw-bold f-calvino">
+            Boats Category
+        </h5>
+        <p class="text-muted mb-0 f-calvino">
+            Explore our collection of amazing boats
+        </p>
+    </div>
 
-        <div class="row row-cols-1 row-cols-lg-4 g-0">
-            @foreach (var category in ViewBag.Categories as IEnumerable<CategoryDto>)
-            {
-                <div class="col">
-                    <div class="category-box border shadow-sm overflow-hidden position-relative">
+    <div class="row row-cols-1 row-cols-lg-4 g-0">
+        @foreach (var category in ViewBag.Categories as IEnumerable<CategoryDto>)
+        {
+            <div class="col">
+                <div class="category-box border shadow-sm overflow-hidden position-relative">
 
-                        <div class="category-img position-relative f-calvino">
-                            <a asp-controller="Home" asp-action="Category" asp-route-id="@category.Id">
-                                <img class="object-fit-cover w-100" src="~/images/categories/@(category.Id).jpg"
-                                     alt="@category.LocalizedName" />
+                    <div class="category-img position-relative f-calvino">
+                        <a asp-controller="Home" asp-action="Category" asp-route-id="@category.Id">
+                            <img class="object-fit-cover w-100" src="~/images/categories/@(category.Id).jpg"
+                                alt="@category.LocalizedName" />
+                        </a>
+
+                        <div class="position-absolute start-50 translate-middle-x bottom-0 mb-3" style="z-index: 10;">
+                            <a asp-controller="Home" asp-action="Category" asp-route-id="@category.Id"
+                                class="btn btn-inspect rounded-0 display-7">
+                                @SharedResources.Inspect
                             </a>
-
-                            <div class="position-absolute start-50 translate-middle-x bottom-0 mb-3" style="z-index: 10;">
-                                <a asp-controller="Home" asp-action="Category" asp-route-id="@category.Id"
-                                   class="btn btn-inspect rounded-0 display-7">
-                                    @SharedResources.Inspect
-                                </a>
-                            </div>
-
-                            <div class="category-overlay">
-                                <div class="overlay-content">
-                                    <h5 class="overlay-title">@category.LocalizedName</h5>
-                                </div>
-                            </div>
                         </div>
 
+                        <div class="category-overlay">
+                            <div class="overlay-content">
+                                <h5 class="overlay-title">@category.LocalizedName</h5>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
-            }
-        </div>
+            </div>
+        }
+    </div>
     </div>
 </section>
 
@@ -125,7 +129,7 @@
 
                                 <div class="d-flex justify-content-between align-items-center">
                                     <a asp-controller="Home" asp-action="BoatDetail" asp-route-id="@boat.Id"
-                                       class="btn boat-card-btn">@SharedResources.Inspect</a>
+                                        class="btn boat-card-btn">@SharedResources.Inspect</a>
                                 </div>
                             </div>
                         </div>
@@ -193,6 +197,7 @@
     </div>
 </section>
 
+
 <div class="container mt-5">
     <div class="text-center mb-5">
         <h2 class="display-6 text-primary fw-bold f-calvino">Our Sample Routes</h2>
@@ -201,32 +206,45 @@
         </p>
     </div>
 
-    <div class="row row-cols-lg-2 row-cols-1 justify-content-center ">
+    <div class="row row-cols-lg-2 row-cols-1 justify-content-center g-4">
         <div class="col">
-            <div class="card custom-card">
-                <a asp-action="hisaronu">
-                    <img src="/images/hisaronu.jpg" class="card-img-top" alt="Hisarönü Gulf">
-
+            <div class="route-card">
+                <a asp-action="hisaronu" class="route-image-link">
+                    <img src="/images/hisaronu.jpg" class="route-image" alt="Hisarönü Gulf">
+                    <div class="route-overlay">
+                        <span class="route-button">View Details</span>
+                    </div>
                 </a>
-                <div class="card-body">
-                    <h5 class="card-title f-calvino">Hisarönü Gulf</h5>
+                <div class="route-content">
+                    <h5 class="route-title f-calvino">Hisarönü Gulf</h5>
+                    <div class="route-meta">
+                        <span><i class="bi bi-clock"></i> 7 Days</span>
+                        <span><i class="bi bi-geo-alt"></i> 12 Locations</span>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="col">
-            <div class="card custom-card">
-                <a asp-action="gocek">
-                    <img src="/images/gocek.jpg" class="card-img-top" alt="Marmaris - Göcek">
-
+            <div class="route-card">
+                <a asp-action="gocek" class="route-image-link">
+                    <img src="/images/gocek.jpg" class="route-image" alt="Marmaris - Göcek">
+                    <div class="route-overlay">
+                        <span class="route-button">View Details</span>
+                    </div>
                 </a>
-                <div class="card-body">
-                    <h5 class="card-title f-calvino">Marmaris - Göcek</h5>
+                <div class="route-content">
+                    <h5 class="route-title f-calvino">Marmaris - Göcek</h5>
+                    <div class="route-meta">
+                        <span><i class="bi bi-clock"></i> 5 Days</span>
+                        <span><i class="bi bi-geo-alt"></i> 8 Locations</span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 @*<div>
         <partial name="_ContactFormPartial" model="Model" />

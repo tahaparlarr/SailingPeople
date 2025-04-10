@@ -18,23 +18,43 @@
 <div class="container py-4" id="details-section">
     <div class="row justify-content-center">
         <div class="col-lg-8 mb-4">
-            <div id="primary-slider" class="splide mb-3" aria-label="Ana Tekne Görselleri">
-                <div class="splide__track">
-                    <ul class="splide__list">
-                        <li class="splide__slide">
-                            <img src="@Model.Image" class="img-fluid mx-auto d-block" alt="Kapak Görseli" />
-                        </li>
-                        @foreach (var image in Model.BoatImages)
-                        {
-                            <li class="splide__slide">
-                                <img src="@image.Image" class="img-fluid mx-auto d-block" alt="Tekne Görseli" />
-                            </li>
-                        }
-                    </ul>
+            <div id="boatCarousel" class="carousel slide mb-3" data-bs-ride="carousel"
+                aria-label="Ana Tekne Görselleri">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#boatCarousel" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    @for (var i = 1; i <= Model.BoatImages.Count; i++)
+                    {
+                        <button type="button" data-bs-target="#boatCarousel" data-bs-slide-to="@i"
+                            aria-label="Slide @(i + 1)"></button>
+                    }
                 </div>
+
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="@Model.Image" class="d-block w-100" alt="Kapak Görseli">
+                    </div>
+
+                    @foreach (var image in Model.BoatImages)
+                    {
+                        <div class="carousel-item">
+                            <img src="@image.Image" class="d-block w-100" alt="Tekne Görseli">
+                        </div>
+                    }
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#boatCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Önceki</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#boatCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Sonraki</span>
+                </button>
             </div>
         </div>
     </div>
+
     <div class="boat-specs-container">
         <div class="row g-4">
             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
@@ -49,9 +69,7 @@
                             <div>
                                 <span class="spec-label">Genişlik</span>
                                 <span class="spec-value">
-                                    @Model.Width.ToString()
-
-                                    metre
+                                    @Model.Width.ToString() metre
                                 </span>
                             </div>
                         </div>
@@ -60,18 +78,7 @@
                             <div>
                                 <span class="spec-label">Uzunluk</span>
                                 <span class="spec-value">
-                                    @{
-                                        if (decimal.TryParse(Model.Length?.ToString(), out var length))
-                                        {
-                                            var correctedLength = length / 100;
-                                            @correctedLength.ToString("0.00")
-                                        }
-                                        else
-                                        {
-                                            @:"Geçersiz"
-                                        }
-                                    }
-                                    metre
+                                    @Model.Length.ToString() metre
                                 </span>
                             </div>
                         </div>
