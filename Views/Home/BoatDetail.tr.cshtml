@@ -49,17 +49,8 @@
                             <div>
                                 <span class="spec-label">Genişlik</span>
                                 <span class="spec-value">
-                                    @{
-                                        if (decimal.TryParse(Model.Width?.ToString(), out var width))
-                                        {
-                                            var correctedWidth = width / 100;
-                                            @correctedWidth.ToString("N2")
-                                        }
-                                        else
-                                        {
-                                            @:"Geçersiz"
-                                        }
-                                    }
+                                    @Model.Width.ToString()
+
                                     metre
                                 </span>
                             </div>

@@ -6,6 +6,7 @@ using SailingPeople.Models;
 using SailingPeople.Resources;
 using NETCore.MailKit.Extensions;
 using NETCore.MailKit.Infrastructure.Internal;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -77,6 +78,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+var defaultCulture = new CultureInfo("en-US");
 var supportedCultures = new[] { "en", "tr" };
 var localizationOptions = new RequestLocalizationOptions()
     .SetDefaultCulture(supportedCultures[0])

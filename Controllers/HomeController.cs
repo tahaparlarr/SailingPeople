@@ -63,6 +63,7 @@ namespace SailingPeople.Controllers
             var boats = await dbContext.Boats
                 .Include(b => b.Category)
                 .AsNoTracking()
+                .AsSplitQuery()
                 .ToListAsync();
 
             var boatDtos = boats.Select(p => mapper.Map<BoatDto>(p)).ToList();
@@ -75,10 +76,11 @@ namespace SailingPeople.Controllers
             var boat = await dbContext.Boats
                 .AsNoTracking()
                 .Where(b => b.Id == Id)
-                // .Include(b => b.BoatImages)
+                .Include(b => b.BoatImages)
                 .Include(b => b.BoatSpecs)
                     .ThenInclude(bs => bs.Spec)
                 .Include(b => b.Facilities)
+                .AsSplitQuery()
                 .FirstOrDefaultAsync(b => b.Id == Id);
 
             return View(mapper.Map<BoatDto>(boat));
@@ -169,7 +171,7 @@ namespace SailingPeople.Controllers
             try
             {
                 await emailService.SendAsync(
-                    "taha.parlar@cmosteknoloji.com", // Admin E-Postas�
+                    "taha.parlar@cmosteknoloji.com", // Admin E-Postası
                     "Sailing & People Ziyaret�i Mesaj�",
                     $@"G�nderen: {model.Name}
             E-Posta: {model.Email}

@@ -17,97 +17,94 @@
         @RenderBody()
     </main>
 
-    <section class="footer-section bg-light">
+    <section class="footer-section bg-light py-5">
         <footer class="footer">
             <div class="container">
-                <div class="row row-cols-1 row-cols-md-4 g-4 align-items-start">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
                     <div class="col">
-                        <h4 class="text-primary fw-bold f-calvino">@SharedResources.FollowUs</h4>
-                        <ul class="list-unstyled text-left">
-                            <li>
-                                <a href="https://www.facebook.com/sailingandpeoplecom/" target="_blank">
-                                    <i class="bi bi-facebook"></i> Facebook
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://twitter.com/sailing_people/" target="_blank">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                         class="bi bi-twitter-x" viewBox="0 0 16 16">
-                                        <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
-                                    </svg>
-                                    <span>X</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.instagram.com/sailingandpeople/" target="_blank">
-                                    <i class="bi bi-instagram"></i> Instagram
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.linkedin.com/company/sailing-and-people/" target="_blank">
-                                    <i class="bi bi-linkedin"></i> LinkedIn
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.youtube.com/channel/UC_LQt8r6LuEUj3a6KBKqXaQ" target="_blank">
-                                    <i class="bi bi-youtube"></i> YouTube
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="col">
-                        <h4 class="text-primary fw-bold f-calvino">@SharedResources.ContactInformation</h4>
-                        <ul class="list-unstyled mb-0">
-                            <li>
-                                <a href="mailto:info@sailingandpeople.com" class="text-decoration-none">
-                                    info@sailingandpeople.com
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="col">
-                        <h4 class="text-primary fw-bold f-calvino">@SharedResources.Pages</h4>
-                        <ul class="list-unstyled text-left">
-                            <li class="mb-2">
-                                <a asp-controller="Home" asp-action="Index" class="text-decoration-none">
-                                    @SharedResources.Home
-                                </a>
-                            </li>
-                            <li class="mb-2">
-                                <a asp-controller="Home" asp-action="Contact" class="text-decoration-none">
-                                    @SharedResources.Contact
-                                </a>
-                            </li>
-                            <li class="mb-2">
-                                <a asp-controller="Home" asp-action="Contact" class="text-decoration-none">
-                                    @SharedResources.Faq
-                                </a>
-                            </li>
-
-                            @await Component.InvokeAsync("CategoryList")
-                        </ul>
-                    </div>
-
-                    <div class="col">
-                        <h4 class="text-primary fw-bold f-calvino mb-3">@SharedResources.FindUs</h4>
-                        <div class="ratio ratio-16x9">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3065.7515774022363!2d28.26044101536053!3d37.044747779560045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14bf3868e33e9bc3%3A0x7148cfbf5ca7fdb4!2sMu%C4%9Fla!5e0!3m2!1str!2str!4v1672381736282!5m2!1str!2str"
-                                    style="border:0;" allowfullscreen loading="lazy"
-                                    referrerpolicy="no-referrer-when-downgrade">
-                            </iframe>
+                        <div class="footer-card h-100">
+                            <h4 class="footer-title mb-4 f-calvino">@SharedResources.FollowUs</h4>
+                            <ul class="list-unstyled social-links">
+                                <li class="mb-3">
+                                    <a href="https://www.facebook.com/sailingandpeoplecom/" target="_blank" class="social-link">
+                                        <i class="bi bi-facebook me-2"></i> Facebook
+                                    </a>
+                                </li>
+                                <li class="mb-3">
+                                    <a href="https://twitter.com/sailing_people/" target="_blank" class="social-link">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x me-2" viewBox="0 0 16 16">
+                                            <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
+                                        </svg>
+                                        <span>Twitter / X</span>
+                                    </a>
+                                </li>
+                                <li class="mb-3">
+                                    <a href="https://www.instagram.com/sailingandpeople/" target="_blank" class="social-link">
+                                        <i class="bi bi-instagram me-2"></i> Instagram
+                                    </a>
+                                </li>
+                                <li class="mb-3">
+                                    <a href="https://www.linkedin.com/company/sailing-and-people/" target="_blank" class="social-link">
+                                        <i class="bi bi-linkedin me-2"></i> LinkedIn
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.youtube.com/channel/UC_LQt8r6LuEUj3a6KBKqXaQ" target="_blank" class="social-link">
+                                        <i class="bi bi-youtube me-2"></i> YouTube
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
 
+                    <div class="col">
+                        <div class="footer-card h-100">
+                            <h4 class="footer-title mb-4 f-calvino">@SharedResources.ContactInformation</h4>
+                            <ul class="list-unstyled contact-info">
+                                <li class="mb-3">
+                                    <a href="mailto:alioguducu@gmail.com" class="contact-link">
+                                        <i class="bi bi-envelope-fill me-2"></i> alioguducu@gmail.com
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="footer-card h-100">
+                            <h4 class="footer-title mb-4 f-calvino">@SharedResources.Pages</h4>
+                            <ul class="list-unstyled quick-links">
+                                <li class="mb-2">
+                                    <a asp-controller="Home" asp-action="Index" class="quick-link">
+                                        <i class="bi bi-house-door me-2"></i> @SharedResources.Home
+                                    </a>
+                                </li>
+                                <li class="mb-2">
+                                    <a asp-controller="Home" asp-action="Contact" class="quick-link">
+                                        <i class="bi bi-headset me-2"></i> @SharedResources.Contact
+                                    </a>
+                                </li>
+                                <li class="mb-2">
+                                    <a asp-controller="Home" asp-action="Contact" class="quick-link">
+                                        <i class="bi bi-question-circle me-2"></i> @SharedResources.Faq
+                                    </a>
+                                </li>
+                                @await Component.InvokeAsync("CategoryList")
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="row">
-                    <div class="text-center mt-4">
-                        <p>
-                            Sailing & People is a SIESTA YATCILIK A.Ş. brand. <br />
-                            © 2025 CMOS @SharedResources.Technology
-                        </p>
+                <div class="row py-4">
+                    <div class="col-12">
+                        <div class="copyright text-center pt-3 border-top">
+                            <p class="mb-0">
+                                <small>
+                                    Sailing & People is a SIESTA YATCILIK A.Ş. brand.<br>
+                                    © 2025 CMOS @SharedResources.Technology. All rights reserved.
+                                </small>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
