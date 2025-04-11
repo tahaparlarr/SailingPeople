@@ -171,16 +171,25 @@ namespace SailingPeople.Controllers
             try
             {
                 await emailService.SendAsync(
-                    "taha.parlar@cmosteknoloji.com", // Admin E-Postası
-                    "Sailing & People Ziyaret�i Mesaj�",
-                    $@"G�nderen: {model.Name}
-            E-Posta: {model.Email}
-            Konu: {model.Subject}
-            Mesaj: {model.Message}",
-                    isHtml: true);
+                    "ali.oguducu@gmail.com", // Admin E-posta adresi
+                    "Sailing & People - Ziyaretçi Mesajı",
+                    $@"<p>Merhaba,</p>
+       <p>{model.Name} adlı kullanıcıdan bir mesaj aldınız.</p>
+       <p>
+           Gönderen: {model.Name}<br />
+           E-posta : {model.Email}<br />
+           Konu    : {model.Subject}
+       </p>
+       <p>
+           Mesaj: <br/>
+           {model.Message}
+       </p>
+       <p>İyi günler dileriz.</p>",
+                    isHtml: true
+                );
 
                 ViewBag.IsSuccess = true;
-                ViewBag.Message = "Mesaj�n�z ba�ar�yla g�nderildi!";
+                ViewBag.Message = "Mesajınz ba�ar�yla g�nderildi!";
                 return View("MessageSent");
             }
             catch (Exception ex)
