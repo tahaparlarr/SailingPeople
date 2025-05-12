@@ -109,6 +109,9 @@
                             <div class="card-body">
                                 <div class="card-top-text">
                                     <p class="text-uppercase">@boat.Category.LocalizedName</p>
+                                    @*<p class="text-uppercase">
+                                        @boat.BoatSpecs.FirstOrDefault(b => b.LocalizedValue == "Model")
+                                    </p>*@
                                     <h5 class="card-title text-dark">@boat.Code</h5>
                                 </div>
 
