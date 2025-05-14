@@ -37,45 +37,45 @@
 
 <section class="p-1>
     <div class=" container-fluid p-0">
-    <div class="text-center m-4">
-        <h5 class="display-6 text-primary fw-bold f-calvino">
-            Boats Category
-        </h5>
-        <p class="text-muted mb-0 f-calvino">
-            Explore our collection of amazing boats
-        </p>
-    </div>
+        <div class="text-center m-4">
+            <h5 class="display-6 text-primary fw-bold f-calvino">
+                Boats Category
+            </h5>
+            <p class="text-muted mb-0 f-calvino">
+                Explore our collection of amazing boats
+            </p>
+        </div>
 
-    <div class="row row-cols-1 row-cols-lg-4 g-0">
-        @foreach (var category in ViewBag.Categories as IEnumerable<CategoryDto>)
-        {
-            <div class="col">
-                <div class="category-box border shadow-sm overflow-hidden position-relative">
+        <div class="row row-cols-1 row-cols-lg-4 g-0">
+            @foreach (var category in ViewBag.Categories as IEnumerable<CategoryDto>)
+            {
+                <div class="col">
+                    <div class="category-box border shadow-sm overflow-hidden position-relative">
 
-                    <div class="category-img position-relative f-calvino">
-                        <a asp-controller="Home" asp-action="Category" asp-route-id="@category.Id">
-                            <img class="object-fit-cover w-100" src="~/images/categories/@(category.Id).jpg"
-                                alt="@category.LocalizedName" />
-                        </a>
-
-                        <div class="position-absolute start-50 translate-middle-x bottom-0 mb-3" style="z-index: 10;">
-                            <a asp-controller="Home" asp-action="Category" asp-route-id="@category.Id"
-                                class="btn btn-inspect rounded-0 display-7">
-                                @SharedResources.Inspect
+                        <div class="category-img position-relative f-calvino">
+                            <a asp-controller="Home" asp-action="Category" asp-route-id="@category.Id">
+                                <img class="object-fit-cover w-100" src="~/images/categories/@(category.Id).jpg"
+                                     alt="@category.LocalizedName" />
                             </a>
-                        </div>
 
-                        <div class="category-overlay">
-                            <div class="overlay-content">
-                                <h5 class="overlay-title">@category.LocalizedName</h5>
+                            <div class="position-absolute start-50 translate-middle-x bottom-0 mb-3" style="z-index: 10;">
+                                <a asp-controller="Home" asp-action="Category" asp-route-id="@category.Id"
+                                   class="btn btn-inspect rounded-0 display-7">
+                                    @SharedResources.Inspect
+                                </a>
+                            </div>
+
+                            <div class="category-overlay">
+                                <div class="overlay-content">
+                                    <h5 class="overlay-title">@category.LocalizedName</h5>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
-            </div>
-        }
-    </div>
+            }
+        </div>
     </div>
 </section>
 
@@ -108,10 +108,10 @@
                             </a>
                             <div class="card-body">
                                 <div class="card-top-text">
-                                    <p class="text-uppercase">@boat.Category.LocalizedName</p>
-                                    @*<p class="text-uppercase">
-                                        @boat.BoatSpecs.FirstOrDefault(b => b.LocalizedValue == "Model")
-                                    </p>*@
+                                    @{
+                                        var modelSpec = boat.BoatSpecs.FirstOrDefault(b => b.Spec!.LocalizedName == "Model");
+                                    }
+                                    <p class="text-uppercase">@boat.Category.LocalizedName @(modelSpec?.LocalizedValue != null ? "- " + modelSpec.LocalizedValue : "")</p>
                                     <h5 class="card-title text-dark">@boat.Code</h5>
                                 </div>
 
@@ -132,7 +132,7 @@
 
                                 <div class="d-flex justify-content-between align-items-center">
                                     <a asp-controller="Home" asp-action="BoatDetail" asp-route-id="@boat.Id"
-                                        class="btn boat-card-btn">@SharedResources.Inspect</a>
+                                       class="btn boat-card-btn">@SharedResources.Inspect</a>
                                 </div>
                             </div>
                         </div>

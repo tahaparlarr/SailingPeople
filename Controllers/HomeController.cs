@@ -30,7 +30,11 @@ namespace SailingPeople.Controllers
             ViewBag.CategoriesSelectList = new SelectList(categories, "Id", "LocalizedName");
             ViewBag.Categories = categories;
 
-            var boats = await dbContext.Boats.Take(20).ToListAsync();
+            var boats = await dbContext.Boats
+                .Include(p => p.BoatSpecs)
+                .ThenInclude(p => p.Spec)
+                .Take(20)
+                .ToListAsync();
             ViewBag.Boats = boats.Select(p => mapper.Map<BoatDto>(p));
 
             return View();
@@ -45,6 +49,8 @@ namespace SailingPeople.Controllers
             ViewBag.Categories = categories;
 
             var boats = (await dbContext.Boats
+                .Include(p => p.BoatSpecs)
+                .ThenInclude(p => p.Spec)
                 .Where(p => p.CategoryId == Id)
                 .ToListAsync())
                 .Select(p => mapper.Map<BoatDto>(p));

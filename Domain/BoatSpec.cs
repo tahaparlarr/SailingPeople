@@ -11,6 +11,20 @@ public class BoatSpec
     public string? ValueEn { get; set; } 
     public virtual Boat? Boat { get; set; }
     public virtual Spec? Spec { get; set; }
+    public string LocalizedValue
+    {
+        get
+        {
+            var culture = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
+
+            if (culture == "tr")
+            {
+                return ValueTr;
+            }
+            return ValueEn;
+        }
+
+    }
 }
 
 public class BoatSpecEntityTypeConfiguration : IEntityTypeConfiguration<BoatSpec>

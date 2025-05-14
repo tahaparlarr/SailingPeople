@@ -28,7 +28,10 @@
                         </a>
                         <div class="card-body">
                             <div class="card-top-text">
-                                <p class="text-uppercase">@boat.Category.LocalizedName</p>
+                                @{
+                                    var modelSpec = boat.BoatSpecs.FirstOrDefault(b => b.Spec!.LocalizedName == "Model");
+                                }
+                                <p class="text-uppercase">@boat.Category.LocalizedName @(modelSpec?.LocalizedValue != null ? "- " + modelSpec.LocalizedValue : "")</p>
                                 <h5 class="card-title text-dark">@boat.Code</h5>
                             </div>
 
@@ -49,7 +52,7 @@
 
                             <div class="d-flex justify-content-between align-items-center">
                                 <a asp-controller="Home" asp-action="BoatDetail" asp-route-id="@boat.Id"
-                                    class="btn bg-dark rounded-0 text-white px-4 py-2">@SharedResources.Inspect</a>
+                                   class="btn bg-dark rounded-0 text-white px-4 py-2">@SharedResources.Inspect</a>
                             </div>
                         </div>
                     </div>
